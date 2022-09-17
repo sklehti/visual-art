@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 const Test1 = () => {
   return <div id="test_1">Let's Look at something here 1</div>;

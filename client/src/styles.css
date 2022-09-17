@@ -1,9 +1,21 @@
+.showroom-box {
+  width: 85vw;
+  height: 40vw;
+  border-style: solid;
+  border-color: #2d2d2d;
+  border-width: 3px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .flex-container {
   display: flex;
   /* height: fit-content; */
   justify-content: center;
   /* align-items: flex-start; */
   padding-top: 30px;
+  padding-bottom: 30px;
   /* margin: 0%; */
 }
 
@@ -57,4 +69,57 @@
 .showroom-button {
   background: transparent;
   border: none !important;
+}
+
+.a-enter-vr-button {
+  background-color: #2d2d2d;
+  width: 6vw;
+  height: 3.8vw;
+}
+
+.a-enter-vr-button:hover {
+  background-color: #ff6d00;
+}
+
+/* SEURAAVAT RIVIT VIITTAAVAT SIVUN VIERITYKSEEN*/
+/* body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+} */
+
+#test_2 {
+  margin-top: 1000px;
+  font-size: 3rem;
+  background-color: rgb(243, 124, 124);
+  font-weight: 800;
+  text-align: center;
+  padding: 80px;
+  border: 2px solid red;
+  margin-bottom: 500px;
+}
+
+#test_1 {
+  margin-top: 500px;
+  border: 6px double green;
+  font-size: 3rem;
+  background-color: lightgreen;
+  font-weight: 800;
+  text-align: center;
+  padding: 80px;
+}
+
+.anchor-button {
+  font-size: 1.5rem;
+  padding: 10px 20px;
+  margin-right: 10px;
+  cursor: pointer;
 }

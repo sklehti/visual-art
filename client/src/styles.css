@@ -1,3 +1,7 @@
+.arrowup-style:hover {
+  fill: #ff6d00;
+}
+
 .showroom-box {
   width: 85vw;
   height: 40vw;
@@ -69,6 +73,7 @@
 .showroom-button {
   background: transparent;
   border: none !important;
+  padding-right: 30px;
 }
 
 .a-enter-vr-button {
@@ -79,6 +84,21 @@
 
 .a-enter-vr-button:hover {
   background-color: #ff6d00;
+}
+
+.href-style {
+  color: #2d2d2d;
+  font-size: 2vw;
+  text-decoration: none;
+}
+
+.href-style:hover {
+  color: #ff6d00;
+}
+
+#navbar {
+  transition: top 0.5s;
+  border-bottom: 4px solid #f8f8ff;
 }
 
 #test_2 {
@@ -107,4 +127,13 @@
   padding: 10px 20px;
   margin-right: 10px;
   cursor: pointer;
+}
+
+.color-nav {
+  background-color: #ffff;
+  z-index: 2000;
+}
+
+button.a-enter-vr-button {
+  z-index: 1000;
 }

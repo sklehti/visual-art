@@ -12,6 +12,8 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Footer from "./Footer";
 import ArrowUp from "../icons/ArrowUp";
 
+import MagnifierGlass from "../icons/MagnifierGlass";
+
 function PageView() {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -84,6 +86,7 @@ function PageView() {
             <Nav className="ms-auto">
               <Nav.Link href="#test_1">test-1</Nav.Link>
               <Nav.Link href="#test_2">test-2</Nav.Link>
+              <Nav.Link href="#test_kuva">test-kuva</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -94,6 +97,10 @@ function PageView() {
       {/* <a href="#top">
         <img alt="arrow-up" src={ArrowUp} className="arrow-up-style" />
       </a> */}
+      <div>
+        <MagnifierGlass />
+      </div>
+
       <a href="#top">
         <ArrowUp />
       </a>

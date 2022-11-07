@@ -8,103 +8,102 @@ function ImageUpload({ rightUser }) {
     file: [],
     filepreview: null,
   });
-
   const [validated, setValidated] = useState(false);
   const [invalidImage, setinvalidImage] = useState(null);
   const [imageTitle, setImageTitle] = useState("");
   const [imageText, setImageText] = useState("");
 
+  let reader = new FileReader();
+
   const handleImageTitle = (e) => {
     setImageTitle(e.target.value);
-    console.log(e.target.value);
   };
 
   const handleImageText = (e) => {
     setImageText(e.target.value);
   };
 
-  let reader = new FileReader();
-  const handleInputChange = (event) => {
-    const imageFile = event.target.files[0];
-    const imageFilname = event.target.files[0].name;
-
-    if (!imageFile) {
-      setinvalidImage("Valitse kuva.");
-      return false;
-    }
-
-    if (!imageFile.name.match(/\.(jpg|jpeg|png|JPG|JPEG|PNG|gif)$/)) {
-      setinvalidImage("Valitse validi kuva muotoa: JPG,JPEG,PNG");
-      return false;
-    }
-
-    reader.onload = (e) => {
-      const img = new Image();
-      img.onload = () => {
-        //------------- Resize img code ----------------------------------
-        var canvas = document.createElement("canvas");
-        var ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0);
-
-        var MAX_WIDTH = 200;
-        var MAX_HEIGHT = 200;
-        var width = img.width;
-        var height = img.height;
-
-        if (width > height) {
-          if (width > MAX_WIDTH) {
-            height *= MAX_WIDTH / width;
-            width = MAX_WIDTH;
-          }
-        } else {
-          if (height > MAX_HEIGHT) {
-            width *= MAX_HEIGHT / height;
-            height = MAX_HEIGHT;
-          }
-        }
-        canvas.width = width;
-        canvas.height = height;
-        var ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0, width, height);
-        ctx.canvas.toBlob(
-          (blob) => {
-            const file = new File([blob], imageFilname, {
-              type: "image/jpeg",
-              lastModified: Date.now(),
-            });
-
-            setuserInfo({
-              ...userInfo,
-              file: file,
-              filepreview: URL.createObjectURL(imageFile),
-            });
-          },
-          "image/jpeg",
-          1
-        );
-
-        setinvalidImage(null);
-      };
-
-      img.onerror = () => {
-        setinvalidImage("Epävalidi kuva valittu.");
-        return false;
-      };
-      //debugger
-      img.src = e.target.result;
-    };
-
-    reader.readAsDataURL(imageFile);
-  };
-
+  // TODO: poista seuraava funktio, ei tee tarkkoja kuvia!
   // const handleInputChange = (event) => {
-  //   console.log(event.target.files[0], "testi_1");
-  //   setuserInfo({
-  //     ...userInfo,
-  //     file: event.target.files[0],
-  //     filepreview: URL.createObjectURL(event.target.files[0]),
-  //   });
+  //   const imageFile = event.target.files[0];
+  //   const imageFilname = event.target.files[0].name;
+
+  //   if (!imageFile) {
+  //     setinvalidImage("Valitse kuva.");
+  //     return false;
+  //   }
+
+  //   if (!imageFile.name.match(/\.(jpg|jpeg|png|JPG|JPEG|PNG|gif)$/)) {
+  //     setinvalidImage("Valitse validi kuva muotoa: JPG,JPEG,PNG");
+  //     return false;
+  //   }
+
+  //   reader.onload = (e) => {
+  //     const img = new Image();
+  //     img.onload = () => {
+  //       // resize the image
+  //       var canvas = document.createElement("canvas");
+  //       var ctx = canvas.getContext("2d");
+  //       ctx.drawImage(img, 0, 0);
+
+  //       var MAX_WIDTH = 200;
+  //       var MAX_HEIGHT = 200;
+  //       var width = img.width;
+  //       var height = img.height;
+
+  //       if (width > height) {
+  //         if (width > MAX_WIDTH) {
+  //           height *= MAX_WIDTH / width;
+  //           width = MAX_WIDTH;
+  //         }
+  //       } else {
+  //         if (height > MAX_HEIGHT) {
+  //           width *= MAX_HEIGHT / height;
+  //           height = MAX_HEIGHT;
+  //         }
+  //       }
+  //       canvas.width = width;
+  //       canvas.height = height;
+  //       // var ctx = canvas.getContext("2d");
+  //       ctx.drawImage(img, 0, 0, width, height);
+  //       ctx.canvas.toBlob(
+  //         (blob) => {
+  //           const file = new File([blob], imageFilname, {
+  //             type: "image/jpeg",
+  //             lastModified: Date.now(),
+  //           });
+
+  //           setuserInfo({
+  //             ...userInfo,
+  //             file: file,
+  //             filepreview: URL.createObjectURL(imageFile),
+  //           });
+  //         },
+  //         "image/jpeg",
+  //         1
+  //       );
+
+  //       setinvalidImage(null);
+  //     };
+
+  //     img.onerror = () => {
+  //       setinvalidImage("Epävalidi kuva valittu.");
+  //       return false;
+  //     };
+  //     img.src = e.target.result;
+  //   };
+
+  //   reader.readAsDataURL(imageFile);
   // };
+
+  const handleInputChange = (event) => {
+    console.log(event.target.files[0], "testi_1");
+    setuserInfo({
+      ...userInfo,
+      file: event.target.files[0],
+      filepreview: URL.createObjectURL(event.target.files[0]),
+    });
+  };
 
   const [isSuccess, setSuccess] = useState(null);
   const submit = async () => {

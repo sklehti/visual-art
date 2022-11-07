@@ -1,4 +1,4 @@
-import React, { useState, useEfect } from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import visualArtDatabase from "../../services/visualArtDatabase";
@@ -8,11 +8,6 @@ function AdminRegister() {
   const [validated, setValidated] = useState(false);
   const [userName, setUsername] = useState("");
   const [userPassword, setUserPassword] = useState("");
-  const [userInfo, setUserInfo] = useState({
-    username: "",
-    password: "",
-    admin: false,
-  });
 
   const handleUserName = (e) => {
     setUsername(e.target.value);

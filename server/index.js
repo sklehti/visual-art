@@ -14,12 +14,10 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 app.use(cors());
 app.use(express.json());
-//app.use(express.static("public"));
 
 const storage = multer.diskStorage({
   destination: path.join(__dirname, "../public_html/", "uploads"),
   filename: function (req, file, cb) {
-    // null as first argument means no error
     cb(null, Date.now() + "-" + file.originalname);
   },
 });
@@ -47,12 +45,6 @@ app.get("/getAdmin/:username/:password", (req, res) => {
     const sql = "SELECT username, password FROM admin WHERE username=?";
     connection.query(sql, req.params.username, (err, results) => {
       if (err) throw err;
-
-      // let adminResult = bcrypt.compareSync(
-      //   req.params.password,
-      //   results[0].password
-      // );
-      // res.send(adminResult);
 
       if (bcrypt.compareSync(req.params.password, results[0].password)) {
         const userForToken = {
@@ -93,7 +85,6 @@ app.post("/createAdmin", async (req, res) => {
     username: req.body.newAdmin.username,
     password: hash,
     admin: req.body.newAdmin.admin,
-    // lisää token! https://dev.to/nyctonio/authentication-in-node-js-with-mongodb-bcrypt-and-jwt-web-tokens-with-cookies-hl3
   };
 
   try {
@@ -143,5 +134,5 @@ app.post("/imageupload", async (req, res) => {
 });
 
 app.listen(port, () =>
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`Visual Art app listening at http://localhost:${port}`)
 );

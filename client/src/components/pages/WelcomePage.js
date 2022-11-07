@@ -9,15 +9,6 @@ const Test2 = () => {
 };
 
 const WelcomePage = () => {
-  // useEffect(() => {
-  //   var refresh = window.localStorage.getItem("refresh");
-  //   console.log(refresh);
-  //   if (refresh === null) {
-  //     window.location.reload();
-  //     window.localStorage.setItem("refresh", "1");
-  //   }
-  // }, []);
-
   return (
     <div>
       <Test1 />

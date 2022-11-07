@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ImageUpload from "./ImageUpload";
 import Container from "react-bootstrap/Container";
-import AdminRegister from "./AdminRegister";
 import AdminLogging from "./AdminLogging";
-import visualArtDatabase from "../../services/visualArtDatabase";
 
 function Admin() {
   const [rightUser, setRightUser] = useState({

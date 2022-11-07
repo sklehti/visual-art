@@ -6,11 +6,9 @@ import ShowroomIcon from "../icons/ShowroomButton";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import Footer from "./Footer";
 import ArrowUp from "../icons/ArrowUp";
 import visualArtDatabase from "../../services/visualArtDatabase";
-
 // import MagnifierGlass from "../icons/MagnifierGlass";
 
 function PageView() {
@@ -25,7 +23,6 @@ function PageView() {
 
     visualArtDatabase.getAllInfo().then((results) => {
       results.forEach((n) => {
-        //temArray.push(n);
         tempArray = [...tempArray, n];
 
         visualArtDatabase.getImages(n.image);

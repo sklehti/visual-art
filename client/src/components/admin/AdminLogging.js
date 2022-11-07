@@ -1,4 +1,4 @@
-import React, { useState, useEfect } from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import visualArtDatabase from "../../services/visualArtDatabase";

@@ -1,11 +1,11 @@
 import React from "react";
 
 const Test1 = () => {
-  return <div id="test_1">Let's Look at something here 1</div>;
+  return <div id="test_1">testi 1</div>;
 };
 
 const Test2 = () => {
-  return <div id="test_2">Let's Look at something here 2</div>;
+  return <div id="test_2">testi 2</div>;
 };
 
 const WelcomePage = () => {

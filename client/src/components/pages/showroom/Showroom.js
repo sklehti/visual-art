@@ -1,5 +1,5 @@
 import React from "react";
-import PanoramaView from "../../images/panorama-view.jpg";
+import PanoramaView from "../../../images/panorama-view.jpg";
 
 function Showroom() {
   return (

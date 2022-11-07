@@ -1,23 +1,38 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import anime from "animejs/lib/anime.es.js";
 import WelcomePage from "./WelcomePage";
 import Showroom from "./showroom/Showroom";
 import ShowroomIcon from "../icons/ShowroomButton";
-
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-//import ArrowUp from "../images/arrow-up.svg";
 import Footer from "./Footer";
 import ArrowUp from "../icons/ArrowUp";
+import visualArtDatabase from "../../services/visualArtDatabase";
 
-import MagnifierGlass from "../icons/MagnifierGlass";
+// import MagnifierGlass from "../icons/MagnifierGlass";
 
 function PageView() {
+  const [imageInfo, setImageInfo] = useState([]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    let tempArray = [];
+
+    visualArtDatabase.getAllInfo().then((results) => {
+      results.forEach((n) => {
+        //temArray.push(n);
+        tempArray = [...tempArray, n];
+
+        visualArtDatabase.getImages(n.image);
+      });
+      setImageInfo(tempArray);
+    });
+  }, [setImageInfo]);
 
   useEffect(() => {
     var prevScrollpos = window.pageYOffset;
@@ -84,26 +99,30 @@ function PageView() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
-              <Nav.Link href="#test_1">test-1</Nav.Link>
-              <Nav.Link href="#test_2">test-2</Nav.Link>
-              <Nav.Link href="#test_kuva">test-kuva</Nav.Link>
+              <Nav.Link href="#test_1">testi-1</Nav.Link>
+              <Nav.Link href="#test_2">testi-2</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      <Container>
+        <Showroom />
+        {imageInfo.map((i, index) => (
+          <img
+            key={index}
+            alt="kuva, muuta tämä!"
+            // width="500"
+            height="300"
+            src={"http://localhost:8080/images/" + i.image}
+          />
+        ))}
 
-      <Showroom />
-      <WelcomePage />
-      {/* <a href="#top">
-        <img alt="arrow-up" src={ArrowUp} className="arrow-up-style" />
-      </a> */}
-      <div>
-        <MagnifierGlass />
-      </div>
-
-      <a href="#top">
-        <ArrowUp />
-      </a>
+        <WelcomePage />
+        <div>{/* <MagnifierGlass /> */}</div>
+        <a href="#top">
+          <ArrowUp />
+        </a>
+      </Container>
       <Footer />
     </div>
   );

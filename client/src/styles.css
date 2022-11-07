@@ -104,19 +104,19 @@
 #test_2 {
   margin-top: 1000px;
   font-size: 3rem;
-  background-color: rgb(243, 124, 124);
+  background-color: #f8f8ff;
   font-weight: 800;
   text-align: center;
   padding: 80px;
-  border: 2px solid red;
+  border: 2px solid #2d2d2d;
   margin-bottom: 500px;
 }
 
 #test_1 {
   margin-top: 500px;
-  border: 6px double green;
+  border: 2px solid #2d2d2d;
   font-size: 3rem;
-  background-color: lightgreen;
+  background-color: #f8f8ff;
   font-weight: 800;
   text-align: center;
   padding: 80px;
@@ -149,4 +149,10 @@ button.a-enter-vr-button {
 
 .magnifying-glass {
   /* Styles for magnifying glass */
+}
+
+/* ImageUpload.js */
+.previewimg {
+  width: 30vw;
+  height: auto;
 }

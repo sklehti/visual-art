@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import visualArtDatabase from "../../services/visualArtDatabase";
@@ -7,6 +7,8 @@ function AdminLogging({ setRightUser }) {
   const [validated, setValidated] = useState(false);
   const [userName, setUsername] = useState("");
   const [userPassword, setUserPassword] = useState("");
+
+  const form = useRef();
 
   const handleUserName = (e) => {
     setUsername(e.target.value);
@@ -39,7 +41,7 @@ function AdminLogging({ setRightUser }) {
 
   return (
     <div>
-      <Form noValidate validated={validated} onSubmit={handleSubmit}>
+      <Form ref={form} noValidate validated={validated} onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Sähköpostiosoite:</Form.Label>
           <Form.Control

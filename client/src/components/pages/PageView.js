@@ -9,6 +9,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Footer from "./Footer";
 import ArrowUp from "../icons/ArrowUp";
 import visualArtDatabase from "../../services/visualArtDatabase";
+import EmailForm from "./EmailForm";
 // import MagnifierGlass from "../icons/MagnifierGlass";
 
 function PageView() {
@@ -98,6 +99,7 @@ function PageView() {
             <Nav className="ms-auto">
               <Nav.Link href="#test_1">testi-1</Nav.Link>
               <Nav.Link href="#test_2">testi-2</Nav.Link>
+              <Nav.Link href="#email-form">Yhteydenotto</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -116,10 +118,11 @@ function PageView() {
 
         <WelcomePage />
         <div>{/* <MagnifierGlass /> */}</div>
-        <a href="#top">
-          <ArrowUp />
-        </a>
+        <EmailForm />
       </Container>
+      <a href="#top">
+        <ArrowUp />
+      </a>
       <Footer />
     </div>
   );

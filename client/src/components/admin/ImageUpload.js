@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import visualArtDatabase from "../../services/visualArtDatabase";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -13,7 +13,7 @@ function ImageUpload({ rightUser }) {
   const [imageTitle, setImageTitle] = useState("");
   const [imageText, setImageText] = useState("");
 
-  let reader = new FileReader();
+  const form = useRef();
 
   const handleImageTitle = (e) => {
     setImageTitle(e.target.value);
@@ -24,6 +24,8 @@ function ImageUpload({ rightUser }) {
   };
 
   // TODO: poista seuraava funktio, ei tee tarkkoja kuvia!
+  // let reader = new FileReader();
+
   // const handleInputChange = (event) => {
   //   const imageFile = event.target.files[0];
   //   const imageFilname = event.target.files[0].name;
@@ -137,11 +139,12 @@ function ImageUpload({ rightUser }) {
       event.stopPropagation();
     }
 
+    event.preventDefault();
     setValidated(true);
   };
 
   return (
-    <Form noValidate validated={validated} onSubmit={handleSubmit}>
+    <Form ref={form} noValidate validated={validated} onSubmit={handleSubmit}>
       {isSuccess !== null ? <h4> {isSuccess} </h4> : null}
       {invalidImage !== null ? (
         <h4 className="error"> {invalidImage} </h4>
@@ -198,7 +201,6 @@ function ImageUpload({ rightUser }) {
           alt="UploadImage"
         />
       ) : null}
-      {userInfo.filepreview}
     </Form>
   );
 }

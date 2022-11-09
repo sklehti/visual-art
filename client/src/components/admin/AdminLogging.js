@@ -2,11 +2,20 @@ import React, { useState, useRef } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import visualArtDatabase from "../../services/visualArtDatabase";
+import { rightAdminUser } from "../../reducers/adminReducer";
+import {
+  loggingValidatedFalse,
+  loggingValidatedTrue,
+} from "../../reducers/loggingValidateReducer";
+import { useDispatch, useSelector } from "react-redux";
 
-function AdminLogging({ setRightUser }) {
-  const [validated, setValidated] = useState(false);
+function AdminLogging() {
+  //const [validated, setValidated] = useState(false);
   const [userName, setUsername] = useState("");
   const [userPassword, setUserPassword] = useState("");
+
+  const dispatch = useDispatch();
+  const validated = useSelector((state) => state.loggingValidated.value);
 
   const form = useRef();
 
@@ -32,16 +41,23 @@ function AdminLogging({ setRightUser }) {
     };
 
     visualArtDatabase.getAdmin(user).then((result) => {
-      setRightUser(result);
+      //setRightUser(result);
+      dispatch(rightAdminUser(result));
     });
 
     event.preventDefault();
-    setValidated(true);
+    //setValidated(true);
+    dispatch(loggingValidatedTrue());
   };
 
   return (
     <div>
-      <Form ref={form} noValidate validated={validated} onSubmit={handleSubmit}>
+      <Form
+        ref={form}
+        noValidate
+        validated={validated.value}
+        onSubmit={handleSubmit}
+      >
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Sähköpostiosoite:</Form.Label>
           <Form.Control

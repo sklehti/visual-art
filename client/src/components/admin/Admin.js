@@ -3,10 +3,14 @@ import ImageUpload from "./ImageUpload";
 import Container from "react-bootstrap/Container";
 import AdminLogging from "./AdminLogging";
 
+import { useSelector } from "react-redux";
+
 function Admin() {
-  const [rightUser, setRightUser] = useState({
-    status: false,
-  });
+  // const [rightUser, setRightUser] = useState({
+  //   status: false,
+  // });
+
+  const rightUser = useSelector((state) => state.admin);
 
   //TODO: kavenna lomaketta: https://react-bootstrap.netlify.app/layout/grid/#container
   return (
@@ -28,7 +32,8 @@ function Admin() {
           <br />
           <h1>Kirjautuminen</h1>
           <br />
-          <AdminLogging setRightUser={setRightUser} />
+          {/* <AdminLogging setRightUser={setRightUser} /> */}
+          <AdminLogging rightUser={rightUser} />
         </div>
       )}
     </Container>

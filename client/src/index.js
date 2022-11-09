@@ -5,10 +5,14 @@ import { Provider } from "react-redux";
 
 import { configureStore } from "@reduxjs/toolkit";
 import showroomReducer from "./reducers/showroomReducer";
+import adminReducer from "./reducers/adminReducer";
+import loggingValidateReducer from "./reducers/loggingValidateReducer";
 
 const store = configureStore({
   reducer: {
     showroom: showroomReducer,
+    admin: adminReducer,
+    loggingValidated: loggingValidateReducer,
   },
 });
 

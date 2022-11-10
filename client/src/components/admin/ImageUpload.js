@@ -2,16 +2,22 @@ import React, { useState, useRef } from "react";
 import visualArtDatabase from "../../services/visualArtDatabase";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { invaledImageUpload } from "../../reducers/imageUploadReducer";
 
 function ImageUpload({ rightUser }) {
   const [userInfo, setuserInfo] = useState({
     file: [],
     filepreview: null,
   });
+  // const [invalidImage, setinvalidImage] = useState(null);
+
   const [validated, setValidated] = useState(false);
-  const [invalidImage, setinvalidImage] = useState(null);
   const [imageTitle, setImageTitle] = useState("");
   const [imageText, setImageText] = useState("");
+
+  const dispatch = useDispatch();
+  const invalidImage = useSelector((state) => state.imageUpload);
 
   const form = useRef();
 
@@ -99,7 +105,19 @@ function ImageUpload({ rightUser }) {
   // };
 
   const handleInputChange = (event) => {
-    console.log(event.target.files[0], "testi_1");
+    const imageFile = event.target.files[0];
+
+    if (!imageFile) {
+      // setinvalidImage("Valitse kuva.");
+      dispatch(invaledImageUpload("Valitse kuva."));
+      return false;
+    }
+
+    if (!imageFile.name.match(/\.(jpg|jpeg|png|JPG|JPEG|PNG|gif)$/)) {
+      // setinvalidImage("Valitse validi kuva muotoa: JPG,JPEG,PNG");
+      dispatch(invaledImageUpload("Valitse validi kuva muotoa: JPG,JPEG,PNG"));
+      return false;
+    }
     setuserInfo({
       ...userInfo,
       file: event.target.files[0],
@@ -116,6 +134,8 @@ function ImageUpload({ rightUser }) {
         formdata.append("name", imageTitle);
         formdata.append("text", imageText);
 
+        // TODO: tallennuksen ei pitäisi onnistua,
+        // jos kaikki kentät eivät ole täytetty!
         visualArtDatabase
           .createTableInfo(formdata, {
             headers: { "Content-Type": "multipart/form-data" },
@@ -192,6 +212,8 @@ function ImageUpload({ rightUser }) {
       <Button type="submit" onClick={() => submit()}>
         Lähetä
       </Button>
+      <br />
+      <br />
 
       {userInfo.filepreview !== null ? (
         <img

@@ -46,6 +46,10 @@ app.get("/getAdmin/:username/:password", (req, res) => {
     connection.query(sql, req.params.username, (err, results) => {
       if (err) throw err;
 
+      if (results.length < 1) {
+        // TODO: korjaa tämä kohta!
+        return console.log("käyttäjätunnus on väärä!");
+      }
       if (bcrypt.compareSync(req.params.password, results[0].password)) {
         const userForToken = {
           username: req.params.username,
@@ -59,6 +63,9 @@ app.get("/getAdmin/:username/:password", (req, res) => {
         res
           .status(200)
           .send({ token, username: req.params.username, status: true });
+      } else {
+        // TODO: korjaa tämä kohta!
+        return console.log("salasana on väärä!");
       }
     });
   } catch (error) {

@@ -9,6 +9,7 @@ import adminReducer from "./reducers/adminReducer";
 import loggingValidateReducer from "./reducers/loggingValidateReducer";
 import imageUploadReducer from "./reducers/imageUploadReducer";
 import pageViewReducer from "./reducers/pageViewReducer";
+import imageUpload2Reducer from "./reducers/imageUpload2Reducer";
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     admin: adminReducer,
     loggingValidated: loggingValidateReducer,
     imageUpload: imageUploadReducer,
+    imageUpload2: imageUpload2Reducer,
     pageView: pageViewReducer,
   },
 });

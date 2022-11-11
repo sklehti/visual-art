@@ -138,6 +138,11 @@ button.a-enter-vr-button {
   z-index: 1000;
 }
 
+.error-message {
+  color: red;
+  font-size: 15px;
+}
+
 /* MagnifierGlass tiedoston tyyli */
 .magnifier {
   /* Styles for <div> around image and magnifying glass */

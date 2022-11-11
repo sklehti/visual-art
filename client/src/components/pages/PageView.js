@@ -12,8 +12,14 @@ import visualArtDatabase from "../../services/visualArtDatabase";
 import EmailForm from "./EmailForm";
 // import MagnifierGlass from "../icons/MagnifierGlass";
 
+import { useDispatch, useSelector } from "react-redux";
+import { allImages } from "../../reducers/pageViewReducer";
+
 function PageView() {
-  const [imageInfo, setImageInfo] = useState([]);
+  //const [imageInfo, setImageInfo] = useState([]);
+
+  const dispatch = useDispatch();
+  const imageInfo = useSelector((state) => state.pageView);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -28,9 +34,10 @@ function PageView() {
 
         visualArtDatabase.getImages(n.image);
       });
-      setImageInfo(tempArray);
+      // setImageInfo(tempArray);
+      dispatch(allImages(tempArray));
     });
-  }, [setImageInfo]);
+  }, [dispatch]);
 
   useEffect(() => {
     var prevScrollpos = window.pageYOffset;

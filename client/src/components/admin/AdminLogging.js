@@ -1,77 +1,105 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import visualArtDatabase from "../../services/visualArtDatabase";
+import { rightAdminUser } from "../../reducers/adminReducer";
+import { loggingValidatedTrue } from "../../reducers/loggingValidateReducer";
+import { useDispatch } from "react-redux";
+import { Formik } from "formik";
+import * as Yup from "yup";
 
-function AdminLogging({ setRightUser }) {
-  const [validated, setValidated] = useState(false);
-  const [userName, setUsername] = useState("");
-  const [userPassword, setUserPassword] = useState("");
+const SignupSchema = Yup.object().shape({
+  // TODO: vaihda seuraava rivi kommenttiriviin!!!
+  password: Yup.string().required("Kirjoita salasanasi"),
+  // password: Yup.string()
+  //   .required("Kirjoita salasanasi")
+  //   .matches(
+  //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+  //     "Tulee sisältää vähintään 8 merkkiä, yksi isokirjain, yksi pieni kirjain, yksi numero ja yksi erikoismerkki"
+  //   ),
+  email: Yup.string()
+    .email("Epävalidi sähköpostiosoite")
+    .required("Kirjoita sähköpostiosoiteesi"),
+});
 
-  const form = useRef();
+function AdminLogging() {
+  const dispatch = useDispatch();
 
-  const handleUserName = (e) => {
-    setUsername(e.target.value);
-  };
-
-  const handleUserPassword = (e) => {
-    setUserPassword(e.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    const form = event.currentTarget;
-
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
+  const handleFormSubmit = (values) => {
     const user = {
-      username: userName,
-      password: userPassword,
+      username: values.email,
+      password: values.password,
     };
 
     visualArtDatabase.getAdmin(user).then((result) => {
-      setRightUser(result);
+      if (result.success === 0) {
+        console.log(
+          "tähän ilmoitus, että käyttäjätunnus tai salasana on väärä"
+        );
+      } else {
+        dispatch(rightAdminUser(result));
+      }
     });
 
-    event.preventDefault();
-    setValidated(true);
+    dispatch(loggingValidatedTrue());
   };
 
   return (
     <div>
-      <Form ref={form} noValidate validated={validated} onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Sähköpostiosoite:</Form.Label>
-          <Form.Control
-            required
-            type="email"
-            placeholder="Enter email"
-            onChange={handleUserName}
-          />
-          <Form.Control.Feedback type="invalid">
-            Kirjoita salasana.
-          </Form.Control.Feedback>
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Salasana:</Form.Label>
-          <Form.Control
-            required
-            type="password"
-            placeholder="Password"
-            onChange={handleUserPassword}
-          />
-          <Form.Control.Feedback type="invalid">
-            kirjoita salasana.
-          </Form.Control.Feedback>
-        </Form.Group>
-
-        <Button variant="primary" type="submit">
-          Kirjaudu
-        </Button>
-      </Form>
+      <Formik
+        initialValues={{ email: "", password: "" }}
+        validationSchema={SignupSchema}
+        onSubmit={(values, { setSubmitting, resetForm }) => {
+          handleFormSubmit(values);
+          resetForm({ values: "" });
+          setSubmitting(false);
+        }}
+      >
+        {({
+          values,
+          errors,
+          touched,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          isSubmitting,
+        }) => (
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Sähköpostiosoite:</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="nimi@sähköposti.com"
+                name="email"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.email}
+              />
+            </Form.Group>
+            {errors.email && touched.email ? (
+              <div className="error-message">{errors.email}</div>
+            ) : null}
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Salasana:</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                name="password"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.password}
+              />
+            </Form.Group>
+            {errors.password && touched.password ? (
+              <div className="error-message">{errors.password}</div>
+            ) : null}
+            <br />
+            <Button variant="primary" type="submit" disabled={isSubmitting}>
+              Kirjaudu
+            </Button>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 }

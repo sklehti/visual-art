@@ -1,49 +1,28 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 import emailjs from "@emailjs/browser";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { Formik } from "formik";
+import * as Yup from "yup";
+
+const SignupSchema = Yup.object().shape({
+  email: Yup.string()
+    .email("Epävalidi sähköpostiosoite")
+    .required("Kirjoita sähköpostiosoiteesi"),
+  title: Yup.string().required("Kirjoita otsikko."),
+  text: Yup.string().required("Kirjoita viesti."),
+});
 
 function EmailForm() {
-  const [validated, setValidated] = useState(false);
-
-  const [email, setEmail] = useState("");
-  const [title, setTitle] = useState("");
-  const [text, setText] = useState("");
-
-  const form = useRef();
-
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handleTitle = (e) => {
-    setTitle(e.target.value);
-  };
-
-  const handleText = (e) => {
-    setText(e.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
-    const user = {
-      email: email,
-      title: title,
-      text: text,
-    };
-
+  const handleFormSubmit = (event) => {
     emailjs.init(process.env.REACT_APP_USER_ID);
 
     emailjs
       .sendForm(
         process.env.REACT_APP_SERVICE_ID,
         process.env.REACT_APP_TEMPLATE_ID,
-        event.target
+        //event.target
+        "#email-form"
       )
       .then(
         function (response) {
@@ -53,66 +32,80 @@ function EmailForm() {
           console.log("FAILED...", err);
         }
       );
-
-    event.preventDefault();
-    setValidated(true);
-    setEmail("");
-    setTitle("");
-    setText("");
   };
 
   return (
-    <Form
-      ref={form}
-      id="email-form"
-      noValidate
-      validated={validated}
-      onSubmit={handleSubmit}
-    >
-      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Label>Sähköpostiosoite</Form.Label>
-        <Form.Control
-          required
-          name="email"
-          type="email"
-          placeholder="nimi@sähköposti.com"
-          onChange={handleEmail}
-        />
-        <Form.Control.Feedback type="invalid">
-          Kirjoita validi sähköposti.
-        </Form.Control.Feedback>
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Label>Otsikko</Form.Label>
-        <Form.Control
-          required
-          name="title"
-          type="text"
-          placeholder="otsikko"
-          onChange={handleTitle}
-        />
-        <Form.Control.Feedback type="invalid">
-          Kirjoita otsikko.
-        </Form.Control.Feedback>
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-        <Form.Label>Viesti</Form.Label>
-        <Form.Control
-          required
-          name="text"
-          as="textarea"
-          rows={3}
-          placeholder="Tekstiä..."
-          onChange={handleText}
-        />
-        <Form.Control.Feedback type="invalid">
-          Kirjoita viesti.
-        </Form.Control.Feedback>
-      </Form.Group>
-      <Button type="submit">Lähetä</Button>
-    </Form>
+    <div>
+      <Formik
+        initialValues={{ email: "", title: "", text: "" }}
+        validationSchema={SignupSchema}
+        onSubmit={(values, { setSubmitting, resetForm }) => {
+          handleFormSubmit(values);
+          resetForm({ values: "" });
+          setSubmitting(false);
+        }}
+      >
+        {({
+          values,
+          errors,
+          touched,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          isSubmitting,
+        }) => (
+          <Form id="email-form" onSubmit={handleSubmit}>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Sähköpostiosoite:</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="nimi@sähköposti.com"
+                name="email"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.email}
+              />
+            </Form.Group>
+            {errors.email && touched.email ? (
+              <div className="error-message">{errors.email}</div>
+            ) : null}
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Otsikko:</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Otsikko"
+                name="title"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.title}
+              />
+            </Form.Group>
+            {errors.title && touched.title ? (
+              <div className="error-message">{errors.title}</div>
+            ) : null}
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Viesti:</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={5}
+                placeholder="Kirjoita tekstiä..."
+                name="text"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.text}
+              />
+            </Form.Group>
+            {errors.text && touched.text ? (
+              <div className="error-message">{errors.text}</div>
+            ) : null}
+            <br />
+            <Button variant="primary" type="submit" disabled={isSubmitting}>
+              Kirjaudu
+            </Button>
+          </Form>
+        )}
+      </Formik>
+    </div>
   );
 }
 

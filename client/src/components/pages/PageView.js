@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import anime from "animejs/lib/anime.es.js";
 import WelcomePage from "./WelcomePage";
 import Showroom from "./showroom/Showroom";
@@ -16,8 +16,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { allImages } from "../../reducers/pageViewReducer";
 
 function PageView() {
-  //const [imageInfo, setImageInfo] = useState([]);
-
   const dispatch = useDispatch();
   const imageInfo = useSelector((state) => state.pageView);
 
@@ -34,7 +32,6 @@ function PageView() {
 
         visualArtDatabase.getImages(n.image);
       });
-      // setImageInfo(tempArray);
       dispatch(allImages(tempArray));
     });
   }, [dispatch]);

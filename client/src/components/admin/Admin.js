@@ -1,42 +1,45 @@
-import React, { useState } from "react";
+import React from "react";
 import ImageUpload from "./ImageUpload";
 import Container from "react-bootstrap/Container";
 import AdminLogging from "./AdminLogging";
+import AdminRegister from "./AdminRegister";
 
 import { useSelector } from "react-redux";
+import ImageUpdate from "./ImageUpdate";
 
 function Admin() {
-  // const [rightUser, setRightUser] = useState({
-  //   status: false,
-  // });
-
   const rightUser = useSelector((state) => state.admin);
 
-  //TODO: kavenna lomaketta: https://react-bootstrap.netlify.app/layout/grid/#container
+  //TODO: make this form thinner if you like so: https://react-bootstrap.netlify.app/layout/grid/#container
   return (
-    <Container>
-      {rightUser.status ? (
-        <div>
-          <br />
-          <ImageUpload rightUser={rightUser} />
-          <br />
-        </div>
-      ) : (
-        <div>
-          {/* TODO: poista lopullisestaversiosta! */}
-          {/* <br />
-          <h1>Rekisteröityminen</h1>
-          <br />
-          <AdminRegister /> */}
+    <div style={{ backgroundColor: "#dcdcdc" }}>
+      <Container>
+        {rightUser.status ? (
+          <div>
+            <br />
+            <ImageUpload rightUser={rightUser} />
+            <br />
+            <hr />
+            <ImageUpdate />
+            <br />
+          </div>
+        ) : (
+          <div>
+            <br />
+            <h1>Kirjautuminen</h1>
+            <br />
 
-          <br />
-          <h1>Kirjautuminen</h1>
-          <br />
-          {/* <AdminLogging setRightUser={setRightUser} /> */}
-          <AdminLogging rightUser={rightUser} />
-        </div>
-      )}
-    </Container>
+            <AdminLogging rightUser={rightUser} />
+            <br />
+
+            <br />
+            <h1>Rekisteröityminen</h1>
+            <br />
+            <AdminRegister />
+          </div>
+        )}
+      </Container>
+    </div>
   );
 }
 

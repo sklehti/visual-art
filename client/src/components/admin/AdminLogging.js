@@ -34,7 +34,7 @@ function AdminLogging() {
     visualArtDatabase.getAdmin(user).then((result) => {
       if (result.success === 0) {
         console.log(
-          "tähän ilmoitus, että käyttäjätunnus tai salasana on väärä"
+          "Käyttäjätunnus/salasana on väärä tai sinulla ei ole admin oikeuksia"
         );
       } else {
         dispatch(rightAdminUser(result));
@@ -65,7 +65,7 @@ function AdminLogging() {
           isSubmitting,
         }) => (
           <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="mb-3" controlId="formEmail2">
               <Form.Label>Sähköpostiosoite:</Form.Label>
               <Form.Control
                 type="email"
@@ -79,11 +79,11 @@ function AdminLogging() {
             {errors.email && touched.email ? (
               <div className="error-message">{errors.email}</div>
             ) : null}
-            <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Group className="mb-3" controlId="formPassword2">
               <Form.Label>Salasana:</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Password"
+                placeholder="Salasana"
                 name="password"
                 onChange={handleChange}
                 onBlur={handleBlur}

@@ -11,6 +11,7 @@ const connection = require("./config/database");
 var bcrypt = require("bcryptjs");
 var jwt = require("jsonwebtoken");
 const JWT_SECRET = process.env.JWT_SECRET;
+var fs = require("fs");
 
 app.use(cors());
 app.use(express.json());
@@ -42,13 +43,17 @@ app.get("/allInfo", (req, res) => {
 
 app.get("/getAdmin/:username/:password", (req, res) => {
   try {
-    const sql = "SELECT username, password FROM admin WHERE username=?";
+    const sql = "SELECT username, password, admin FROM admin WHERE username=?";
     connection.query(sql, req.params.username, (err, results) => {
       if (err) throw err;
 
       if (results.length < 1) {
         res.json({ success: 0 });
         return console.log("käyttäjätunnus on väärä!");
+      }
+      if (results[0].admin === 0) {
+        res.json({ success: 0 });
+        return console.log("Käyttäjällä ei ole admin oikeuksia!");
       }
       if (bcrypt.compareSync(req.params.password, results[0].password)) {
         const userForToken = {
@@ -85,6 +90,7 @@ app.get("/validateToken/:token", (req, res) => {
 });
 
 app.post("/createAdmin", async (req, res) => {
+  // TODO: katso ensin löytyykä kyseistä käyttäjää tietokannasta!
   var salt = bcrypt.genSaltSync(10);
   var hash = bcrypt.hashSync(req.body.newAdmin.password, salt);
 
@@ -110,8 +116,6 @@ app.post("/imageupload", async (req, res) => {
   try {
     let upload = multer({
       storage: storage,
-      // TODO: seuraava rivi lisätty myöhemmin!
-      //lisää myös: hyväksyy vain kuvatiedostot
       limits: { fileSize: 1000000 },
     }).single("avatar");
     upload(req, res, function (err) {
@@ -134,6 +138,43 @@ app.post("/imageupload", async (req, res) => {
         if (err) throw err;
         res.json({ success: 1 });
       });
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.put("/updateImageInfo", (req, res) => {
+  const info = [req.body.name, req.body.text, req.body.image];
+
+  try {
+    const sql = "UPDATE painting SET name=?, text=? WHERE image=?";
+    connection.query(sql, info, (err, results) => {
+      res.send(results);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.delete("/deleteImage/:image", (req, res) => {
+  const img = req.params.image;
+
+  try {
+    const sql = "DELETE FROM painting WHERE image=?";
+    connection.query(sql, img, (err, results) => {
+      const deletedImg = path.join(
+        __dirname,
+        `../public_html/uploads/${req.params.image}`
+      );
+      fs.unlink(deletedImg, function (err) {
+        if (err) throw err;
+        console.log("Tiedosto on poistettu onnistuneesti!");
+      });
+
+      res.send(
+        "Tiedoston tiedot on poistettu tietokannasta ja kuva on poistettu backendistä."
+      );
     });
   } catch (err) {
     console.log(err);

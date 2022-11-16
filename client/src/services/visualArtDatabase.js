@@ -38,6 +38,17 @@ const createAdmin = (newAdmin) => {
   return request.then((response) => response.data);
 };
 
+const updateImageInfo = (imageInfo) => {
+  const request = axios.put(`${baseUrl}/updateImageInfo`, imageInfo);
+
+  return request.then((response) => response.data);
+};
+
+const deleteImage = (image) => {
+  const request = axios.delete(`${baseUrl}/deleteImage/${image}`);
+  return request.then((response) => response.data);
+};
+
 export default {
   getImages,
   getAllInfo,
@@ -45,4 +56,6 @@ export default {
   validateToken,
   createTableInfo,
   createAdmin,
+  updateImageInfo,
+  deleteImage,
 };

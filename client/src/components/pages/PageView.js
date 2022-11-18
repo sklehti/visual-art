@@ -108,6 +108,11 @@ function PageView() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      <div className="arrow-style">
+        <a href="#top">
+          <ArrowUp />
+        </a>
+      </div>
       <Container>
         <Showroom />
         {imageInfo.map((i, index) => (
@@ -124,9 +129,7 @@ function PageView() {
         <div>{/* <MagnifierGlass /> */}</div>
         <EmailForm />
       </Container>
-      <a href="#top">
-        <ArrowUp />
-      </a>
+
       <Footer />
     </div>
   );

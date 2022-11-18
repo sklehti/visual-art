@@ -7,6 +7,7 @@ import {
   showModalTrue,
 } from "../../reducers/imageUpdateReducer";
 import { imgData } from "../../reducers/imageUpdate2Reducer";
+import { rightAdminUser } from "../../reducers/adminReducer";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -14,7 +15,7 @@ import Modal from "react-bootstrap/Modal";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
-function ImageUpdate() {
+function ImageUpdate({ rightUser }) {
   const dispatch = useDispatch();
   const imageInfo = useSelector((state) => state.pageView);
   const imgAdded = useSelector((state) => state.imageUpdate);
@@ -49,9 +50,15 @@ function ImageUpdate() {
 
   return (
     <div>
+      <br />
       <h2>Poista tai päivitä kuvan tiedot:</h2>
+      <br />
       {imageInfo.map((i, index) => (
-        <button key={index} onClick={() => handleShow(i)}>
+        <button
+          key={index}
+          onClick={() => handleShow(i)}
+          className="button-style"
+        >
           <img
             alt="kuva, muuta tämä!"
             // width="500"
@@ -70,6 +77,7 @@ function ImageUpdate() {
       >
         <Modal.Header closeButton>
           <img
+            style={{ paddingRight: "10px" }}
             alt="kuva, muuta tämä!"
             // width="500"
             height="80"
@@ -78,7 +86,7 @@ function ImageUpdate() {
           <Modal.Title> {imageData.image}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <ImageForm imageData={imageData} />
+          <ImageForm imageData={imageData} rightUser={rightUser} />
         </Modal.Body>
       </Modal>
     </div>
@@ -90,7 +98,7 @@ const SignupSchema = Yup.object().shape({
   text: Yup.string().required("Kirjoita kuvailutulkkaus"),
 });
 
-const ImageForm = ({ imageData }) => {
+const ImageForm = ({ imageData, rightUser }) => {
   const dispatch = useDispatch();
 
   const handleFormSubmit = (values) => {
@@ -100,23 +108,39 @@ const ImageForm = ({ imageData }) => {
       text: values.text,
     };
 
-    visualArtDatabase.updateImageInfo(updatedImage).then((result) => {
-      let tempArray = [];
-      visualArtDatabase.getAllInfo().then((results) => {
-        results.forEach((n) => {
-          tempArray = [...tempArray, n];
+    visualArtDatabase.validateToken(rightUser.token).then((result) => {
+      if (result.success === 1) {
+        visualArtDatabase.updateImageInfo(updatedImage).then((result) => {
+          let tempArray = [];
+          visualArtDatabase.getAllInfo().then((results) => {
+            results.forEach((n) => {
+              tempArray = [...tempArray, n];
 
-          visualArtDatabase.getImages(n.image);
+              visualArtDatabase.getImages(n.image);
+            });
+            dispatch(allImages(tempArray));
+            dispatch(showModalFalse());
+          });
         });
-        dispatch(allImages(tempArray));
-        dispatch(showModalFalse());
-      });
+      }
+      if (result.success === 0) {
+        console.log(
+          "Kirjautumistietosi ovat vanhentuneet. Päivitä selain ja kirjaudu uudestaan."
+        );
+      }
     });
   };
 
   const handleDeleteImage = (values) => {
-    visualArtDatabase.deleteImage(values.image).then((result) => {
-      console.log(result, "result");
+    visualArtDatabase.validateToken(rightUser.token).then((result) => {
+      if (result.success === 1) {
+        visualArtDatabase.deleteImage(values.image).then((result) => {});
+      }
+      if (result.success === 0) {
+        console.log(
+          "Kirjautumistietosi ovat vanhentuneet. Päivitä selain ja kirjaudu uudestaan."
+        );
+      }
     });
   };
 

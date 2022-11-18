@@ -45,7 +45,7 @@ function AdminLogging() {
   };
 
   return (
-    <div>
+    <div className="form-style">
       <Formik
         initialValues={{ email: "", password: "" }}
         validationSchema={SignupSchema}

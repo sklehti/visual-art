@@ -1,5 +1,31 @@
+.arrow-style {
+  position: fixed;
+  right: 2%;
+  bottom: 10px;
+  border-radius: 30px;
+  background-color: #fff;
+  border: #d3d3d3;
+  border-style: solid;
+  border-width: 2px;
+  border-style: groove;
+}
+
 .arrowup-style:hover {
   fill: #ff6d00;
+}
+
+.button-style {
+  padding: 5px;
+  margin: 15px;
+  border-radius: 10px;
+  border-style: groove;
+}
+
+.form-style {
+  background-color: #dcdcdc;
+  padding: 30px;
+  border-radius: 10px;
+  border-style: groove;
 }
 
 .showroom-box {

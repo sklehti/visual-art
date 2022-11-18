@@ -100,7 +100,7 @@ function EmailForm() {
             ) : null}
             <br />
             <Button variant="primary" type="submit" disabled={isSubmitting}>
-              Kirjaudu
+              Lähetä
             </Button>
           </Form>
         )}

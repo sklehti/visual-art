@@ -80,36 +80,47 @@ app.get("/getAdmin/:username/:password", (req, res) => {
 });
 
 app.get("/validateToken/:token", (req, res) => {
-  const decodedToken = jwt.verify(req.params.token, process.env.JWT_SECRET);
+  try {
+    const decodedToken = jwt.verify(req.params.token, process.env.JWT_SECRET);
 
-  if (decodedToken) {
-    res.json({ success: 1 });
-  } else {
-    return res.status(401).send(error);
+    if (decodedToken) {
+      res.json({ success: 1 });
+    } else {
+      return res.status(401).send(error);
+    }
+  } catch (e) {
+    res.json({ success: 0 });
   }
 });
 
 app.post("/createAdmin", async (req, res) => {
-  // TODO: katso ensin löytyykä kyseistä käyttäjää tietokannasta!
-  var salt = bcrypt.genSaltSync(10);
-  var hash = bcrypt.hashSync(req.body.newAdmin.password, salt);
+  const user = req.body.newAdmin.username;
+  const sql = "SELECT * FROM admin WHERE username=?";
+  connection.query(sql, user, (err, results) => {
+    if (results.length === 0) {
+      var salt = bcrypt.genSaltSync(10);
+      var hash = bcrypt.hashSync(req.body.newAdmin.password, salt);
 
-  const adminUser = {
-    username: req.body.newAdmin.username,
-    password: hash,
-    admin: req.body.newAdmin.admin,
-  };
+      const adminUser = {
+        username: req.body.newAdmin.username,
+        password: hash,
+        admin: req.body.newAdmin.admin,
+      };
 
-  try {
-    const sql = "INSERT INTO admin SET ?";
-    connection.query(sql, adminUser, (err, results) => {
-      if (err) throw err;
+      try {
+        const sql = "INSERT INTO admin SET ?";
+        connection.query(sql, adminUser, (err, results) => {
+          if (err) throw err;
 
-      res.json({ success: 1 });
-    });
-  } catch (err) {
-    console.log(err);
-  }
+          res.json({ success: 1 });
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      res.json("käyttäjä on jo olemassa");
+    }
+  });
 });
 
 app.post("/imageupload", async (req, res) => {

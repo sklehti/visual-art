@@ -90,6 +90,11 @@ function ImageUpload({ rightUser }) {
             }
           });
       }
+      if (result.success === 0) {
+        console.log(
+          "Kirjautumistietosi ovat vanhentuneet. Päivitä selain ja kirjaudu uudestaan."
+        );
+      }
     });
   };
 
@@ -106,67 +111,75 @@ function ImageUpload({ rightUser }) {
 
   return (
     <div>
+      <br />
       <h2>Lisää uusi kuva:</h2>
-      <Form ref={form} noValidate validated={validated} onSubmit={handleSubmit}>
-        {isSuccess !== null ? <h4> {isSuccess} </h4> : null}
-        {invalidImage !== null ? (
-          <h4 className="error"> {invalidImage} </h4>
-        ) : null}
-        <Form.Group className="mb-3">
-          <Form.Label>Valitse kuva:</Form.Label>
-          <Form.Control
-            required
-            type="file"
-            className="form-control"
-            name="upload_file"
-            onChange={handleInputChange}
-          />
-          <Form.Control.Feedback type="invalid">
-            Valitse kuva.
-          </Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label> Taulun otsikko:</Form.Label>
-          <Form.Control
-            required
-            type="text"
-            placeholder="otsikko"
-            value={imageTitle}
-            onChange={handleImageTitle}
-          />
-          <Form.Control.Feedback type="invalid">
-            Kirjoita otsikko.
-          </Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-          <Form.Label> Taulun teksti:</Form.Label>
-          <Form.Control
-            required
-            as="textarea"
-            row={3}
-            value={imageText}
-            onChange={handleImageText}
-          ></Form.Control>
-          <Form.Control.Feedback type="invalid">
-            Kirjoita kuvaava teksti taulusta.
-          </Form.Control.Feedback>
-        </Form.Group>
+      <br />
+      <div className="form-style">
+        <Form
+          ref={form}
+          noValidate
+          validated={validated}
+          onSubmit={handleSubmit}
+        >
+          {isSuccess !== null ? <h4> {isSuccess} </h4> : null}
+          {invalidImage !== null ? (
+            <h4 className="error"> {invalidImage} </h4>
+          ) : null}
+          <Form.Group className="mb-3">
+            <Form.Label>Valitse kuva:</Form.Label>
+            <Form.Control
+              required
+              type="file"
+              className="form-control"
+              name="upload_file"
+              onChange={handleInputChange}
+            />
+            <Form.Control.Feedback type="invalid">
+              Valitse kuva.
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Label> Taulun otsikko:</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              placeholder="otsikko"
+              value={imageTitle}
+              onChange={handleImageTitle}
+            />
+            <Form.Control.Feedback type="invalid">
+              Kirjoita otsikko.
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+            <Form.Label> Taulun teksti:</Form.Label>
+            <Form.Control
+              required
+              as="textarea"
+              row={3}
+              value={imageText}
+              onChange={handleImageText}
+            ></Form.Control>
+            <Form.Control.Feedback type="invalid">
+              Kirjoita kuvaava teksti taulusta.
+            </Form.Control.Feedback>
+          </Form.Group>
 
-        <Button type="submit" onClick={() => submit()}>
-          Lähetä
-        </Button>
-        <br />
-        <br />
-
-        {userInfo.filepreview !== null ? (
-          <img
-            id="test_kuva"
-            className="previewimg"
-            src={userInfo.filepreview}
-            alt="UploadImage"
-          />
-        ) : null}
-      </Form>
+          <Button type="submit" onClick={() => submit()}>
+            Lähetä
+          </Button>
+        </Form>
+      </div>
+      <br />
+      {userInfo.filepreview !== null ? (
+        <img
+          id="test_kuva"
+          className="previewimg"
+          src={userInfo.filepreview}
+          alt="UploadImage"
+          style={{ width: "20vw" }}
+        />
+      ) : null}
     </div>
   );
 }

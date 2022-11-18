@@ -12,15 +12,15 @@ function Admin() {
 
   //TODO: make this form thinner if you like so: https://react-bootstrap.netlify.app/layout/grid/#container
   return (
-    <div style={{ backgroundColor: "#dcdcdc" }}>
+    <div style={{ backgroundColor: "#F0F3F3" }}>
       <Container>
         {rightUser.status ? (
           <div>
             <br />
             <ImageUpload rightUser={rightUser} />
             <br />
-            <hr />
-            <ImageUpdate />
+
+            <ImageUpdate rightUser={rightUser} />
             <br />
           </div>
         ) : (
@@ -31,11 +31,11 @@ function Admin() {
 
             <AdminLogging rightUser={rightUser} />
             <br />
-
-            <br />
             <h1>Rekisteröityminen</h1>
             <br />
+
             <AdminRegister />
+            <br />
           </div>
         )}
       </Container>

@@ -2,6 +2,8 @@ import React from "react";
 import PanoramaView from "../../../images/panorama-view.jpg";
 
 function Showroom() {
+  //TODO: It's not responsive yet. Check biggest scene, does'n work right there.
+
   return (
     <div>
       <div>

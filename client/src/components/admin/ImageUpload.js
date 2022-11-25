@@ -18,6 +18,7 @@ function ImageUpload({ rightUser }) {
   const [validated, setValidated] = useState(false);
   const [imageTitle, setImageTitle] = useState("");
   const [imageText, setImageText] = useState("");
+  const [imageYear, setImageYear] = useState("");
 
   const dispatch = useDispatch();
   const invalidImage = useSelector((state) => state.imageUpload);
@@ -27,6 +28,12 @@ function ImageUpload({ rightUser }) {
 
   const handleImageTitle = (e) => {
     setImageTitle(e.target.value);
+  };
+
+  const handleImageYear = (e) => {
+    const y = e.target.value.replace(/\D/g, "");
+
+    setImageYear(y);
   };
 
   const handleImageText = (e) => {
@@ -58,12 +65,28 @@ function ImageUpload({ rightUser }) {
   };
 
   const submit = async () => {
+    if (imageTitle.length < 1) {
+      console.log("Täytä otsikko!");
+      return false;
+    }
+
+    if (imageYear.length < 1) {
+      console.log("Täytä vuosiluku!");
+      return false;
+    }
+
+    if (imageText.length < 1) {
+      console.log("Täytä tekstikenttä!");
+      return false;
+    }
+
     visualArtDatabase.validateToken(rightUser.token).then((result) => {
       if (result.success === 1) {
         const formdata = new FormData();
         formdata.append("avatar", userInfo.file);
         formdata.append("name", imageTitle);
         formdata.append("text", imageText);
+        formdata.append("year", imageYear);
 
         // TODO: tallennuksen ei pitäisi onnistua,
         // jos kaikki kentät eivät ole täytetty!
@@ -85,6 +108,7 @@ function ImageUpload({ rightUser }) {
               });
               setImageTitle("");
               setImageText("");
+              setImageYear("");
 
               dispatch(addImageTrue());
             }
@@ -100,6 +124,7 @@ function ImageUpload({ rightUser }) {
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
+    console.log(form, "mikä mättää");
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
@@ -138,12 +163,13 @@ function ImageUpload({ rightUser }) {
               Valitse kuva.
             </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <Form.Group className="mb-3" controlId="controlInput1">
             <Form.Label> Taulun otsikko:</Form.Label>
             <Form.Control
               required
               type="text"
-              placeholder="otsikko"
+              name="Title"
+              placeholder="Otsikko"
               value={imageTitle}
               onChange={handleImageTitle}
             />
@@ -151,11 +177,28 @@ function ImageUpload({ rightUser }) {
               Kirjoita otsikko.
             </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+
+          <Form.Group className="mb-3" controlId="controlInput2">
+            <Form.Label> Taulun vuosiluku:</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              name="year"
+              placeholder="Vuosi"
+              value={imageYear}
+              onChange={handleImageYear}
+            />
+            <Form.Control.Feedback type="invalid">
+              Kirjoita vuosiluku.
+            </Form.Control.Feedback>
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="ontrolTextarea1">
             <Form.Label> Taulun teksti:</Form.Label>
             <Form.Control
               required
               as="textarea"
+              placeholder="Tekstiä tähän..."
               row={3}
               value={imageText}
               onChange={handleImageText}

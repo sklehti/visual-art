@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import anime from "animejs/lib/anime.es.js";
-import WelcomePage from "./WelcomePage";
 import Showroom from "./showroom/Showroom";
 import ShowroomIcon from "../icons/ShowroomButton";
 import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Footer from "./Footer";
@@ -14,6 +15,8 @@ import EmailForm from "./EmailForm";
 
 import { useDispatch, useSelector } from "react-redux";
 import { allImages } from "../../reducers/pageViewReducer";
+import AllImages from "./AllImages";
+import ArtistInfo from "./ArtistInfo";
 
 function PageView() {
   const dispatch = useDispatch();
@@ -100,10 +103,11 @@ function PageView() {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ms-auto">
-              <Nav.Link href="#test_1">testi-1</Nav.Link>
-              <Nav.Link href="#test_2">testi-2</Nav.Link>
-              <Nav.Link href="#email-form">Yhteydenotto</Nav.Link>
+            <Nav className="ms-auto nav-title-style">
+              <Nav.Link href="#top">Näyttelytila</Nav.Link>
+              <Nav.Link href="#all-images">Tuotanto</Nav.Link>
+              <Nav.Link href="#artist-info">Tietoa taiteilijasta</Nav.Link>
+              <Nav.Link href="#send-email">Yhteydenotto</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -113,21 +117,21 @@ function PageView() {
           <ArrowUp />
         </a>
       </div>
-      <Container>
-        <Showroom />
-        {imageInfo.map((i, index) => (
-          <img
-            key={index}
-            alt="kuva, muuta tämä!"
-            // width="500"
-            height="300"
-            src={"http://localhost:8080/images/" + i.image}
-          />
-        ))}
+      <Container
+        fluid
+        style={{ textAlign: "center" }}
+        className="background-image"
+      >
+        <Row>
+          <Col>
+            <Showroom />
+            <AllImages imageInfo={imageInfo} />
+            <ArtistInfo />
 
-        <WelcomePage />
-        <div>{/* <MagnifierGlass /> */}</div>
-        <EmailForm />
+            <div>{/* <MagnifierGlass /> */}</div>
+            <EmailForm />
+          </Col>
+        </Row>
       </Container>
 
       <Footer />

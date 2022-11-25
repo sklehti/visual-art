@@ -1,12 +1,17 @@
 import React from "react";
-import PanoramaView from "../../../images/panorama-view.jpg";
+// import PanoramaView from "../../../images/panorama-view.jpg";
+import PanoramaView from "../../../images/panorama-view-whiten.png";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/esm/Button";
+import Row from "react-bootstrap/esm/Row";
 
 function Showroom() {
   //TODO: It's not responsive yet. Check biggest scene, does'n work right there.
 
   return (
-    <div>
-      <div>
+    <Row>
+      <Col xs={1} md={1}></Col>
+      <Col>
         <div id="wrapper" className="showroom-box">
           <a-scene embedded>
             <a-assets>
@@ -19,8 +24,9 @@ function Showroom() {
             ></a-sky>
           </a-scene>
         </div>
-      </div>
-    </div>
+      </Col>
+      <Col xs={1} md={1}></Col>
+    </Row>
   );
 }
 

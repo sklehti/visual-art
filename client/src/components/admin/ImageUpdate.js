@@ -40,6 +40,7 @@ function ImageUpdate({ rightUser }) {
   const handleShow = (i) => {
     const img = {
       name: i.name,
+      year: i.year,
       text: i.text,
       image: i.image,
     };
@@ -62,6 +63,7 @@ function ImageUpdate({ rightUser }) {
           <img
             alt="kuva, muuta tämä!"
             // width="500"
+            // TODO: muuta responsiiviseksi!
             height="300"
             src={"http://localhost:8080/images/" + i.image}
           />
@@ -95,6 +97,14 @@ function ImageUpdate({ rightUser }) {
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string().required("Kirjoita otsikko"),
+  year: Yup.string()
+    .min(4, "Liian lyhyt!")
+    .max(4, "Liian pitkä!")
+    .matches(
+      /^(0*[1-9][0-9]*(\.[0-9]*)?|0*\.[0-9]*[1-9][0-9]*)$/,
+      "tulee sisältää vain lukuja!"
+    )
+    .required("Kirjoita vuosiluku"),
   text: Yup.string().required("Kirjoita kuvailutulkkaus"),
 });
 
@@ -105,12 +115,14 @@ const ImageForm = ({ imageData, rightUser }) => {
     const updatedImage = {
       image: imageData.image,
       name: values.name,
+      year: values.year,
       text: values.text,
     };
 
     visualArtDatabase.validateToken(rightUser.token).then((result) => {
       if (result.success === 1) {
         visualArtDatabase.updateImageInfo(updatedImage).then((result) => {
+          dispatch(showModalFalse());
           let tempArray = [];
           visualArtDatabase.getAllInfo().then((results) => {
             results.forEach((n) => {
@@ -119,7 +131,6 @@ const ImageForm = ({ imageData, rightUser }) => {
               visualArtDatabase.getImages(n.image);
             });
             dispatch(allImages(tempArray));
-            dispatch(showModalFalse());
           });
         });
       }
@@ -147,7 +158,11 @@ const ImageForm = ({ imageData, rightUser }) => {
   return (
     <div>
       <Formik
-        initialValues={{ name: imageData.name, text: imageData.text }}
+        initialValues={{
+          name: imageData.name,
+          year: imageData.year,
+          text: imageData.text,
+        }}
         validationSchema={SignupSchema}
         onSubmit={(values, { setSubmitting, resetForm }) => {
           handleFormSubmit(values);
@@ -176,8 +191,23 @@ const ImageForm = ({ imageData, rightUser }) => {
                 value={values.name}
               />
             </Form.Group>
+
             {errors.name && touched.name ? (
               <div className="error-message">{errors.name}</div>
+            ) : null}
+            <Form.Group className="mb-3" controlId="formYear3">
+              <Form.Label>Vuosi:</Form.Label>
+              <Form.Control
+                type="text"
+                // placeholder={imageData.name}
+                name="year"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.year}
+              />
+            </Form.Group>
+            {errors.year && touched.year ? (
+              <div className="error-message">{errors.year}</div>
             ) : null}
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Kuvailuteksti:</Form.Label>

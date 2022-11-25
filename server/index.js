@@ -142,6 +142,7 @@ app.post("/imageupload", async (req, res) => {
         image: req.file.filename,
         name: req.body.name,
         text: req.body.text,
+        year: req.body.year,
       };
 
       const sql = "INSERT INTO painting SET ?";
@@ -156,10 +157,10 @@ app.post("/imageupload", async (req, res) => {
 });
 
 app.put("/updateImageInfo", (req, res) => {
-  const info = [req.body.name, req.body.text, req.body.image];
+  const info = [req.body.name, req.body.year, req.body.text, req.body.image];
 
   try {
-    const sql = "UPDATE painting SET name=?, text=? WHERE image=?";
+    const sql = "UPDATE painting SET name=?, year=?,text=? WHERE image=?";
     connection.query(sql, info, (err, results) => {
       res.send(results);
     });

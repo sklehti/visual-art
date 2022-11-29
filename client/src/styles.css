@@ -17,22 +17,27 @@
 
 .artist-img-style {
   float: right;
-  border-bottom-left-radius: 25px;
+  /* border-bottom-left-radius: 25px;
   border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
+  border-top-right-radius: 25px; */
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   border: none;
   background-color: #ff6d00;
-  background-color: rgb(247, 80, 80);
+  /* background-color: rgb(247, 80, 80); */
 }
 
 .artist-info-style {
   margin-right: 10px;
   margin-bottom: 4vw;
   height: 100%;
-  border-bottom-right-radius: 25px;
+  /* border-bottom-right-radius: 25px;
   border-bottom-left-radius: 25px;
-  border-top-right-radius: 25px;
-  /* background-color: #2d2d2d; */
+  border-top-right-radius: 25px; */
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 10px;
   background-color: #fff;
 }
 
@@ -40,7 +45,8 @@
   padding: 5px;
   margin: 15px;
   border-radius: 10px;
-  border-style: groove;
+  /* border-style: groove; */
+  border: none;
 }
 
 .emailform-style {
@@ -87,58 +93,11 @@
   /* background-color: #2d2d2d; */
 }
 
-.first-column-style {
-  float: right;
-  border-bottom-left-radius: 20px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border: none;
-  background-color: #ff6d00;
-  background-color: #0ea550;
-  background-color: #ff0000;
-  background-color: #0039a6;
-  background-color: #f4c03e;
-}
-
-.first-column-style2 {
-  float: left;
-  border-bottom-right-radius: 20px;
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
-  border: none;
-  background-color: #ff6d00;
-}
-
-.second-column-style {
-  margin-right: 10px;
-  margin-bottom: 4vw;
-  height: 100%;
-  border-bottom-right-radius: 20px;
-  border-bottom-left-radius: 20px;
-  border-top-right-radius: 20px;
-  /* background-color: #2d2d2d; */
-  background-color: #fff;
-}
-
-.second-column-style2 {
-  margin-left: 10px;
-  margin-bottom: 4vw;
-  /* height: 10vw; */
-  height: 100%;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  border-top-left-radius: 20px;
-  /* background-color: #2d2d2d;
-  color: #f8f8ff; */
-  background-color: #ff6d00;
-  background-color: #fff;
-}
-
 .form-style {
-  background-color: #dcdcdc;
+  background-color: #fff;
   padding: 30px;
-  border-radius: 10px;
-  border-style: groove;
+  border-radius: 20px;
+  /* border-style: groove; */
 }
 
 .showroom-box {
@@ -151,8 +110,9 @@
   border-width: 4px;
   border-radius: 20px;
   border-color: #ff6d00;
-  border-color: #0ea550;
-  border-color: rgb(247, 80, 80);
+  /* border-color: #0ea550;
+  border-color: rgb(247, 80, 80); */
+
   overflow: hidden;
 
   /* display: block; */
@@ -217,18 +177,6 @@
   }
 }
 
-.image-style {
-  /* border-bottom-left-radius: 25px;
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px; */
-  /* border-radius: 3px; */
-  border-radius: 20px;
-  /* TODO: kuvien kirkkausta muutettu */
-  filter: brightness(110%);
-  /* width: 99%; */
-  height: 30vw;
-}
-
 .image-style:hover {
   opacity: 0.8;
 }
@@ -243,7 +191,7 @@
   background-color: #2d2d2d;
   width: 6vw;
   height: 3.8vw;
-  border-radius: 20px;
+  border-radius: 16px;
 }
 
 .a-enter-vr-button:hover {
@@ -329,7 +277,7 @@ button.a-enter-vr-button {
   font-size: 20px;
 }
 
-.splash1 {
+/* .splash1 {
   margin: 5vw;
   width: 7vw;
   height: 7vw;
@@ -338,13 +286,13 @@ button.a-enter-vr-button {
     repeating-conic-gradient(#0000 0 7%, #ff00ff 0 9%) 50% / 70% 70%,
     repeating-conic-gradient(#0000 0 11%, #ff00ff 0 13%) 50% / 80% 80%,
     radial-gradient(#ff00ff 22%, #0000 0), #bebebe;
-  /* radial-gradient(#ff00ff 22%, #0000 0), #fff; */
+  
   background-repeat: no-repeat;
   filter: blur(5px) contrast(50);
-  /* box-shadow: 0 0 0 5px #fff; */
+  
   box-shadow: 0 0 0 4px #bebebe;
   border-radius: 25px;
-}
+} */
 
 /* .splash2 {
   margin: 5vw;
@@ -362,7 +310,172 @@ button.a-enter-vr-button {
 } */
 
 .background-image {
-  /* background-image: url("./images/tausta-testi.png"); */
-  background-image: url("./images/tausta-testi2.png");
+  background-image: url("./images/tausta-testi.png");
+  /* background-image: url("./images/tausta-testi2.png"); */
   /* background-image: url("./images/tausta-testi3.png"); */
 }
+
+/* ----- */
+/* TODO: 1.vaihtoehto */
+
+/* .first-column-style {
+  float: right;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border: none;
+  background-color: #ff6d00;
+  background-color: #fff;
+}
+.first-column-style2 {
+  float: left;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border: none;
+  background-color: #ff6d00;
+  background-color: #fff;
+}
+
+.second-column-style {
+  margin-right: 10px;
+  margin-bottom: 4vw;
+  height: 100%;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background-color: #fff;
+}
+
+.second-column-style2 {
+  margin-left: 10px;
+  margin-bottom: 4vw;
+  height: 100%;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-left-radius: 20px;
+  background-color: #ff6d00;
+  background-color: #fff;
+}
+
+.image-style {
+  border-radius: 20px;
+  filter: brightness(110%);
+  height: 30vw;
+} */
+
+/* ----- */
+
+/* TODO: 2.vaihtoehto */
+/* .first-column-style {
+  float: left;
+  border-bottom-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border: none;
+  background-color: #ff6d00;
+  background-color: #fff;
+}
+
+.first-column-style2 {
+  float: right;
+  border-bottom-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border: none;
+  background-color: #ff6d00;
+  background-color: #fff;
+}
+
+.second-column-style {
+  float: right;
+  margin-right: 10px;
+  margin-bottom: 4vw;
+  height: 100%;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+  background-color: #fff;
+}
+.second-column-style2 {
+  float: left;
+  margin-left: 10px;
+  margin-bottom: 4vw;
+  height: 100%;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
+  background-color: #ff6d00;
+  background-color: #fff;
+}
+
+.image-style {
+  border-radius: 20px;
+  filter: brightness(110%);
+  height: 10vw;
+} */
+
+/* ----- */
+
+/* 3. KOHTA */
+.first-column-style {
+  float: left;
+  /* border-bottom-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px; */
+  border-radius: 2px;
+  border: none;
+  /* background-color: #ff6d00; */
+  background-color: #fff;
+  margin: 5px;
+}
+
+.first-column-style2 {
+  float: right;
+  /* border-bottom-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px; */
+  border-radius: 2px;
+  border: none;
+  background-color: #ff6d00;
+  background-color: #fff;
+  margin: 10px;
+}
+
+.image-style1 {
+  /* border-radius: 20px; */
+  border-radius: 2px;
+  filter: brightness(110%);
+  width: 15vw;
+  height: auto;
+}
+
+.image-style2 {
+  /* border-radius: 20px; */
+  border-radius: 2px;
+  filter: brightness(110%);
+  width: 15vw;
+  height: auto;
+}
+
+.image-style3 {
+  /* border-radius: 20px; */
+  border-radius: 2px;
+  filter: brightness(110%);
+  width: 15vw;
+  height: auto;
+}
+
+.dropdown-list-style {
+  text-align: right;
+  padding-right: 5vw;
+  padding-bottom: 5vw;
+}
+
+.info-style2 {
+  background-color: #fff;
+  margin: 10px;
+  border-radius: 1px;
+}
+
+/* ----- */

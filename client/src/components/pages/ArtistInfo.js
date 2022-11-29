@@ -14,7 +14,7 @@ function ArtistInfo() {
             <img
               alt="Kaukon omakuva"
               src={Kaukoimg}
-              style={{ borderRadius: "25px" }}
+              style={{ borderRadius: "10px" }}
             />
           </div>
         </Col>

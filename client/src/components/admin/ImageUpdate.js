@@ -58,7 +58,7 @@ function ImageUpdate({ rightUser }) {
         <button
           key={index}
           onClick={() => handleShow(i)}
-          className="button-style"
+          className="button-style shadow-lg"
         >
           <img
             alt="kuva, muuta tämä!"

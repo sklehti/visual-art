@@ -33,7 +33,7 @@ function AdminRegister() {
   };
 
   return (
-    <div className="form-style">
+    <div className="form-style shadow-lg">
       <Formik
         initialValues={{ email: "", password: "" }}
         validationSchema={SignupSchema}

@@ -33,7 +33,16 @@ app.get("/images/:id", (req, res) => {
 });
 
 app.get("/allInfo", (req, res) => {
-  const sql = "SELECT * FROM painting";
+  const sql = "SELECT * FROM painting ORDER BY name";
+  connection.query(sql, (err, results) => {
+    if (err) throw err;
+
+    res.send(results);
+  });
+});
+
+app.get("/allInfoByYear", (req, res) => {
+  const sql = "SELECT * FROM painting ORDER BY year";
   connection.query(sql, (err, results) => {
     if (err) throw err;
 

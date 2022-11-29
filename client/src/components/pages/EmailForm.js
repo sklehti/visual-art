@@ -81,7 +81,7 @@ function EmailForm() {
                 {errors.email && touched.email ? (
                   <div className="error-message">{errors.email}</div>
                 ) : null}
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group className="mb-3" controlId="formBasicTitle">
                   <Form.Label>Otsikko:</Form.Label>
                   <Form.Control
                     type="text"
@@ -95,7 +95,7 @@ function EmailForm() {
                 {errors.title && touched.title ? (
                   <div className="error-message">{errors.title}</div>
                 ) : null}
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group className="mb-3" controlId="formBasicTextArea">
                   <Form.Label>Viesti:</Form.Label>
                   <Form.Control
                     as="textarea"

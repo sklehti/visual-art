@@ -139,7 +139,7 @@ function ImageUpload({ rightUser }) {
       <br />
       <h2>Lisää uusi kuva:</h2>
       <br />
-      <div className="form-style">
+      <div className="form-style shadow-lg">
         <Form
           ref={form}
           noValidate

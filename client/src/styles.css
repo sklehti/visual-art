@@ -25,7 +25,12 @@
   border-top-right-radius: 10px;
   border: none;
   background-color: #ff6d00;
+
   /* background-color: rgb(247, 80, 80); */
+}
+
+.artist-style {
+  width: 20vw;
 }
 
 .artist-info-style {
@@ -234,9 +239,12 @@
   cursor: pointer;
 }
 
+/* muokkaa korkeus sopivaksi sekä tietokone, että mobiilinäytölle */
 .color-nav {
   background-color: #ffff;
   z-index: 2000;
+
+  /* height: 100px; */
 }
 
 button.a-enter-vr-button {
@@ -269,7 +277,7 @@ button.a-enter-vr-button {
 
 .tables-info-style {
   font-family: "Times New Roman", Times, serif;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .nav-title-style {
@@ -310,9 +318,11 @@ button.a-enter-vr-button {
 } */
 
 .background-image {
+  /* TODO: poista käyttämättömät taustakuvat image-kasiosta */
   background-image: url("./images/tausta-testi.png");
   /* background-image: url("./images/tausta-testi2.png"); */
   /* background-image: url("./images/tausta-testi3.png"); */
+  background-image: url("./images/plaster-wall.jpg");
 }
 
 /* ----- */

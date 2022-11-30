@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import visualArtDatabase from "../../services/visualArtDatabase";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import BasicAlert from "../alerts/BasicAlert";
 
 const SignupSchema = Yup.object().shape({
   // TODO: vaihda seuraava rivi kommenttiriviin!!!
@@ -28,12 +29,16 @@ function AdminRegister() {
     };
 
     visualArtDatabase.createAdmin(user).then((result) => {
-      console.log(result, "result");
+      // console.log(result, "result");
+      BasicAlert(
+        "",
+        "Kiitos rekisteröitymisestä. Tarvitset vielä käyttöoikeudet ylläpitäjältä."
+      );
     });
   };
 
   return (
-    <div className="form-style shadow-lg">
+    <div className="form-style shadow-lg" style={{ marginBottom: "200px" }}>
       <Formik
         initialValues={{ email: "", password: "" }}
         validationSchema={SignupSchema}

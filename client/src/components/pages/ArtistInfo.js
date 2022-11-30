@@ -12,6 +12,7 @@ function ArtistInfo() {
           {/* TODO: mb-5 tuo alapuolelle vällystä, tarvitaanko sitä? */}
           <div className="shadow-lg p-1  artist-img-style">
             <img
+              className="artist-style"
               alt="Kaukon omakuva"
               src={Kaukoimg}
               style={{ borderRadius: "10px" }}
@@ -24,7 +25,7 @@ function ArtistInfo() {
       </Row>
       <Row>
         <Col></Col>
-        <Col xs={8} md={8} className="shadow-lg p-3  artist-info-style">
+        <Col xs={7} md={7} className="shadow-lg p-3  artist-info-style">
           <div className="tables-info-style">
             It is a long established fact that a reader will be distracted by
             the readable content of a page when looking at its layout. The point
@@ -38,6 +39,7 @@ function ArtistInfo() {
             and the like).
           </div>
         </Col>
+        <Col xs={1} md={1}></Col>
       </Row>
     </div>
   );

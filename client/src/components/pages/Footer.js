@@ -10,6 +10,7 @@ import {
 function Footer() {
   return (
     <MDBFooter
+      id="footer-id"
       bgColor="none"
       className="text-center text-lg-start text-muted"
       style={{ backgroundColor: "#f8f8ff" }}

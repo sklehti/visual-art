@@ -6,8 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { invaledImageUpload } from "../../reducers/imageUploadReducer";
 import { valedUpload } from "../../reducers/imageUpload2Reducer";
 import { addImageTrue, addImageFalse } from "../../reducers/imageUpdateReducer";
+import BasicAlert from "../alerts/BasicAlert";
+import FormAlert from "../alerts/FormAlerts";
 
-// TODO: Formik does not support files uploading, so I did not use Formik in this file.
+// TODO: Formik does not support files uploading (at least a few years ago), so I did not use Formik in this file.
 // However, it is possible to do this with Formik.
 function ImageUpload({ rightUser }) {
   const [userInfo, setuserInfo] = useState({
@@ -44,7 +46,7 @@ function ImageUpload({ rightUser }) {
     const imageFile = event.target.files[0];
 
     if (!imageFile) {
-      dispatch(invaledImageUpload("Valitse kuva."));
+      // dispatch(invaledImageUpload("Valitse kuva."));
 
       return false;
     }
@@ -65,57 +67,69 @@ function ImageUpload({ rightUser }) {
   };
 
   const submit = async () => {
-    if (imageTitle.length < 1) {
-      console.log("Täytä otsikko!");
-      return false;
-    }
+    // if (imageTitle.length < 1) {
+    //   console.log("Täytä otsikko!");
+    //   return false;
+    // }
 
-    if (imageYear.length < 1) {
-      console.log("Täytä vuosiluku!");
-      return false;
-    }
+    // if (imageYear.length < 1) {
+    //   console.log("Täytä vuosiluku!");
+    //   return false;
+    // }
 
-    if (imageText.length < 1) {
-      console.log("Täytä tekstikenttä!");
-      return false;
-    }
+    // if (imageText.length < 1) {
+    //   console.log("Täytä tekstikenttä!");
+    //   return false;
+    // }
 
     visualArtDatabase.validateToken(rightUser.token).then((result) => {
       if (result.success === 1) {
-        const formdata = new FormData();
-        formdata.append("avatar", userInfo.file);
-        formdata.append("name", imageTitle);
-        formdata.append("text", imageText);
-        formdata.append("year", imageYear);
+        FormAlert("Haluatko tallentaa taulun tiedot?", "Kyllä", "En").then(
+          (result) => {
+            if (result.isConfirmed) {
+              const formdata = new FormData();
+              formdata.append("avatar", userInfo.file);
+              formdata.append("name", imageTitle);
+              formdata.append("text", imageText);
+              formdata.append("year", imageYear);
 
-        // TODO: tallennuksen ei pitäisi onnistua,
-        // jos kaikki kentät eivät ole täytetty!
-        visualArtDatabase
-          .createTableInfo(formdata, {
-            headers: { "Content-Type": "multipart/form-data" },
-          })
-          .then((res) => {
-            if (res.success === 1) {
-              setTimeout(() => {
-                dispatch(valedUpload(""));
-              }, 3000);
+              visualArtDatabase
+                .createTableInfo(formdata, {
+                  headers: { "Content-Type": "multipart/form-data" },
+                })
+                .then((res) => {
+                  if (res.success === 1) {
+                    BasicAlert("success", "Taulun tiedot tallennettu!");
+                    // setTimeout(() => {
+                    //   dispatch(valedUpload(""));
+                    // }, 3000);
+                    // dispatch(valedUpload("Kuva ladattu onnistuneesti."));
 
-              dispatch(valedUpload("Kuva ladattu onnistuneesti."));
+                    setuserInfo({
+                      file: [],
+                      filepreview: null,
+                    });
+                    setImageTitle("");
+                    setImageText("");
+                    setImageYear("");
+                    setValidated(false);
 
-              setuserInfo({
-                file: [],
-                filepreview: null,
-              });
-              setImageTitle("");
-              setImageText("");
-              setImageYear("");
-
-              dispatch(addImageTrue());
+                    dispatch(addImageTrue());
+                  }
+                });
+            } else if (result.isDenied) {
+              BasicAlert("info", "Taulun tietoja ei tallennettu");
             }
-          });
+          }
+        );
       }
       if (result.success === 0) {
-        console.log(
+        // TODO: poista seuraava console.log
+        // console.log(
+        //   "Kirjautumistietosi ovat vanhentuneet. Päivitä selain ja kirjaudu uudestaan."
+        // );
+        BasicAlert(
+          "error",
           "Kirjautumistietosi ovat vanhentuneet. Päivitä selain ja kirjaudu uudestaan."
         );
       }
@@ -124,7 +138,7 @@ function ImageUpload({ rightUser }) {
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
-    console.log(form, "mikä mättää");
+
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
@@ -147,9 +161,7 @@ function ImageUpload({ rightUser }) {
           onSubmit={handleSubmit}
         >
           {isSuccess !== null ? <h4> {isSuccess} </h4> : null}
-          {invalidImage !== null ? (
-            <h4 className="error"> {invalidImage} </h4>
-          ) : null}
+
           <Form.Group className="mb-3">
             <Form.Label>Valitse kuva:</Form.Label>
             <Form.Control
@@ -163,6 +175,9 @@ function ImageUpload({ rightUser }) {
               Valitse kuva.
             </Form.Control.Feedback>
           </Form.Group>
+          {invalidImage !== null ? (
+            <div className="error-message"> {invalidImage} </div>
+          ) : null}
           <Form.Group className="mb-3" controlId="controlInput1">
             <Form.Label> Taulun otsikko:</Form.Label>
             <Form.Control

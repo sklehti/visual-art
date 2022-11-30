@@ -7,6 +7,7 @@ import { loggingValidatedTrue } from "../../reducers/loggingValidateReducer";
 import { useDispatch } from "react-redux";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import BasicAlert from "../alerts/BasicAlert";
 
 const SignupSchema = Yup.object().shape({
   // TODO: vaihda seuraava rivi kommenttiriviin!!!
@@ -33,8 +34,9 @@ function AdminLogging() {
 
     visualArtDatabase.getAdmin(user).then((result) => {
       if (result.success === 0) {
-        console.log(
-          "Käyttäjätunnus/salasana on väärä tai sinulla ei ole admin oikeuksia"
+        BasicAlert(
+          "error",
+          "Käyttäjätunnus tai salasana on väärä tai sinulla ei ole vielä käyttöoikeuksia."
         );
       } else {
         dispatch(rightAdminUser(result));

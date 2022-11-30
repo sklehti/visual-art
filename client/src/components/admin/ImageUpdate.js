@@ -14,6 +14,8 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import BasicAlert from "../alerts/BasicAlert";
+import FormAlert from "../alerts/FormAlerts";
 
 function ImageUpdate({ rightUser }) {
   const dispatch = useDispatch();
@@ -121,21 +123,35 @@ const ImageForm = ({ imageData, rightUser }) => {
 
     visualArtDatabase.validateToken(rightUser.token).then((result) => {
       if (result.success === 1) {
-        visualArtDatabase.updateImageInfo(updatedImage).then((result) => {
-          dispatch(showModalFalse());
-          let tempArray = [];
-          visualArtDatabase.getAllInfo().then((results) => {
-            results.forEach((n) => {
-              tempArray = [...tempArray, n];
+        FormAlert("Haluatko päivittää taulun tiedot?", "Kyllä", "En").then(
+          (result) => {
+            if (result.isConfirmed) {
+              visualArtDatabase.updateImageInfo(updatedImage).then((result) => {
+                dispatch(showModalFalse());
+                let tempArray = [];
+                visualArtDatabase.getAllInfo().then((results) => {
+                  results.forEach((n) => {
+                    tempArray = [...tempArray, n];
 
-              visualArtDatabase.getImages(n.image);
-            });
-            dispatch(allImages(tempArray));
-          });
-        });
+                    visualArtDatabase.getImages(n.image);
+                  });
+                  dispatch(allImages(tempArray));
+                });
+              });
+            } else if (result.isDenied) {
+              dispatch(showModalFalse());
+              BasicAlert("info", "Taulun tietoja ei päivitetty");
+            }
+          }
+        );
       }
       if (result.success === 0) {
+        // TODO: poista console.log
         console.log(
+          "Kirjautumistietosi ovat vanhentuneet. Päivitä selain ja kirjaudu uudestaan."
+        );
+        BasicAlert(
+          "error",
           "Kirjautumistietosi ovat vanhentuneet. Päivitä selain ja kirjaudu uudestaan."
         );
       }
@@ -145,10 +161,38 @@ const ImageForm = ({ imageData, rightUser }) => {
   const handleDeleteImage = (values) => {
     visualArtDatabase.validateToken(rightUser.token).then((result) => {
       if (result.success === 1) {
-        visualArtDatabase.deleteImage(values.image).then((result) => {});
+        FormAlert(
+          "Haluatko poistaa taulun ja sen tiedot lopullisesti?",
+          "Kyllä",
+          "En"
+        ).then((result) => {
+          if (result.isConfirmed) {
+            BasicAlert("success", "Taulun tiedot poistettu!");
+            visualArtDatabase.deleteImage(values.image).then((result) => {
+              let tempArray = [];
+
+              visualArtDatabase.getAllInfo().then((results) => {
+                results.forEach((n) => {
+                  tempArray = [...tempArray, n];
+
+                  visualArtDatabase.getImages(n.image);
+                });
+                dispatch(allImages(tempArray));
+              });
+            });
+          } else if (result.isDenied) {
+            BasicAlert("info", "Taulun tietoja ei poistettu");
+            dispatch(showModalFalse());
+          }
+        });
       }
       if (result.success === 0) {
+        // TODO: poista console.log
         console.log(
+          "Kirjautumistietosi ovat vanhentuneet. Päivitä selain ja kirjaudu uudestaan."
+        );
+        BasicAlert(
+          "error",
           "Kirjautumistietosi ovat vanhentuneet. Päivitä selain ja kirjaudu uudestaan."
         );
       }
@@ -166,7 +210,7 @@ const ImageForm = ({ imageData, rightUser }) => {
         validationSchema={SignupSchema}
         onSubmit={(values, { setSubmitting, resetForm }) => {
           handleFormSubmit(values);
-          resetForm({ values: "" });
+          resetForm({ values: values });
           setSubmitting(false);
         }}
       >

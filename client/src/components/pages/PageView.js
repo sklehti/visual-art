@@ -15,7 +15,7 @@ import EmailForm from "./EmailForm";
 
 import { useDispatch, useSelector } from "react-redux";
 import { allImages } from "../../reducers/pageViewReducer";
-import AllImages from "./AllImages";
+import AllImages from "./allImages/AllImages";
 import ArtistInfo from "./ArtistInfo";
 
 function PageView() {
@@ -91,9 +91,9 @@ function PageView() {
         <Container>
           <Navbar.Brand href="#home">
             <div className="flex-container">
-              <button className="showroom-button" onClick={handleButton}>
+              {/* <button className="showroom-button" onClick={handleButton}>
                 <ShowroomIcon />
-              </button>
+              </button> */}
               {titleArraw.map((l, index) => (
                 <h1 key={index} className="letter">
                   {l}
@@ -107,7 +107,8 @@ function PageView() {
               <Nav.Link href="#top">Näyttelytila</Nav.Link>
               <Nav.Link href="#all-images">Tuotanto</Nav.Link>
               <Nav.Link href="#artist-info">Tietoa taiteilijasta</Nav.Link>
-              <Nav.Link href="#send-email">Yhteydenotto</Nav.Link>
+              <Nav.Link href="#send-email">Yhteydenotto lomake</Nav.Link>
+              <Nav.Link href="#footer-id">Yhteystiedot</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

@@ -6,6 +6,8 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import FormAlert from "../alerts/FormAlerts";
+import BasicAlert from "../alerts/BasicAlert";
 
 const SignupSchema = Yup.object().shape({
   email: Yup.string()
@@ -16,24 +18,35 @@ const SignupSchema = Yup.object().shape({
 });
 
 function EmailForm() {
-  const handleFormSubmit = (event) => {
-    emailjs.init(process.env.REACT_APP_USER_ID);
+  const handleFormSubmit = (resetForm) => {
+    FormAlert("Haluatko lähettää viestin?", "Lähetä", "Älä lähetä").then(
+      (result) => {
+        if (result.isConfirmed) {
+          BasicAlert("success", "Viesti lähetetty!");
 
-    emailjs
-      .sendForm(
-        process.env.REACT_APP_SERVICE_ID,
-        process.env.REACT_APP_TEMPLATE_ID,
-        //event.target
-        "#email-form"
-      )
-      .then(
-        function (response) {
-          console.log("SUCCESS!", response.status, response.text);
-        },
-        function (err) {
-          console.log("FAILED...", err);
+          emailjs.init(process.env.REACT_APP_USER_ID);
+
+          emailjs
+            .sendForm(
+              process.env.REACT_APP_SERVICE_ID,
+              process.env.REACT_APP_TEMPLATE_ID,
+              //event.target
+              "#email-form"
+            )
+            .then(
+              function (response) {
+                resetForm({ values: "" });
+                console.log("SUCCESS!", response.status, response.text);
+              },
+              function (err) {
+                console.log("FAILED...", err);
+              }
+            );
+        } else if (result.isDenied) {
+          BasicAlert("info", "Viestiä ei lähetetty");
         }
-      );
+      }
+    );
   };
 
   return (
@@ -52,8 +65,10 @@ function EmailForm() {
             initialValues={{ email: "", title: "", text: "" }}
             validationSchema={SignupSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
-              handleFormSubmit(values);
-              resetForm({ values: "" });
+              //handleFormSubmit();
+              // resetForm({ values: "" });
+
+              handleFormSubmit(resetForm);
               setSubmitting(false);
             }}
           >

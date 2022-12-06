@@ -101,9 +101,13 @@ function PageView() {
               ))}
             </div>
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ms-auto nav-title-style">
+          <Navbar.Toggle aria-controls="navbarScroll" />
+          <Navbar.Collapse id="navbarScroll">
+            <Nav
+              className="me-auto nav-title-style"
+              style={{ maxHeight: "120px" }}
+              navbarScroll
+            >
               <Nav.Link href="#top">Näyttelytila</Nav.Link>
               <Nav.Link href="#all-images">Tuotanto</Nav.Link>
               <Nav.Link href="#artist-info">Tietoa taiteilijasta</Nav.Link>
@@ -121,7 +125,7 @@ function PageView() {
       <Container
         fluid
         style={{ textAlign: "center" }}
-        className="background-image"
+        className="background-image-style"
       >
         <Row>
           <Col>

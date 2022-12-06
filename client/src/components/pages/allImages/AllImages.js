@@ -4,13 +4,26 @@ import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import visualArtDatabase from "../../../services/visualArtDatabase";
 import ImageView from "./ImageView";
+import { useDispatch, useSelector } from "react-redux";
+import { imgByYear } from "../../../reducers/allImages1Reducer";
+import { imgArray1 } from "../../../reducers/allImages2Reducer";
+import { imgArray2 } from "../../../reducers/allImages3Reducer";
+import { imgArray3 } from "../../../reducers/allImages4Reducer";
+import { firstTimeOnPage } from "../../../reducers/allImages5Reducer";
 
 function AllImages({ imageInfo }) {
-  const [imagesByYear, setImageByYear] = useState([]);
-  const [imageArray1, setImageArray1] = useState([]);
-  const [imageArray2, setImageArray2] = useState([]);
-  const [imageArray3, setImageArray3] = useState([]);
-  const [firstTime, setFirstTime] = useState(true);
+  const dispatch = useDispatch();
+  const imagesByYear = useSelector((state) => state.allImages1);
+  const imageArray1 = useSelector((state) => state.allImages2);
+  const imageArray2 = useSelector((state) => state.allImages3);
+  const imageArray3 = useSelector((state) => state.allImages4);
+  const firstTime = useSelector((state) => state.allImages5);
+
+  // const [imagesByYear, setImageByYear] = useState([]);
+  // const [imageArray1, setImageArray1] = useState([]);
+  // const [imageArray2, setImageArray2] = useState([]);
+  // const [imageArray3, setImageArray3] = useState([]);
+  // const [firstTime, setFirstTime] = useState(true);
 
   let tempArray = [];
   let array1 = [];
@@ -26,9 +39,10 @@ function AllImages({ imageInfo }) {
 
         visualArtDatabase.getImages(n.image);
       });
-      setImageByYear(tmpArr);
+      // setImageByYear(tmpArr);
+      dispatch(imgByYear(tmpArr));
     });
-  }, [setImageByYear]);
+  }, [dispatch]);
 
   imageInfo.map((i, index) => {
     index % 3 === 0 || index === 0
@@ -45,15 +59,20 @@ function AllImages({ imageInfo }) {
   });
 
   const handleAlphabetA = () => {
-    setFirstTime(false);
+    // setFirstTime(false);
+    // setImageArray1(array1);
+    // setImageArray2(array2);
+    // setImageArray3(array3);
 
-    setImageArray1(array1);
-    setImageArray2(array2);
-    setImageArray3(array3);
+    dispatch(firstTimeOnPage(false));
+    dispatch(imgArray1(array1));
+    dispatch(imgArray2(array2));
+    dispatch(imgArray3(array3));
   };
 
   const handleAlphabetZ = () => {
-    setFirstTime(false);
+    // setFirstTime(false);
+    dispatch(firstTimeOnPage(false));
 
     const arr = [];
     tempArray = [];
@@ -78,13 +97,18 @@ function AllImages({ imageInfo }) {
 
       return null;
     });
-    setImageArray1(array1);
-    setImageArray2(array2);
-    setImageArray3(array3);
+    // setImageArray1(array1);
+    // setImageArray2(array2);
+    // setImageArray3(array3);
+
+    dispatch(imgArray1(array1));
+    dispatch(imgArray2(array2));
+    dispatch(imgArray3(array3));
   };
 
   const handleYearRising = () => {
-    setFirstTime(false);
+    // setFirstTime(false);
+    dispatch(firstTimeOnPage(false));
 
     tempArray = [];
     array1 = [];
@@ -103,13 +127,18 @@ function AllImages({ imageInfo }) {
 
       return null;
     });
-    setImageArray1(array1);
-    setImageArray2(array2);
-    setImageArray3(array3);
+    // setImageArray1(array1);
+    // setImageArray2(array2);
+    // setImageArray3(array3);
+
+    dispatch(imgArray1(array1));
+    dispatch(imgArray2(array2));
+    dispatch(imgArray3(array3));
   };
 
   const handleYearDescending = () => {
-    setFirstTime(false);
+    // setFirstTime(false);
+    dispatch(firstTimeOnPage(false));
 
     const arr = [];
     tempArray = [];
@@ -134,9 +163,13 @@ function AllImages({ imageInfo }) {
 
       return null;
     });
-    setImageArray1(array1);
-    setImageArray2(array2);
-    setImageArray3(array3);
+    // setImageArray1(array1);
+    // setImageArray2(array2);
+    // setImageArray3(array3);
+
+    dispatch(imgArray1(array1));
+    dispatch(imgArray2(array2));
+    dispatch(imgArray3(array3));
   };
 
   return (

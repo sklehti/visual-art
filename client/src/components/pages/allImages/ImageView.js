@@ -6,12 +6,16 @@ import ModalImage from "react-modal-image";
 function ImageView({ array1, array2, array3 }) {
   return (
     <Row>
+      <Col xs={1} md={1}></Col>
       <Col xs={3} md={3}>
         {array1.map((i, index) =>
           index % 2 === 0 || index === 0 ? (
             <div key={index}>
               <div style={{ float: "right", minHeight: "23vw" }}>
-                <button className="shadow-lg p-1  first-column-style2">
+                <button
+                  className="shadow-lg p-1  first-column-style2"
+                  // style={{ backgroundColor: "#D3D3D3" }}
+                >
                   <ModalImage
                     className="image-style1"
                     small={"http://localhost:8080/images/" + i.image}
@@ -31,7 +35,10 @@ function ImageView({ array1, array2, array3 }) {
             </div>
           ) : (
             <div key={index} style={{ float: "left", minHeight: "23vw" }}>
-              <button className="shadow-lg p-1  first-column-style">
+              <button
+                className="shadow-lg p-1  first-column-style"
+                // style={{ backgroundColor: "#D3D3D3" }}
+              >
                 <ModalImage
                   className="image-style1"
                   small={"http://localhost:8080/images/" + i.image}
@@ -51,7 +58,7 @@ function ImageView({ array1, array2, array3 }) {
         )}
       </Col>
 
-      <Col xs={2} md={2}></Col>
+      <Col xs={1} md={1}></Col>
 
       <Col xs={3} md={3}>
         {array2.map((i, index) =>

@@ -105,6 +105,7 @@
   /* border-style: groove; */
 }
 
+/* TODO: katso, että leveys on maksimissaan 1049px! */
 .showroom-box {
   /* width: 85vw;
   height: 40vw; */
@@ -239,12 +240,9 @@
   cursor: pointer;
 }
 
-/* muokkaa korkeus sopivaksi sekä tietokone, että mobiilinäytölle */
 .color-nav {
   background-color: #ffff;
-  z-index: 2000;
-
-  /* height: 100px; */
+  /* z-index: 2000; */
 }
 
 button.a-enter-vr-button {
@@ -317,9 +315,9 @@ button.a-enter-vr-button {
   border-radius: 25px;
 } */
 
-.background-image {
+.background-image-style {
   /* TODO: poista käyttämättömät taustakuvat image-kasiosta */
-  background-image: url("./images/tausta-testi.png");
+  /* background-image: url("./images/tausta-testi.png"); */
   /* background-image: url("./images/tausta-testi2.png"); */
   /* background-image: url("./images/tausta-testi3.png"); */
   background-image: url("./images/plaster-wall.jpg");
@@ -455,24 +453,26 @@ button.a-enter-vr-button {
 .image-style1 {
   /* border-radius: 20px; */
   border-radius: 2px;
-  filter: brightness(110%);
-  width: 15vw;
-  height: auto;
+  filter: brightness(106%);
+  /* width: 20vw; */
+  /* height: auto; */
+  height: 15vw;
+  width: auto;
 }
 
 .image-style2 {
   /* border-radius: 20px; */
   border-radius: 2px;
-  filter: brightness(110%);
-  width: 15vw;
+  filter: brightness(109%);
+  width: 20vw;
   height: auto;
 }
 
 .image-style3 {
   /* border-radius: 20px; */
   border-radius: 2px;
-  filter: brightness(110%);
-  width: 15vw;
+  filter: brightness(106%);
+  width: 20vw;
   height: auto;
 }
 

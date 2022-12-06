@@ -13,7 +13,7 @@ function Admin() {
   const rightUser = useSelector((state) => state.admin);
 
   return (
-    <div className="background-image" style={{ textAlign: "center" }}>
+    <div className="background-image-style" style={{ textAlign: "center" }}>
       <Container>
         <Row>
           <Col xs={1} md={2}></Col>

@@ -12,6 +12,11 @@ import pageViewReducer from "./reducers/pageViewReducer";
 import imageUpload2Reducer from "./reducers/imageUpload2Reducer";
 import imageUpdateReducer from "./reducers/imageUpdateReducer";
 import imageUpdate2Reducer from "./reducers/imageUpdate2Reducer";
+import allImages1Reducer from "./reducers/allImages1Reducer";
+import allImages2Reducer from "./reducers/allImages2Reducer";
+import allImages3Reducer from "./reducers/allImages3Reducer";
+import allImages4Reducer from "./reducers/allImages4Reducer";
+import allImages5Reducer from "./reducers/allImages5Reducer";
 
 const store = configureStore({
   reducer: {
@@ -23,6 +28,11 @@ const store = configureStore({
     pageView: pageViewReducer,
     imageUpdate: imageUpdateReducer,
     imageUpdate2: imageUpdate2Reducer,
+    allImages1: allImages1Reducer,
+    allImages2: allImages2Reducer,
+    allImages3: allImages3Reducer,
+    allImages4: allImages4Reducer,
+    allImages5: allImages5Reducer,
   },
 });
 

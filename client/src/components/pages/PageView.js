@@ -87,7 +87,7 @@ function PageView() {
 
   return (
     <div id="top">
-      <Navbar id="navbar" className="color-nav" expand="lg" sticky="top">
+      <Navbar id="navbar" className="color-nav" expand="lg" fixed="top">
         <Container>
           <Navbar.Brand href="#home">
             <div className="flex-container">
@@ -101,10 +101,10 @@ function PageView() {
               ))}
             </div>
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbarScroll" />
-          <Navbar.Collapse id="navbarScroll">
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
             <Nav
-              className="me-auto nav-title-style"
+              className="ms-auto nav-title-style"
               style={{ maxHeight: "120px" }}
               navbarScroll
             >

@@ -1,3 +1,11 @@
+.all-titles {
+  margin-bottom: 50px;
+  color: #2d2d2d;
+  /* font-size: 3rem;  */
+  font-size: 48px;
+  /* font-weight: 400; */
+}
+
 .arrow-style {
   position: fixed;
   right: 2%;
@@ -106,9 +114,12 @@
 }
 
 /* TODO: katso, että leveys on maksimissaan 1049px! */
+/* TODO: säädä näyttelytilan margin-top oikeiaksi, niin ettei se jää
+   navbarin alle */
 .showroom-box {
   /* width: 85vw;
   height: 40vw; */
+  margin-top: 40px;
   height: 42vw;
   width: auto;
   border-style: solid;
@@ -159,7 +170,21 @@
   background-color: #2d2d2d;
 }
 
+@media only screen and (max-width: 1100px) {
+  .all-titles {
+    font-size: 40px;
+  }
+}
+
 @media only screen and (max-width: 700px) {
+  .all-titles {
+    font-size: 35px;
+  }
+
+  .arrow-style {
+    border: none;
+  }
+
   .letter {
     font-size: 30px;
   }
@@ -197,7 +222,8 @@
   background-color: #2d2d2d;
   width: 6vw;
   height: 3.8vw;
-  border-radius: 16px;
+  margin-right: 2px;
+  margin-bottom: 2px;
 }
 
 .a-enter-vr-button:hover {
@@ -217,20 +243,6 @@
 #navbar {
   transition: top 0.5s;
   border-bottom: 4px solid #f8f8ff;
-}
-
-.all-titles {
-  /* margin-top: 50px; */
-  margin-bottom: 50px;
-  /* border: 2px solid #2d2d2d; */
-  font-size: 3rem;
-  /* background-color: #f8f8ff; */
-  color: #2d2d2d;
-  /* filter: contrast(135%); */
-  /* font-weight: 800; */
-  /* text-align: center; */
-  /* padding: 80px; */
-  font-weight: 300;
 }
 
 .anchor-button {
@@ -425,6 +437,24 @@ button.a-enter-vr-button {
 
 /* ----- */
 
+.mobile-column-style {
+  border-radius: 2px;
+  border: none;
+  /* background-color: #ff6d00; */
+  background-color: #fff;
+  margin: 5px;
+}
+
+.mobile-image-style {
+  /* border-radius: 20px; */
+  border-radius: 2px;
+  filter: brightness(106%);
+  /* width: 20vw; */
+  /* height: auto; */
+  height: 40vw;
+  width: auto;
+}
+
 /* 3. KOHTA */
 .first-column-style {
   float: left;
@@ -454,10 +484,8 @@ button.a-enter-vr-button {
   /* border-radius: 20px; */
   border-radius: 2px;
   filter: brightness(106%);
-  /* width: 20vw; */
-  /* height: auto; */
-  height: 15vw;
-  width: auto;
+  width: 20vw;
+  height: auto;
 }
 
 .image-style2 {

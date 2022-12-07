@@ -1,12 +1,12 @@
 import React from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Kaukoimg from "../../images/Kauko-image.png";
+import Kaukoimg from "../../images/kauko-image.png";
 
 function ArtistInfo() {
   return (
     <div id="artist-info" style={{ paddingTop: "100px" }}>
-      <h1 className="all-titles">Tietoa taiteilijasta:</h1>
+      <h2 className="all-titles">Tietoa taiteilijasta:</h2>
       <Row>
         <Col xs={4} md={4}>
           {/* TODO: mb-5 tuo alapuolelle vällystä, tarvitaanko sitä? */}

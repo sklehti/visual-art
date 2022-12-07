@@ -57,7 +57,8 @@ function EmailForm() {
         paddingBottom: "100px",
       }}
     >
-      <h1 className="all-titles">Yhteydenotto:</h1>
+      <h2 className="all-titles">Yhteydenotto:</h2>
+
       <Row>
         <Col xs={1} md={2}></Col>
         <Col className="emailform-style shadow-lg">

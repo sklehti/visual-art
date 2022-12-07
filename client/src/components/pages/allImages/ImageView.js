@@ -11,11 +11,13 @@ function ImageView({ array1, array2, array3 }) {
         {array1.map((i, index) =>
           index % 2 === 0 || index === 0 ? (
             <div key={index}>
-              <div style={{ float: "right", minHeight: "23vw" }}>
+              <div style={{ float: "right", minHeight: "30vw" }}>
                 <button
                   className="shadow-lg p-1  first-column-style2"
+
                   // style={{ backgroundColor: "#D3D3D3" }}
                 >
+                  {/* TODO: lisää title (nimi) ja muuta altin sisältö, tee se kaikissa kuvakohdissa */}
                   <ModalImage
                     className="image-style1"
                     small={"http://localhost:8080/images/" + i.image}
@@ -34,7 +36,7 @@ function ImageView({ array1, array2, array3 }) {
               </div>
             </div>
           ) : (
-            <div key={index} style={{ float: "left", minHeight: "23vw" }}>
+            <div key={index} style={{ float: "left", minHeight: "30vw" }}>
               <button
                 className="shadow-lg p-1  first-column-style"
                 // style={{ backgroundColor: "#D3D3D3" }}
@@ -63,7 +65,7 @@ function ImageView({ array1, array2, array3 }) {
       <Col xs={3} md={3}>
         {array2.map((i, index) =>
           index % 2 === 0 || index === 0 ? (
-            <div key={index} style={{ float: "left", minHeight: "23vw" }}>
+            <div key={index} style={{ float: "left", minHeight: "30vw" }}>
               <button className="shadow-lg p-1  first-column-style">
                 <ModalImage
                   className="image-style2"
@@ -81,7 +83,7 @@ function ImageView({ array1, array2, array3 }) {
               <div> {`${i.name}, ${i.year}`}</div>
             </div>
           ) : (
-            <div key={index} style={{ float: "right", minHeight: "23vw" }}>
+            <div key={index} style={{ float: "right", minHeight: "30vw" }}>
               <button className="shadow-lg p-1  first-column-style2">
                 <ModalImage
                   className="image-style2"
@@ -105,7 +107,7 @@ function ImageView({ array1, array2, array3 }) {
       <Col xs={3} md={3}>
         {array3.map((i, index) =>
           index % 2 === 0 || index === 0 ? (
-            <div key={index} style={{ float: "right", minHeight: "23vw" }}>
+            <div key={index} style={{ float: "right", minHeight: "30vw" }}>
               <button className="shadow-lg p-1  first-column-style2">
                 <ModalImage
                   className="image-style3"
@@ -123,7 +125,7 @@ function ImageView({ array1, array2, array3 }) {
               <div> {`${i.name}, ${i.year}`}</div>
             </div>
           ) : (
-            <div key={index} style={{ float: "left", minHeight: "23vw" }}>
+            <div key={index} style={{ float: "left", minHeight: "30vw" }}>
               <button className="shadow-lg p-1  first-column-style">
                 <ModalImage
                   className="image-style3"

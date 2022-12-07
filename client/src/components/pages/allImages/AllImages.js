@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useLayoutEffect, useRef, useEffect, useState } from "react";
 import Row from "react-bootstrap/Row";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
@@ -10,6 +10,7 @@ import { imgArray1 } from "../../../reducers/allImages2Reducer";
 import { imgArray2 } from "../../../reducers/allImages3Reducer";
 import { imgArray3 } from "../../../reducers/allImages4Reducer";
 import { firstTimeOnPage } from "../../../reducers/allImages5Reducer";
+import MobileImageView from "./MobileImageView";
 
 function AllImages({ imageInfo }) {
   const dispatch = useDispatch();
@@ -19,11 +20,13 @@ function AllImages({ imageInfo }) {
   const imageArray3 = useSelector((state) => state.allImages4);
   const firstTime = useSelector((state) => state.allImages5);
 
-  // const [imagesByYear, setImageByYear] = useState([]);
-  // const [imageArray1, setImageArray1] = useState([]);
-  // const [imageArray2, setImageArray2] = useState([]);
-  // const [imageArray3, setImageArray3] = useState([]);
-  // const [firstTime, setFirstTime] = useState(true);
+  const ref = useRef(null);
+  // TODO: muuta seuraava reduxiksi
+  const [mobileView, setMobileView] = useState(0);
+
+  useLayoutEffect(() => {
+    setMobileView(ref.current.offsetWidth);
+  }, [setMobileView, mobileView]);
 
   let tempArray = [];
   let array1 = [];
@@ -173,41 +176,56 @@ function AllImages({ imageInfo }) {
   };
 
   return (
-    <div id="all-images" style={{ paddingTop: "100px" }}>
-      <h1 className="all-titles">Tuotanto:</h1>
+    <div ref={ref} id="all-images" style={{ paddingTop: "100px" }}>
+      <h2 className="all-titles">Tuotanto:</h2>
+      {mobileView >= 550 ? (
+        <div>
+          <Row>
+            <DropdownButton
+              id="dropdown-item-button"
+              title="Hakujärjestys"
+              className="dropdown-list-style"
+            >
+              <Dropdown.Item as="button" onClick={handleAlphabetA}>
+                Aakkosjärjestys a-ö
+              </Dropdown.Item>
+              <Dropdown.Item as="button" onClick={handleAlphabetZ}>
+                Aakkosjärjestys ö-a
+              </Dropdown.Item>
+              <Dropdown.Item as="button" onClick={handleYearRising}>
+                Vuosilukujärjestys nouseva
+              </Dropdown.Item>
+              <Dropdown.Item as="button" onClick={handleYearDescending}>
+                Vuosilukujärjestys laskeva
+              </Dropdown.Item>
+            </DropdownButton>
+          </Row>
 
-      <Row>
-        <DropdownButton
-          id="dropdown-item-button"
-          title="Hakujärjestystä"
-          className="dropdown-list-style"
-        >
-          <Dropdown.Item as="button" onClick={handleAlphabetA}>
-            Aakkosjärjestys a-ö
-          </Dropdown.Item>
-          <Dropdown.Item as="button" onClick={handleAlphabetZ}>
-            Aakkosjärjestys ö-a
-          </Dropdown.Item>
-          <Dropdown.Item as="button" onClick={handleYearRising}>
-            Vuosilukujärjestys nouseva
-          </Dropdown.Item>
-          <Dropdown.Item as="button" onClick={handleYearDescending}>
-            Vuosilukujärjestys laskeva
-          </Dropdown.Item>
-        </DropdownButton>
-      </Row>
-
-      <div>
-        {firstTime ? (
-          <ImageView array1={array1} array2={array2} array3={array3} />
-        ) : (
-          <ImageView
-            array1={imageArray1}
-            array2={imageArray2}
-            array3={imageArray3}
-          />
-        )}
-      </div>
+          {firstTime ? (
+            <ImageView array1={array1} array2={array2} array3={array3} />
+          ) : (
+            <ImageView
+              array1={imageArray1}
+              array2={imageArray2}
+              array3={imageArray3}
+            />
+          )}
+        </div>
+      ) : (
+        <div>
+          {firstTime ? (
+            <MobileImageView
+              imageInfo={imageInfo}
+              imagesByYear={imagesByYear}
+            />
+          ) : (
+            <MobileImageView
+              imageInfo={imageInfo}
+              imagesByYear={imagesByYear}
+            />
+          )}
+        </div>
+      )}
     </div>
   );
 }

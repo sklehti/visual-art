@@ -1,11 +1,11 @@
 import React from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Kaukoimg from "../../images/kauko-image.png";
+import Kaukoimg from "../../images/kauko-image.jpeg";
 
 function ArtistInfo() {
   return (
-    <div id="artist-info" style={{ paddingTop: "100px" }}>
+    <div id="artist-information" style={{ paddingTop: "100px" }}>
       <h2 className="all-titles">Tietoa taiteilijasta:</h2>
       <Row>
         <Col xs={4} md={4}>

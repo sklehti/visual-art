@@ -7,7 +7,6 @@ import {
   showModalTrue,
 } from "../../reducers/imageUpdateReducer";
 import { imgData } from "../../reducers/imageUpdate2Reducer";
-import { rightAdminUser } from "../../reducers/adminReducer";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -63,10 +62,8 @@ function ImageUpdate({ rightUser }) {
           className="button-style shadow-lg"
         >
           <img
+            className="img-height"
             alt="kuva, muuta tämä!"
-            // width="500"
-            // TODO: muuta responsiiviseksi!
-            height="300"
             src={"http://localhost:8080/images/" + i.image}
           />
           <p> {i.name}</p>
@@ -82,8 +79,7 @@ function ImageUpdate({ rightUser }) {
         <Modal.Header closeButton>
           <img
             style={{ paddingRight: "10px" }}
-            alt="kuva, muuta tämä!"
-            // width="500"
+            alt={imageData.name}
             height="80"
             src={"http://localhost:8080/images/" + imageData.image}
           />
@@ -121,8 +117,8 @@ const ImageForm = ({ imageData, rightUser }) => {
       text: values.text,
     };
 
-    visualArtDatabase.validateToken(rightUser.token).then((result) => {
-      if (result.success === 1) {
+    visualArtDatabase.validateToken(rightUser.token).then((results) => {
+      if (results.success === 1) {
         FormAlert("Haluatko päivittää taulun tiedot?", "Kyllä", "En").then(
           (result) => {
             if (result.isConfirmed) {
@@ -145,11 +141,7 @@ const ImageForm = ({ imageData, rightUser }) => {
           }
         );
       }
-      if (result.success === 0) {
-        // TODO: poista console.log
-        console.log(
-          "Kirjautumistietosi ovat vanhentuneet. Päivitä selain ja kirjaudu uudestaan."
-        );
+      if (results.success === 0) {
         BasicAlert(
           "error",
           "Kirjautumistietosi ovat vanhentuneet. Päivitä selain ja kirjaudu uudestaan."
@@ -159,8 +151,8 @@ const ImageForm = ({ imageData, rightUser }) => {
   };
 
   const handleDeleteImage = (values) => {
-    visualArtDatabase.validateToken(rightUser.token).then((result) => {
-      if (result.success === 1) {
+    visualArtDatabase.validateToken(rightUser.token).then((results) => {
+      if (results.success === 1) {
         FormAlert(
           "Haluatko poistaa taulun ja sen tiedot lopullisesti?",
           "Kyllä",
@@ -168,6 +160,7 @@ const ImageForm = ({ imageData, rightUser }) => {
         ).then((result) => {
           if (result.isConfirmed) {
             BasicAlert("success", "Taulun tiedot poistettu!");
+            dispatch(showModalFalse());
             visualArtDatabase.deleteImage(values.image).then((result) => {
               let tempArray = [];
 
@@ -186,11 +179,7 @@ const ImageForm = ({ imageData, rightUser }) => {
           }
         });
       }
-      if (result.success === 0) {
-        // TODO: poista console.log
-        console.log(
-          "Kirjautumistietosi ovat vanhentuneet. Päivitä selain ja kirjaudu uudestaan."
-        );
+      if (results.success === 0) {
         BasicAlert(
           "error",
           "Kirjautumistietosi ovat vanhentuneet. Päivitä selain ja kirjaudu uudestaan."
@@ -228,7 +217,6 @@ const ImageForm = ({ imageData, rightUser }) => {
               <Form.Label>Otsikko:</Form.Label>
               <Form.Control
                 type="text"
-                // placeholder={imageData.name}
                 name="name"
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -243,7 +231,6 @@ const ImageForm = ({ imageData, rightUser }) => {
               <Form.Label>Vuosi:</Form.Label>
               <Form.Control
                 type="text"
-                // placeholder={imageData.name}
                 name="year"
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -258,7 +245,6 @@ const ImageForm = ({ imageData, rightUser }) => {
               <Form.Control
                 as="textarea"
                 rows={3}
-                // placeholder={imageData.text}
                 name="text"
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -276,7 +262,7 @@ const ImageForm = ({ imageData, rightUser }) => {
               <Button
                 style={{ marginLeft: "10px" }}
                 variant="secondary"
-                type="submit"
+                type="button"
                 onClick={() => handleDeleteImage(imageData)}
               >
                 Poista

@@ -12,11 +12,7 @@ function ImageView({ array1, array2, array3 }) {
           index % 2 === 0 || index === 0 ? (
             <div key={index}>
               <div style={{ float: "right", minHeight: "30vw" }}>
-                <button
-                  className="shadow-lg p-1  first-column-style2"
-
-                  // style={{ backgroundColor: "#D3D3D3" }}
-                >
+                <button className="shadow-lg p-1  first-column-style2">
                   {/* TODO: lisää title (nimi) ja muuta altin sisältö, tee se kaikissa kuvakohdissa */}
                   <ModalImage
                     className="image-style1"
@@ -25,11 +21,6 @@ function ImageView({ array1, array2, array3 }) {
                     alt={`${i.name}, ${i.year}`}
                     hideDownload="true"
                   />
-                  {/* <img
-                        className="image-style1"
-                        alt={i.text}
-                        src={"http://localhost:8080/images/" + i.image}
-                      /> */}
                 </button>
 
                 <div> {`${i.name}, ${i.year}`}</div>
@@ -37,10 +28,7 @@ function ImageView({ array1, array2, array3 }) {
             </div>
           ) : (
             <div key={index} style={{ float: "left", minHeight: "30vw" }}>
-              <button
-                className="shadow-lg p-1  first-column-style"
-                // style={{ backgroundColor: "#D3D3D3" }}
-              >
+              <button className="shadow-lg p-1  first-column-style">
                 <ModalImage
                   className="image-style1"
                   small={"http://localhost:8080/images/" + i.image}
@@ -48,20 +36,13 @@ function ImageView({ array1, array2, array3 }) {
                   alt={`${i.name}, ${i.year}`}
                   hideDownload="true"
                 />
-                {/* <img
-                      className="image-style1"
-                      alt={i.text}
-                      src={"http://localhost:8080/images/" + i.image}
-                    /> */}
               </button>
               <div> {`${i.name}, ${i.year}`}</div>
             </div>
           )
         )}
       </Col>
-
       <Col xs={1} md={1}></Col>
-
       <Col xs={3} md={3}>
         {array2.map((i, index) =>
           index % 2 === 0 || index === 0 ? (
@@ -74,11 +55,6 @@ function ImageView({ array1, array2, array3 }) {
                   alt={`${i.name}, ${i.year}`}
                   hideDownload="true"
                 />
-                {/* <img
-                      className="image-style2"
-                      alt={i.text}
-                      src={"http://localhost:8080/images/" + i.image}
-                    /> */}
               </button>
               <div> {`${i.name}, ${i.year}`}</div>
             </div>
@@ -92,18 +68,12 @@ function ImageView({ array1, array2, array3 }) {
                   alt={`${i.name}, ${i.year}`}
                   hideDownload="true"
                 />
-                {/* <img
-                      className="image-style2"
-                      alt={i.text}
-                      src={"http://localhost:8080/images/" + i.image}
-                    /> */}
               </button>
               <div> {`${i.name}, ${i.year}`}</div>
             </div>
           )
         )}
       </Col>
-
       <Col xs={3} md={3}>
         {array3.map((i, index) =>
           index % 2 === 0 || index === 0 ? (
@@ -116,11 +86,6 @@ function ImageView({ array1, array2, array3 }) {
                   alt={`${i.name}, ${i.year}`}
                   hideDownload="true"
                 />
-                {/* <img
-                      className="image-style3"
-                      alt={i.text}
-                      src={"http://localhost:8080/images/" + i.image}
-                    /> */}
               </button>
               <div> {`${i.name}, ${i.year}`}</div>
             </div>
@@ -134,11 +99,6 @@ function ImageView({ array1, array2, array3 }) {
                   alt={`${i.name}, ${i.year}`}
                   hideDownload="true"
                 />
-                {/* <img
-                      className="image-style3"
-                      alt={i.text}
-                      src={"http://localhost:8080/images/" + i.image}
-                    /> */}
               </button>
               <div> {`${i.name}, ${i.year}`}</div>
             </div>

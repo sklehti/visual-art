@@ -68,10 +68,7 @@ function MobileImageView({ imageInfo, imagesByYear }) {
       </Row>
       {imageArray.map((i, index) => (
         <div key={index}>
-          <button
-            className="shadow-lg p-1  mobile-column-style"
-            // style={{ backgroundColor: "#D3D3D3" }}
-          >
+          <button className="shadow-lg p-1  mobile-column-style">
             <ModalImage
               className="mobile-image-style"
               small={"http://localhost:8080/images/" + i.image}

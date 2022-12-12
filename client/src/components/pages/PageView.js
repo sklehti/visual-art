@@ -11,7 +11,6 @@ import Footer from "./Footer";
 import ArrowUp from "../icons/ArrowUp";
 import visualArtDatabase from "../../services/visualArtDatabase";
 import EmailForm from "./EmailForm";
-// import MagnifierGlass from "../icons/MagnifierGlass";
 
 import { useDispatch, useSelector } from "react-redux";
 import { allImages } from "../../reducers/pageViewReducer";
@@ -110,7 +109,9 @@ function PageView() {
             >
               <Nav.Link href="#top">Näyttelytila</Nav.Link>
               <Nav.Link href="#all-images">Tuotanto</Nav.Link>
-              <Nav.Link href="#artist-info">Tietoa taiteilijasta</Nav.Link>
+              <Nav.Link href="#artist-information">
+                Tietoa taiteilijasta
+              </Nav.Link>
               <Nav.Link href="#send-email">Yhteydenotto lomake</Nav.Link>
               <Nav.Link href="#footer-id">Yhteystiedot</Nav.Link>
             </Nav>
@@ -132,8 +133,6 @@ function PageView() {
             <Showroom />
             <AllImages imageInfo={imageInfo} />
             <ArtistInfo />
-
-            <div>{/* <MagnifierGlass /> */}</div>
             <EmailForm />
           </Col>
         </Row>

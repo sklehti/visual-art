@@ -4,7 +4,6 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { invaledImageUpload } from "../../reducers/imageUploadReducer";
-import { valedUpload } from "../../reducers/imageUpload2Reducer";
 import { addImageTrue, addImageFalse } from "../../reducers/imageUpdateReducer";
 import BasicAlert from "../alerts/BasicAlert";
 import FormAlert from "../alerts/FormAlerts";
@@ -46,8 +45,6 @@ function ImageUpload({ rightUser }) {
     const imageFile = event.target.files[0];
 
     if (!imageFile) {
-      // dispatch(invaledImageUpload("Valitse kuva."));
-
       return false;
     }
 
@@ -67,21 +64,6 @@ function ImageUpload({ rightUser }) {
   };
 
   const submit = async () => {
-    // if (imageTitle.length < 1) {
-    //   console.log("Täytä otsikko!");
-    //   return false;
-    // }
-
-    // if (imageYear.length < 1) {
-    //   console.log("Täytä vuosiluku!");
-    //   return false;
-    // }
-
-    // if (imageText.length < 1) {
-    //   console.log("Täytä tekstikenttä!");
-    //   return false;
-    // }
-
     visualArtDatabase.validateToken(rightUser.token).then((result) => {
       if (result.success === 1) {
         FormAlert("Haluatko tallentaa taulun tiedot?", "Kyllä", "En").then(
@@ -100,10 +82,6 @@ function ImageUpload({ rightUser }) {
                 .then((res) => {
                   if (res.success === 1) {
                     BasicAlert("success", "Taulun tiedot tallennettu!");
-                    // setTimeout(() => {
-                    //   dispatch(valedUpload(""));
-                    // }, 3000);
-                    // dispatch(valedUpload("Kuva ladattu onnistuneesti."));
 
                     setuserInfo({
                       file: [],
@@ -124,10 +102,6 @@ function ImageUpload({ rightUser }) {
         );
       }
       if (result.success === 0) {
-        // TODO: poista seuraava console.log
-        // console.log(
-        //   "Kirjautumistietosi ovat vanhentuneet. Päivitä selain ja kirjaudu uudestaan."
-        // );
         BasicAlert(
           "error",
           "Kirjautumistietosi ovat vanhentuneet. Päivitä selain ja kirjaudu uudestaan."

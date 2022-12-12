@@ -1,9 +1,8 @@
 .all-titles {
   margin-bottom: 50px;
+  margin-top: 45px;
   color: #2d2d2d;
-  /* font-size: 3rem;  */
   font-size: 48px;
-  /* font-weight: 400; */
 }
 
 .arrow-style {
@@ -25,16 +24,11 @@
 
 .artist-img-style {
   float: right;
-  /* border-bottom-left-radius: 25px;
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px; */
   border-bottom-left-radius: 10px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   border: none;
   background-color: #ff6d00;
-
-  /* background-color: rgb(247, 80, 80); */
 }
 
 .artist-style {
@@ -45,9 +39,6 @@
   margin-right: 10px;
   margin-bottom: 4vw;
   height: 100%;
-  /* border-bottom-right-radius: 25px;
-  border-bottom-left-radius: 25px;
-  border-top-right-radius: 25px; */
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -58,7 +49,6 @@
   padding: 5px;
   margin: 15px;
   border-radius: 10px;
-  /* border-style: groove; */
   border: none;
 }
 
@@ -69,56 +59,13 @@
   padding-top: 20px;
 }
 
-/* Harmaata himmeyttä vasempaan reunaan*/
-.right-column1-style {
-  /* background-image: linear-gradient(
-    to right,
-    #fff,
-    #fff,
-    #f8f8f8,
-    #f5f5f5,
-    #d8d8d8
-  );
-  filter: contrast(110%); */
-
-  /* background-color: #a9a9a9;
-  height: 100%;
-  background: linear-gradient(to right, #808080, transparent),
-    url(https://grainy-gradients.vercel.app/noise.svg);
-  filter: contrast(170%) brightness(200%); */
-
-  /* background-color: #f8f8f8; */
-  /* background-color: #2d2d2d; */
-}
-
-.left-column1-style {
-  /* background-image: linear-gradient(
-    to left,
-    #fff,
-    #fff,
-    #f8f8f8,
-    #f5f5f5,
-    #d8d8d8
-  );
-  filter: contrast(110%); */
-
-  /* background-color: #f8f8f8; */
-  /* background-color: #2d2d2d; */
-}
-
 .form-style {
   background-color: #fff;
   padding: 30px;
   border-radius: 20px;
-  /* border-style: groove; */
 }
 
-/* TODO: katso, että leveys on maksimissaan 1049px! */
-/* TODO: säädä näyttelytilan margin-top oikeiaksi, niin ettei se jää
-   navbarin alle */
 .showroom-box {
-  /* width: 85vw;
-  height: 40vw; */
   margin-top: 40px;
   height: 42vw;
   width: auto;
@@ -127,24 +74,14 @@
   border-width: 4px;
   border-radius: 20px;
   border-color: #ff6d00;
-  /* border-color: #0ea550;
-  border-color: rgb(247, 80, 80); */
-
   overflow: hidden;
-
-  /* display: block; */
-  /* margin-left: auto;
-  margin-right: auto; */
 }
 
 .flex-container {
   display: flex;
-  /* height: fit-content; */
   justify-content: center;
-  /* align-items: flex-start; */
   padding-top: 30px;
   padding-bottom: 30px;
-  /* margin: 0%; */
 }
 
 .letter {
@@ -170,42 +107,8 @@
   background-color: #2d2d2d;
 }
 
-@media only screen and (max-width: 1100px) {
-  .all-titles {
-    font-size: 40px;
-  }
-}
-
-@media only screen and (max-width: 700px) {
-  .all-titles {
-    font-size: 35px;
-  }
-
-  .arrow-style {
-    border: none;
-  }
-
-  .letter {
-    font-size: 30px;
-  }
-
-  .hamburgermenu {
-    width: 35px;
-    height: 35px;
-    margin-left: 0.3em;
-  }
-}
-
-@media only screen and (max-width: 300px) {
-  .letter {
-    font-size: 25px;
-  }
-
-  .hamburgermenu {
-    width: 30px;
-    height: 30px;
-    margin-left: 1em;
-  }
+.img-height {
+  height: 25vw;
 }
 
 .image-style:hover {
@@ -254,7 +157,6 @@
 
 .color-nav {
   background-color: #ffff;
-  /* z-index: 2000; */
 }
 
 button.a-enter-vr-button {
@@ -266,20 +168,6 @@ button.a-enter-vr-button {
   font-size: 15px;
 }
 
-/* MagnifierGlass tiedoston tyyli */
-.magnifier {
-  /* Styles for <div> around image and magnifying glass */
-}
-
-.magnifier-image {
-  /* Styles for large image */
-}
-
-.magnifying-glass {
-  /* Styles for magnifying glass */
-}
-
-/* ImageUpload.js */
 .previewimg {
   width: 30vw;
   height: auto;
@@ -295,184 +183,34 @@ button.a-enter-vr-button {
   font-size: 20px;
 }
 
-/* .splash1 {
-  margin: 5vw;
-  width: 7vw;
-  height: 7vw;
-  background: repeating-conic-gradient(#ff00ff 0 3%, #0000 0 11%),
-    repeating-conic-gradient(#0000 0 5%, #ff00ff 0 7%) 50% / 60% 60%,
-    repeating-conic-gradient(#0000 0 7%, #ff00ff 0 9%) 50% / 70% 70%,
-    repeating-conic-gradient(#0000 0 11%, #ff00ff 0 13%) 50% / 80% 80%,
-    radial-gradient(#ff00ff 22%, #0000 0), #bebebe;
-  
-  background-repeat: no-repeat;
-  filter: blur(5px) contrast(50);
-  
-  box-shadow: 0 0 0 4px #bebebe;
-  border-radius: 25px;
-} */
-
-/* .splash2 {
-  margin: 5vw;
-  width: 7vw;
-  height: 7vw;
-  background: repeating-conic-gradient(#27027e 0 4%, #0000 0 11%),
-    repeating-conic-gradient(#0000 0 9%, #7f00ff 0 7%) 50% / 60% 60%,
-    repeating-conic-gradient(#0000 0 5%, #2b0585 0 8%) 50% / 70% 70%,
-    repeating-conic-gradient(#0000 0 15%, #1c0236 0 1%) 50% / 80% 80%,
-    radial-gradient(#3e0974 10%, #0000 0), #bebebe;
-  background-repeat: no-repeat;
-  filter: blur(4px) contrast(50);
-  box-shadow: 0 0 0 3px #bebebe;
-  border-radius: 25px;
-} */
-
 .background-image-style {
-  /* TODO: poista käyttämättömät taustakuvat image-kasiosta */
-  /* background-image: url("./images/tausta-testi.png"); */
-  /* background-image: url("./images/tausta-testi2.png"); */
-  /* background-image: url("./images/tausta-testi3.png"); */
   background-image: url("./images/plaster-wall.jpg");
 }
-
-/* ----- */
-/* TODO: 1.vaihtoehto */
-
-/* .first-column-style {
-  float: right;
-  border-bottom-left-radius: 20px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border: none;
-  background-color: #ff6d00;
-  background-color: #fff;
-}
-.first-column-style2 {
-  float: left;
-  border-bottom-right-radius: 20px;
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
-  border: none;
-  background-color: #ff6d00;
-  background-color: #fff;
-}
-
-.second-column-style {
-  margin-right: 10px;
-  margin-bottom: 4vw;
-  height: 100%;
-  border-bottom-right-radius: 20px;
-  border-bottom-left-radius: 20px;
-  border-top-right-radius: 20px;
-  background-color: #fff;
-}
-
-.second-column-style2 {
-  margin-left: 10px;
-  margin-bottom: 4vw;
-  height: 100%;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  border-top-left-radius: 20px;
-  background-color: #ff6d00;
-  background-color: #fff;
-}
-
-.image-style {
-  border-radius: 20px;
-  filter: brightness(110%);
-  height: 30vw;
-} */
-
-/* ----- */
-
-/* TODO: 2.vaihtoehto */
-/* .first-column-style {
-  float: left;
-  border-bottom-right-radius: 20px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border: none;
-  background-color: #ff6d00;
-  background-color: #fff;
-}
-
-.first-column-style2 {
-  float: right;
-  border-bottom-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
-  border: none;
-  background-color: #ff6d00;
-  background-color: #fff;
-}
-
-.second-column-style {
-  float: right;
-  margin-right: 10px;
-  margin-bottom: 4vw;
-  height: 100%;
-  border-bottom-right-radius: 20px;
-  border-bottom-left-radius: 20px;
-  border-top-left-radius: 20px;
-  background-color: #fff;
-}
-.second-column-style2 {
-  float: left;
-  margin-left: 10px;
-  margin-bottom: 4vw;
-  height: 100%;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  border-top-right-radius: 20px;
-  background-color: #ff6d00;
-  background-color: #fff;
-}
-
-.image-style {
-  border-radius: 20px;
-  filter: brightness(110%);
-  height: 10vw;
-} */
-
-/* ----- */
 
 .mobile-column-style {
   border-radius: 2px;
   border: none;
-  /* background-color: #ff6d00; */
   background-color: #fff;
   margin: 5px;
 }
 
 .mobile-image-style {
-  /* border-radius: 20px; */
   border-radius: 2px;
   filter: brightness(106%);
-  /* width: 20vw; */
-  /* height: auto; */
   height: 40vw;
   width: auto;
 }
 
-/* 3. KOHTA */
 .first-column-style {
   float: left;
-  /* border-bottom-right-radius: 20px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px; */
   border-radius: 2px;
   border: none;
-  /* background-color: #ff6d00; */
   background-color: #fff;
   margin: 5px;
 }
 
 .first-column-style2 {
   float: right;
-  /* border-bottom-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px; */
   border-radius: 2px;
   border: none;
   background-color: #ff6d00;
@@ -481,7 +219,6 @@ button.a-enter-vr-button {
 }
 
 .image-style1 {
-  /* border-radius: 20px; */
   border-radius: 2px;
   filter: brightness(106%);
   width: 20vw;
@@ -489,7 +226,6 @@ button.a-enter-vr-button {
 }
 
 .image-style2 {
-  /* border-radius: 20px; */
   border-radius: 2px;
   filter: brightness(109%);
   width: 20vw;
@@ -497,7 +233,6 @@ button.a-enter-vr-button {
 }
 
 .image-style3 {
-  /* border-radius: 20px; */
   border-radius: 2px;
   filter: brightness(106%);
   width: 20vw;
@@ -516,4 +251,63 @@ button.a-enter-vr-button {
   border-radius: 1px;
 }
 
-/* ----- */
+@media only screen and (max-width: 300px) {
+  .letter {
+    font-size: 25px;
+  }
+
+  .hamburgermenu {
+    width: 30px;
+    height: 30px;
+    margin-left: 1em;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .all-titles {
+    font-size: 30px;
+  }
+
+  .arrow-style {
+    border: none;
+  }
+
+  .artist-style {
+    width: 27vw;
+  }
+
+  .letter {
+    font-size: 30px;
+  }
+
+  .hamburgermenu {
+    width: 35px;
+    height: 35px;
+    margin-left: 0.3em;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .all-titles {
+    font-size: 45px;
+  }
+}
+
+@media only screen and (min-width: 1300px) {
+  .all-titles {
+    margin-top: 65px;
+  }
+
+  .showroom-box {
+    max-width: 1049px;
+    height: 560px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .a-enter-vr-button {
+    width: 80px;
+    height: 50px;
+  }
+}

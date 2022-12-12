@@ -4,7 +4,6 @@ function FormAlert(title, confirmButtonText, denyButtonText) {
   return Swal.fire({
     title: title,
     showDenyButton: true,
-    // showCancelButton: true,
     confirmButtonText: confirmButtonText,
     denyButtonText: denyButtonText,
   });

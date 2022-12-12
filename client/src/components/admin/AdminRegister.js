@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import visualArtDatabase from "../../services/visualArtDatabase";
@@ -29,7 +29,6 @@ function AdminRegister() {
     };
 
     visualArtDatabase.createAdmin(user).then((result) => {
-      // console.log(result, "result");
       BasicAlert(
         "",
         "Kiitos rekisteröitymisestä. Tarvitset vielä käyttöoikeudet ylläpitäjältä."

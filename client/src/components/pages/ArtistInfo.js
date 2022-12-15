@@ -9,10 +9,10 @@ function ArtistInfo() {
       <h2 className="all-titles">Tietoa taiteilijasta:</h2>
       <Row>
         <Col xs={4} md={4}>
-          {/* TODO: mb-5 tuo alapuolelle vällystä, tarvitaanko sitä? */}
           <div className="shadow-lg p-1  artist-img-style">
             <img
               className="artist-style"
+              title="Taiteilija Kauko Lehtinen"
               alt="Kaukon omakuva"
               src={Kaukoimg}
               style={{ borderRadius: "10px" }}

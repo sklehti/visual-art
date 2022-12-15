@@ -17,6 +17,7 @@ import allImages2Reducer from "./reducers/allImages2Reducer";
 import allImages3Reducer from "./reducers/allImages3Reducer";
 import allImages4Reducer from "./reducers/allImages4Reducer";
 import allImages5Reducer from "./reducers/allImages5Reducer";
+import allImages6Reducer from "./reducers/allImages6Reducer";
 
 const store = configureStore({
   reducer: {
@@ -33,6 +34,7 @@ const store = configureStore({
     allImages3: allImages3Reducer,
     allImages4: allImages4Reducer,
     allImages5: allImages5Reducer,
+    allImages6: allImages6Reducer,
   },
 });
 

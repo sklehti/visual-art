@@ -12,14 +12,18 @@
   border-radius: 30px;
   background-color: #fff;
   border: #d3d3d3;
-  border-style: solid;
   border-width: 2px;
   border-style: groove;
   z-index: 1500;
 }
 
+.arrow-style:hover {
+  border-color: #dd2c00;
+  border-style: solid;
+}
+
 .arrowup-style:hover {
-  fill: #ff6d00;
+  fill: #dd2c00;
 }
 
 .artist-img-style {
@@ -115,7 +119,7 @@
   opacity: 0.8;
 }
 
-.showroom-button {
+.showroom-icon {
   background: transparent;
   border: none !important;
   padding-right: 30px;
@@ -130,7 +134,7 @@
 }
 
 .a-enter-vr-button:hover {
-  background-color: #ff6d00;
+  background-color: #dd2c00;
 }
 
 .href-style {
@@ -181,10 +185,27 @@ button.a-enter-vr-button {
 .nav-title-style {
   font-family: "Times New Roman", Times, serif;
   font-size: 20px;
+  margin-left: 30px;
+}
+
+.titles-color {
+  color: #525252;
+}
+
+.titles-color:hover {
+  color: #dd2c00;
 }
 
 .background-image-style {
   background-image: url("./images/plaster-wall.jpg");
+}
+
+.main-icon-style:hover {
+  background-color: #dd2c00;
+}
+
+.some-icon-style:hover {
+  color: #dd2c00;
 }
 
 .mobile-column-style {
@@ -243,6 +264,18 @@ button.a-enter-vr-button {
   text-align: right;
   padding-right: 5vw;
   padding-bottom: 5vw;
+}
+
+#dropdown-item-button:hover {
+  background-color: #303f9f;
+}
+
+#formButton:hover {
+  background-color: #303f9f;
+}
+
+#formButton2:hover {
+  background-color: #424242;
 }
 
 .info-style2 {

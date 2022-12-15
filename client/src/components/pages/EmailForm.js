@@ -30,13 +30,11 @@ function EmailForm() {
             .sendForm(
               process.env.REACT_APP_SERVICE_ID,
               process.env.REACT_APP_TEMPLATE_ID,
-              //event.target
               "#email-form"
             )
             .then(
               function (response) {
                 resetForm({ values: "" });
-                console.log("SUCCESS!", response.status, response.text);
               },
               function (err) {
                 console.log("FAILED...", err);
@@ -127,7 +125,12 @@ function EmailForm() {
                   <div className="error-message">{errors.text}</div>
                 ) : null}
                 <br />
-                <Button variant="primary" type="submit" disabled={isSubmitting}>
+                <Button
+                  variant="primary"
+                  id="formButton"
+                  type="submit"
+                  disabled={isSubmitting}
+                >
                   Lähetä
                 </Button>
               </Form>

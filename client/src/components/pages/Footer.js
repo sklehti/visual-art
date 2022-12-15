@@ -21,18 +21,32 @@ function Footer() {
         </div>
 
         <div>
-          {/* TODO: tarvitaanko alt teksteijä? */}
           <a href="https://fi-fi.facebook.com/" className="me-4 text-reset">
-            <MDBIcon fab icon="facebook" />
+            <MDBIcon
+              className="some-icon-style"
+              fab
+              icon="facebook"
+              title="facebook"
+            />
           </a>
           <a
             href="https://www.google.com/search?q=kauko+lehtinen&oq=kauko+lehtinen&aqs=chrome.0.35i39i355j46i39j0i512l2j0i22i30j69i60l3.2739j0j7&sourceid=chrome&ie=UTF-8"
             className="me-4 text-reset"
           >
-            <MDBIcon fab icon="google" />
+            <MDBIcon
+              className="some-icon-style"
+              fab
+              icon="google"
+              title="google"
+            />
           </a>
           <a href="https://www.instagram.com/" className="me-4 text-reset">
-            <MDBIcon fab icon="instagram" />
+            <MDBIcon
+              className="some-icon-style"
+              fab
+              icon="instagram"
+              title="instagram"
+            />
           </a>
         </div>
       </section>
@@ -52,7 +66,7 @@ function Footer() {
               <h6 className="text-uppercase fw-bold mb-4">
                 Hyödyllisiä linkkejä
               </h6>
-              <p>
+              <p className="some-icon-style">
                 <a
                   href="https://fi.wikipedia.org/wiki/Kauko_Lehtinen"
                   className="text-reset"
@@ -65,18 +79,20 @@ function Footer() {
             <MDBCol md="4" lg="3" xl="3" className="mx-auto mb-md-0 mb-4">
               <h6 className="text-uppercase fw-bold mb-4">Yhteystiedot</h6>
               <p>
-                <MDBIcon icon="home" className="me-2" />
+                <MDBIcon icon="home" className="me-2" title="osoite" />
                 Tulossa myöhemmin
               </p>
               <p>
-                <MDBIcon icon="envelope" className="me-3" />
+                <MDBIcon
+                  icon="envelope"
+                  className="me-3"
+                  title="sähköpostiosoite"
+                />
               </p>
               <p>
-                <MDBIcon icon="phone" className="me-3" />
+                <MDBIcon icon="phone" className="me-3" title="puhelin" />
               </p>
-              <p>
-                <MDBIcon icon="print" className="me-3" />
-              </p>
+              <br />
             </MDBCol>
           </MDBRow>
         </MDBContainer>

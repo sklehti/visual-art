@@ -10,14 +10,12 @@ import * as Yup from "yup";
 import BasicAlert from "../alerts/BasicAlert";
 
 const SignupSchema = Yup.object().shape({
-  // TODO: vaihda seuraava rivi kommenttiriviin!!!
-  password: Yup.string().required("Kirjoita salasanasi"),
-  // password: Yup.string()
-  //   .required("Kirjoita salasanasi")
-  //   .matches(
-  //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-  //     "Tulee sisältää vähintään 8 merkkiä, yksi isokirjain, yksi pieni kirjain, yksi numero ja yksi erikoismerkki"
-  //   ),
+  password: Yup.string()
+    .required("Kirjoita salasanasi")
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+      "Tulee sisältää vähintään 8 merkkiä, yksi isokirjain, yksi pieni kirjain, yksi numero ja yksi erikoismerkki"
+    ),
   email: Yup.string()
     .email("Epävalidi sähköpostiosoite")
     .required("Kirjoita sähköpostiosoiteesi"),
@@ -96,7 +94,7 @@ function AdminLogging() {
               <div className="error-message">{errors.password}</div>
             ) : null}
             <br />
-            <Button variant="primary" type="submit" disabled={isSubmitting}>
+            <Button id="formButton" type="submit" disabled={isSubmitting}>
               Kirjaudu
             </Button>
           </Form>

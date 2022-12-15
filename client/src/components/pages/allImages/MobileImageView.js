@@ -68,12 +68,15 @@ function MobileImageView({ imageInfo, imagesByYear }) {
       </Row>
       {imageArray.map((i, index) => (
         <div key={index}>
-          <button className="shadow-lg p-1  mobile-column-style">
+          <button
+            className="shadow-lg p-1  mobile-column-style"
+            title={`Taulun nimi ${i.name}, vuosi ${i.year}`}
+          >
             <ModalImage
               className="mobile-image-style"
               small={"http://localhost:8080/images/" + i.image}
               medium={"http://localhost:8080/images/" + i.image}
-              alt={`${i.name}, ${i.year}`}
+              alt={`Nimi: ${i.name} | vuosi: ${i.year} | korkeus: ${i.height} | leveys: ${i.width}`}
               hideDownload="true"
             />
           </button>

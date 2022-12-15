@@ -71,55 +71,57 @@ function PageView() {
     anime({
       targets: ".letter",
       opacity: 1,
-      //TODO: seuraava rivi vaihtaa korkeutta
-      // translateY: 50,
       scale: anime.stagger([0.7, 1], { from: "center" }),
       delay: anime.stagger(100, { start: 600 }),
-      // translateX: [-10, 30],
     });
   }, []);
 
-  const handleButton = () => {
-    window.scrollTo(0, 0);
-    console.log("make same actions here..");
-  };
-
   return (
-    <div id="top">
+    <div>
       <Navbar id="navbar" className="color-nav" expand="lg" fixed="top">
         <Container>
-          <Navbar.Brand href="#home">
-            <div className="flex-container">
-              {/* <button className="showroom-button" onClick={handleButton}>
-                <ShowroomIcon />
-              </button> */}
+          <Navbar.Text href="#home">
+            <div className="flex-container" title="Kauko Lehtinen">
+              <div className="showroom-icon" alt="">
+                <a href="#top" title="Siirry sivun alkuun">
+                  <ShowroomIcon />
+                </a>
+              </div>
               {titleArraw.map((l, index) => (
                 <h1 key={index} className="letter">
                   {l}
                 </h1>
               ))}
             </div>
-          </Navbar.Brand>
+          </Navbar.Text>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav
-              className="ms-auto nav-title-style"
+              className="me-auto nav-title-style"
               style={{ maxHeight: "120px" }}
               navbarScroll
             >
-              <Nav.Link href="#top">Näyttelytila</Nav.Link>
-              <Nav.Link href="#all-images">Tuotanto</Nav.Link>
-              <Nav.Link href="#artist-information">
+              <Nav.Link className="titles-color" href="#top">
+                Näyttelytila
+              </Nav.Link>
+              <Nav.Link className="titles-color" href="#all-images">
+                Tuotanto
+              </Nav.Link>
+              <Nav.Link className="titles-color" href="#artist-information">
                 Tietoa taiteilijasta
               </Nav.Link>
-              <Nav.Link href="#send-email">Yhteydenotto lomake</Nav.Link>
-              <Nav.Link href="#footer-id">Yhteystiedot</Nav.Link>
+              <Nav.Link className="titles-color" href="#send-email">
+                Yhteydenotto lomake
+              </Nav.Link>
+              <Nav.Link className="titles-color" href="#footer-id">
+                Yhteystiedot
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <div className="arrow-style">
-        <a href="#top">
+      <div id="top">
+        <a href="#top" className="arrow-style" title="Siirry sivun alkuun">
           <ArrowUp />
         </a>
       </div>

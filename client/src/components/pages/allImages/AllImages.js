@@ -10,6 +10,7 @@ import { imgArray1 } from "../../../reducers/allImages2Reducer";
 import { imgArray2 } from "../../../reducers/allImages3Reducer";
 import { imgArray3 } from "../../../reducers/allImages4Reducer";
 import { firstTimeOnPage } from "../../../reducers/allImages5Reducer";
+import { mobileViewState } from "../../../reducers/allImages6Reducer";
 import MobileImageView from "./MobileImageView";
 
 function AllImages({ imageInfo }) {
@@ -19,14 +20,13 @@ function AllImages({ imageInfo }) {
   const imageArray2 = useSelector((state) => state.allImages3);
   const imageArray3 = useSelector((state) => state.allImages4);
   const firstTime = useSelector((state) => state.allImages5);
+  const mobileView = useSelector((state) => state.allImages6);
 
   const ref = useRef(null);
-  // TODO: muuta seuraava reduxiksi
-  const [mobileView, setMobileView] = useState(0);
 
   useLayoutEffect(() => {
-    setMobileView(ref.current.offsetWidth);
-  }, [setMobileView, mobileView]);
+    dispatch(mobileViewState(ref.current.offsetWidth));
+  }, [dispatch]);
 
   let tempArray = [];
   let array1 = [];

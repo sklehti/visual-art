@@ -20,6 +20,8 @@ function ImageUpload({ rightUser }) {
   const [imageTitle, setImageTitle] = useState("");
   const [imageText, setImageText] = useState("");
   const [imageYear, setImageYear] = useState("");
+  const [imageHeight, setImageHeight] = useState("");
+  const [imageWidth, setImageWidth] = useState("");
 
   const dispatch = useDispatch();
   const invalidImage = useSelector((state) => state.imageUpload);
@@ -35,6 +37,18 @@ function ImageUpload({ rightUser }) {
     const y = e.target.value.replace(/\D/g, "");
 
     setImageYear(y);
+  };
+
+  const handleImageHeight = (e) => {
+    const y = e.target.value.replace(/\D/g, "");
+
+    setImageHeight(y);
+  };
+
+  const handleImageWidth = (e) => {
+    const y = e.target.value.replace(/\D/g, "");
+
+    setImageWidth(y);
   };
 
   const handleImageText = (e) => {
@@ -53,6 +67,11 @@ function ImageUpload({ rightUser }) {
 
       return false;
     }
+    if (imageFile.size >= 1000000) {
+      dispatch(invaledImageUpload("Valitse pienempi kuva (pienempi kuin 1MB)"));
+
+      return false;
+    }
     dispatch(invaledImageUpload(""));
     setuserInfo({
       ...userInfo,
@@ -64,50 +83,63 @@ function ImageUpload({ rightUser }) {
   };
 
   const submit = async () => {
-    visualArtDatabase.validateToken(rightUser.token).then((result) => {
-      if (result.success === 1) {
-        FormAlert("Haluatko tallentaa taulun tiedot?", "Kyllä", "En").then(
-          (result) => {
-            if (result.isConfirmed) {
-              const formdata = new FormData();
-              formdata.append("avatar", userInfo.file);
-              formdata.append("name", imageTitle);
-              formdata.append("text", imageText);
-              formdata.append("year", imageYear);
+    if (
+      userInfo.filepreview !== null &&
+      imageTitle.length > 0 &&
+      imageText.length > 0 &&
+      imageYear > 0 &&
+      imageHeight.length > 0 &&
+      imageWidth.length > 0
+    ) {
+      visualArtDatabase.validateToken(rightUser.token).then((results) => {
+        if (results.success === 1) {
+          FormAlert("Haluatko tallentaa taulun tiedot?", "Kyllä", "En").then(
+            (result) => {
+              if (result.isConfirmed) {
+                const formdata = new FormData();
+                formdata.append("avatar", userInfo.file);
+                formdata.append("name", imageTitle);
+                formdata.append("text", imageText);
+                formdata.append("year", imageYear);
+                formdata.append("height", imageHeight);
+                formdata.append("width", imageWidth);
 
-              visualArtDatabase
-                .createTableInfo(formdata, {
-                  headers: { "Content-Type": "multipart/form-data" },
-                })
-                .then((res) => {
-                  if (res.success === 1) {
-                    BasicAlert("success", "Taulun tiedot tallennettu!");
+                visualArtDatabase
+                  .createTableInfo(formdata, {
+                    headers: { "Content-Type": "multipart/form-data" },
+                  })
+                  .then((res) => {
+                    if (res.success === 1) {
+                      BasicAlert("success", "Taulun tiedot tallennettu!");
 
-                    setuserInfo({
-                      file: [],
-                      filepreview: null,
-                    });
-                    setImageTitle("");
-                    setImageText("");
-                    setImageYear("");
-                    setValidated(false);
+                      setuserInfo({
+                        file: [],
+                        filepreview: null,
+                      });
+                      setImageTitle("");
+                      setImageText("");
+                      setImageYear("");
+                      setImageHeight("");
+                      setImageWidth("");
+                      setValidated(false);
 
-                    dispatch(addImageTrue());
-                  }
-                });
-            } else if (result.isDenied) {
-              BasicAlert("info", "Taulun tietoja ei tallennettu");
+                      dispatch(addImageTrue());
+                    }
+                  });
+              } else if (result.isDenied) {
+                BasicAlert("info", "Taulun tietoja ei tallennettu");
+              }
             }
-          }
-        );
-      }
-      if (result.success === 0) {
-        BasicAlert(
-          "error",
-          "Kirjautumistietosi ovat vanhentuneet. Päivitä selain ja kirjaudu uudestaan."
-        );
-      }
-    });
+          );
+        }
+        if (results.success === 0) {
+          BasicAlert(
+            "error",
+            "Kirjautumistietosi ovat vanhentuneet. Päivitä selain ja kirjaudu uudestaan."
+          );
+        }
+      });
+    }
   };
 
   const handleSubmit = (event) => {
@@ -182,6 +214,36 @@ function ImageUpload({ rightUser }) {
             </Form.Control.Feedback>
           </Form.Group>
 
+          <Form.Group className="mb-3" controlId="controlInput2">
+            <Form.Label> Taulun korkeus:</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              name="height"
+              placeholder="Korkeus"
+              value={imageHeight}
+              onChange={handleImageHeight}
+            />
+            <Form.Control.Feedback type="invalid">
+              Kirjoita taulun korkeus.
+            </Form.Control.Feedback>
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="controlInput2">
+            <Form.Label> Taulun leveys:</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              name="width"
+              placeholder="Leveys"
+              value={imageWidth}
+              onChange={handleImageWidth}
+            />
+            <Form.Control.Feedback type="invalid">
+              Kirjoita taulun leveys.
+            </Form.Control.Feedback>
+          </Form.Group>
+
           <Form.Group className="mb-3" controlId="ontrolTextarea1">
             <Form.Label> Taulun teksti:</Form.Label>
             <Form.Control
@@ -197,7 +259,12 @@ function ImageUpload({ rightUser }) {
             </Form.Control.Feedback>
           </Form.Group>
 
-          <Button type="submit" onClick={() => submit()}>
+          <Button
+            variant="primary"
+            id="formButton"
+            type="submit"
+            onClick={() => submit()}
+          >
             Lähetä
           </Button>
         </Form>

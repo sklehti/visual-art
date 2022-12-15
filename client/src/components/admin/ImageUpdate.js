@@ -42,6 +42,8 @@ function ImageUpdate({ rightUser }) {
     const img = {
       name: i.name,
       year: i.year,
+      height: i.height,
+      width: i.width,
       text: i.text,
       image: i.image,
     };
@@ -103,6 +105,18 @@ const SignupSchema = Yup.object().shape({
       "tulee sisältää vain lukuja!"
     )
     .required("Kirjoita vuosiluku"),
+  height: Yup.string()
+    .matches(
+      /^(0*[1-9][0-9]*(\.[0-9]*)?|0*\.[0-9]*[1-9][0-9]*)$/,
+      "tulee sisältää vain lukuja!"
+    )
+    .required("Kirjoita taulun korkeus"),
+  width: Yup.string()
+    .matches(
+      /^(0*[1-9][0-9]*(\.[0-9]*)?|0*\.[0-9]*[1-9][0-9]*)$/,
+      "tulee sisältää vain lukuja!"
+    )
+    .required("Kirjoita taulun leveys"),
   text: Yup.string().required("Kirjoita kuvailutulkkaus"),
 });
 
@@ -114,6 +128,8 @@ const ImageForm = ({ imageData, rightUser }) => {
       image: imageData.image,
       name: values.name,
       year: values.year,
+      height: values.height,
+      width: values.width,
       text: values.text,
     };
 
@@ -194,6 +210,8 @@ const ImageForm = ({ imageData, rightUser }) => {
         initialValues={{
           name: imageData.name,
           year: imageData.year,
+          height: imageData.height,
+          width: imageData.width,
           text: imageData.text,
         }}
         validationSchema={SignupSchema}
@@ -240,6 +258,32 @@ const ImageForm = ({ imageData, rightUser }) => {
             {errors.year && touched.year ? (
               <div className="error-message">{errors.year}</div>
             ) : null}
+            <Form.Group className="mb-3" controlId="formHeight3">
+              <Form.Label>korkeus:</Form.Label>
+              <Form.Control
+                type="text"
+                name="height"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.height}
+              />
+            </Form.Group>
+            {errors.height && touched.height ? (
+              <div className="error-message">{errors.height}</div>
+            ) : null}
+            <Form.Group className="mb-3" controlId="formWidth3">
+              <Form.Label>Leveys:</Form.Label>
+              <Form.Control
+                type="text"
+                name="width"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.width}
+              />
+            </Form.Group>
+            {errors.width && touched.width ? (
+              <div className="error-message">{errors.width}</div>
+            ) : null}
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Kuvailuteksti:</Form.Label>
               <Form.Control
@@ -256,11 +300,17 @@ const ImageForm = ({ imageData, rightUser }) => {
             ) : null}
             <br />
             <div style={{ display: "flex", justifyContent: "center" }}>
-              <Button variant="primary" type="submit" disabled={isSubmitting}>
+              <Button
+                variant="primary"
+                id="formButton"
+                type="submit"
+                disabled={isSubmitting}
+              >
                 Päivitä
               </Button>
               <Button
                 style={{ marginLeft: "10px" }}
+                id="formButton2"
                 variant="secondary"
                 type="button"
                 onClick={() => handleDeleteImage(imageData)}

@@ -7,6 +7,11 @@ const getImages = (id) => {
   return request.then((response) => response.data);
 };
 
+const getAllInfoByYear = () => {
+  const request = axios.get(`${baseUrl}/allInfoByYear`);
+  return request.then((response) => response.data);
+};
+
 const getAllInfo = () => {
   const request = axios.get(`${baseUrl}/allInfo`);
   return request.then((response) => response.data);
@@ -52,6 +57,7 @@ const deleteImage = (image) => {
 export default {
   getImages,
   getAllInfo,
+  getAllInfoByYear,
   getAdmin,
   validateToken,
   createTableInfo,

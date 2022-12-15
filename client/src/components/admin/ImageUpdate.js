@@ -7,13 +7,14 @@ import {
   showModalTrue,
 } from "../../reducers/imageUpdateReducer";
 import { imgData } from "../../reducers/imageUpdate2Reducer";
-import { rightAdminUser } from "../../reducers/adminReducer";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import BasicAlert from "../alerts/BasicAlert";
+import FormAlert from "../alerts/FormAlerts";
 
 function ImageUpdate({ rightUser }) {
   const dispatch = useDispatch();
@@ -40,6 +41,9 @@ function ImageUpdate({ rightUser }) {
   const handleShow = (i) => {
     const img = {
       name: i.name,
+      year: i.year,
+      height: i.height,
+      width: i.width,
       text: i.text,
       image: i.image,
     };
@@ -57,12 +61,11 @@ function ImageUpdate({ rightUser }) {
         <button
           key={index}
           onClick={() => handleShow(i)}
-          className="button-style"
+          className="button-style shadow-lg"
         >
           <img
+            className="img-height"
             alt="kuva, muuta tämä!"
-            // width="500"
-            height="300"
             src={"http://localhost:8080/images/" + i.image}
           />
           <p> {i.name}</p>
@@ -78,8 +81,7 @@ function ImageUpdate({ rightUser }) {
         <Modal.Header closeButton>
           <img
             style={{ paddingRight: "10px" }}
-            alt="kuva, muuta tämä!"
-            // width="500"
+            alt={imageData.name}
             height="80"
             src={"http://localhost:8080/images/" + imageData.image}
           />
@@ -95,6 +97,26 @@ function ImageUpdate({ rightUser }) {
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string().required("Kirjoita otsikko"),
+  year: Yup.string()
+    .min(4, "Liian lyhyt!")
+    .max(4, "Liian pitkä!")
+    .matches(
+      /^(0*[1-9][0-9]*(\.[0-9]*)?|0*\.[0-9]*[1-9][0-9]*)$/,
+      "tulee sisältää vain lukuja!"
+    )
+    .required("Kirjoita vuosiluku"),
+  height: Yup.string()
+    .matches(
+      /^(0*[1-9][0-9]*(\.[0-9]*)?|0*\.[0-9]*[1-9][0-9]*)$/,
+      "tulee sisältää vain lukuja!"
+    )
+    .required("Kirjoita taulun korkeus"),
+  width: Yup.string()
+    .matches(
+      /^(0*[1-9][0-9]*(\.[0-9]*)?|0*\.[0-9]*[1-9][0-9]*)$/,
+      "tulee sisältää vain lukuja!"
+    )
+    .required("Kirjoita taulun leveys"),
   text: Yup.string().required("Kirjoita kuvailutulkkaus"),
 });
 
@@ -105,26 +127,39 @@ const ImageForm = ({ imageData, rightUser }) => {
     const updatedImage = {
       image: imageData.image,
       name: values.name,
+      year: values.year,
+      height: values.height,
+      width: values.width,
       text: values.text,
     };
 
-    visualArtDatabase.validateToken(rightUser.token).then((result) => {
-      if (result.success === 1) {
-        visualArtDatabase.updateImageInfo(updatedImage).then((result) => {
-          let tempArray = [];
-          visualArtDatabase.getAllInfo().then((results) => {
-            results.forEach((n) => {
-              tempArray = [...tempArray, n];
+    visualArtDatabase.validateToken(rightUser.token).then((results) => {
+      if (results.success === 1) {
+        FormAlert("Haluatko päivittää taulun tiedot?", "Kyllä", "En").then(
+          (result) => {
+            if (result.isConfirmed) {
+              visualArtDatabase.updateImageInfo(updatedImage).then((result) => {
+                dispatch(showModalFalse());
+                let tempArray = [];
+                visualArtDatabase.getAllInfo().then((results) => {
+                  results.forEach((n) => {
+                    tempArray = [...tempArray, n];
 
-              visualArtDatabase.getImages(n.image);
-            });
-            dispatch(allImages(tempArray));
-            dispatch(showModalFalse());
-          });
-        });
+                    visualArtDatabase.getImages(n.image);
+                  });
+                  dispatch(allImages(tempArray));
+                });
+              });
+            } else if (result.isDenied) {
+              dispatch(showModalFalse());
+              BasicAlert("info", "Taulun tietoja ei päivitetty");
+            }
+          }
+        );
       }
-      if (result.success === 0) {
-        console.log(
+      if (results.success === 0) {
+        BasicAlert(
+          "error",
           "Kirjautumistietosi ovat vanhentuneet. Päivitä selain ja kirjaudu uudestaan."
         );
       }
@@ -132,12 +167,37 @@ const ImageForm = ({ imageData, rightUser }) => {
   };
 
   const handleDeleteImage = (values) => {
-    visualArtDatabase.validateToken(rightUser.token).then((result) => {
-      if (result.success === 1) {
-        visualArtDatabase.deleteImage(values.image).then((result) => {});
+    visualArtDatabase.validateToken(rightUser.token).then((results) => {
+      if (results.success === 1) {
+        FormAlert(
+          "Haluatko poistaa taulun ja sen tiedot lopullisesti?",
+          "Kyllä",
+          "En"
+        ).then((result) => {
+          if (result.isConfirmed) {
+            BasicAlert("success", "Taulun tiedot poistettu!");
+            dispatch(showModalFalse());
+            visualArtDatabase.deleteImage(values.image).then((result) => {
+              let tempArray = [];
+
+              visualArtDatabase.getAllInfo().then((results) => {
+                results.forEach((n) => {
+                  tempArray = [...tempArray, n];
+
+                  visualArtDatabase.getImages(n.image);
+                });
+                dispatch(allImages(tempArray));
+              });
+            });
+          } else if (result.isDenied) {
+            BasicAlert("info", "Taulun tietoja ei poistettu");
+            dispatch(showModalFalse());
+          }
+        });
       }
-      if (result.success === 0) {
-        console.log(
+      if (results.success === 0) {
+        BasicAlert(
+          "error",
           "Kirjautumistietosi ovat vanhentuneet. Päivitä selain ja kirjaudu uudestaan."
         );
       }
@@ -147,11 +207,17 @@ const ImageForm = ({ imageData, rightUser }) => {
   return (
     <div>
       <Formik
-        initialValues={{ name: imageData.name, text: imageData.text }}
+        initialValues={{
+          name: imageData.name,
+          year: imageData.year,
+          height: imageData.height,
+          width: imageData.width,
+          text: imageData.text,
+        }}
         validationSchema={SignupSchema}
         onSubmit={(values, { setSubmitting, resetForm }) => {
           handleFormSubmit(values);
-          resetForm({ values: "" });
+          resetForm({ values: values });
           setSubmitting(false);
         }}
       >
@@ -169,22 +235,60 @@ const ImageForm = ({ imageData, rightUser }) => {
               <Form.Label>Otsikko:</Form.Label>
               <Form.Control
                 type="text"
-                // placeholder={imageData.name}
                 name="name"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.name}
               />
             </Form.Group>
+
             {errors.name && touched.name ? (
               <div className="error-message">{errors.name}</div>
+            ) : null}
+            <Form.Group className="mb-3" controlId="formYear3">
+              <Form.Label>Vuosi:</Form.Label>
+              <Form.Control
+                type="text"
+                name="year"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.year}
+              />
+            </Form.Group>
+            {errors.year && touched.year ? (
+              <div className="error-message">{errors.year}</div>
+            ) : null}
+            <Form.Group className="mb-3" controlId="formHeight3">
+              <Form.Label>korkeus:</Form.Label>
+              <Form.Control
+                type="text"
+                name="height"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.height}
+              />
+            </Form.Group>
+            {errors.height && touched.height ? (
+              <div className="error-message">{errors.height}</div>
+            ) : null}
+            <Form.Group className="mb-3" controlId="formWidth3">
+              <Form.Label>Leveys:</Form.Label>
+              <Form.Control
+                type="text"
+                name="width"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.width}
+              />
+            </Form.Group>
+            {errors.width && touched.width ? (
+              <div className="error-message">{errors.width}</div>
             ) : null}
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Kuvailuteksti:</Form.Label>
               <Form.Control
                 as="textarea"
                 rows={3}
-                // placeholder={imageData.text}
                 name="text"
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -196,13 +300,19 @@ const ImageForm = ({ imageData, rightUser }) => {
             ) : null}
             <br />
             <div style={{ display: "flex", justifyContent: "center" }}>
-              <Button variant="primary" type="submit" disabled={isSubmitting}>
+              <Button
+                variant="primary"
+                id="formButton"
+                type="submit"
+                disabled={isSubmitting}
+              >
                 Päivitä
               </Button>
               <Button
                 style={{ marginLeft: "10px" }}
+                id="formButton2"
                 variant="secondary"
-                type="submit"
+                type="button"
                 onClick={() => handleDeleteImage(imageData)}
               >
                 Poista

@@ -1,3 +1,10 @@
+.all-titles {
+  margin-bottom: 50px;
+  margin-top: 45px;
+  color: #2d2d2d;
+  font-size: 48px;
+}
+
 .arrow-style {
   position: fixed;
   right: 2%;
@@ -5,48 +12,80 @@
   border-radius: 30px;
   background-color: #fff;
   border: #d3d3d3;
-  border-style: solid;
   border-width: 2px;
   border-style: groove;
+  z-index: 1500;
+}
+
+.arrow-style:hover {
+  border-color: #dd2c00;
+  border-style: solid;
 }
 
 .arrowup-style:hover {
-  fill: #ff6d00;
+  fill: #dd2c00;
+}
+
+.artist-img-style {
+  float: right;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border: none;
+  background-color: #ff6d00;
+}
+
+.artist-style {
+  width: 20vw;
+}
+
+.artist-info-style {
+  margin-right: 10px;
+  margin-bottom: 4vw;
+  height: 100%;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: #fff;
 }
 
 .button-style {
   padding: 5px;
   margin: 15px;
   border-radius: 10px;
-  border-style: groove;
+  border: none;
+}
+
+.emailform-style {
+  background-color: #fff;
+  border-radius: 20px;
+  padding-bottom: 20px;
+  padding-top: 20px;
 }
 
 .form-style {
-  background-color: #dcdcdc;
+  background-color: #fff;
   padding: 30px;
-  border-radius: 10px;
-  border-style: groove;
+  border-radius: 20px;
 }
 
 .showroom-box {
-  width: 85vw;
-  height: 40vw;
+  margin-top: 40px;
+  height: 42vw;
+  width: auto;
   border-style: solid;
   border-color: #2d2d2d;
-  border-width: 3px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  border-width: 4px;
+  border-radius: 20px;
+  border-color: #ff6d00;
+  overflow: hidden;
 }
 
 .flex-container {
   display: flex;
-  /* height: fit-content; */
   justify-content: center;
-  /* align-items: flex-start; */
   padding-top: 30px;
   padding-bottom: 30px;
-  /* margin: 0%; */
 }
 
 .letter {
@@ -72,31 +111,15 @@
   background-color: #2d2d2d;
 }
 
-@media only screen and (max-width: 700px) {
-  .letter {
-    font-size: 30px;
-  }
-
-  .hamburgermenu {
-    width: 35px;
-    height: 35px;
-    margin-left: 0.3em;
-  }
+.img-height {
+  height: 25vw;
 }
 
-@media only screen and (max-width: 300px) {
-  .letter {
-    font-size: 25px;
-  }
-
-  .hamburgermenu {
-    width: 30px;
-    height: 30px;
-    margin-left: 1em;
-  }
+.image-style:hover {
+  opacity: 0.8;
 }
 
-.showroom-button {
+.showroom-icon {
   background: transparent;
   border: none !important;
   padding-right: 30px;
@@ -106,10 +129,12 @@
   background-color: #2d2d2d;
   width: 6vw;
   height: 3.8vw;
+  margin-right: 2px;
+  margin-bottom: 2px;
 }
 
 .a-enter-vr-button:hover {
-  background-color: #ff6d00;
+  background-color: #dd2c00;
 }
 
 .href-style {
@@ -127,27 +152,6 @@
   border-bottom: 4px solid #f8f8ff;
 }
 
-#test_2 {
-  margin-top: 1000px;
-  font-size: 3rem;
-  background-color: #f8f8ff;
-  font-weight: 800;
-  text-align: center;
-  /* padding: 80px; */
-  border: 2px solid #2d2d2d;
-  margin-bottom: 500px;
-}
-
-#test_1 {
-  margin-top: 500px;
-  border: 2px solid #2d2d2d;
-  font-size: 3rem;
-  background-color: #f8f8ff;
-  font-weight: 800;
-  text-align: center;
-  /* padding: 80px; */
-}
-
 .anchor-button {
   font-size: 1.5rem;
   padding: 10px 20px;
@@ -157,7 +161,6 @@
 
 .color-nav {
   background-color: #ffff;
-  z-index: 2000;
 }
 
 button.a-enter-vr-button {
@@ -169,21 +172,175 @@ button.a-enter-vr-button {
   font-size: 15px;
 }
 
-/* MagnifierGlass tiedoston tyyli */
-.magnifier {
-  /* Styles for <div> around image and magnifying glass */
-}
-
-.magnifier-image {
-  /* Styles for large image */
-}
-
-.magnifying-glass {
-  /* Styles for magnifying glass */
-}
-
-/* ImageUpload.js */
 .previewimg {
   width: 30vw;
   height: auto;
+}
+
+.tables-info-style {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 18px;
+}
+
+.nav-title-style {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
+  margin-left: 30px;
+}
+
+.titles-color {
+  color: #525252;
+}
+
+.titles-color:hover {
+  color: #dd2c00;
+}
+
+.background-image-style {
+  background-image: url("./images/plaster-wall.jpg");
+}
+
+.main-icon-style:hover {
+  background-color: #dd2c00;
+}
+
+.some-icon-style:hover {
+  color: #dd2c00;
+}
+
+.mobile-column-style {
+  border-radius: 2px;
+  border: none;
+  background-color: #fff;
+  margin: 5px;
+}
+
+.mobile-image-style {
+  border-radius: 2px;
+  filter: brightness(106%);
+  height: 40vw;
+  width: auto;
+}
+
+.first-column-style {
+  float: left;
+  border-radius: 2px;
+  border: none;
+  background-color: #fff;
+  margin: 5px;
+}
+
+.first-column-style2 {
+  float: right;
+  border-radius: 2px;
+  border: none;
+  background-color: #ff6d00;
+  background-color: #fff;
+  margin: 10px;
+}
+
+.image-style1 {
+  border-radius: 2px;
+  filter: brightness(106%);
+  width: 20vw;
+  height: auto;
+}
+
+.image-style2 {
+  border-radius: 2px;
+  filter: brightness(109%);
+  width: 20vw;
+  height: auto;
+}
+
+.image-style3 {
+  border-radius: 2px;
+  filter: brightness(106%);
+  width: 20vw;
+  height: auto;
+}
+
+.dropdown-list-style {
+  text-align: right;
+  padding-right: 5vw;
+  padding-bottom: 5vw;
+}
+
+#dropdown-item-button:hover {
+  background-color: #303f9f;
+}
+
+#formButton:hover {
+  background-color: #303f9f;
+}
+
+#formButton2:hover {
+  background-color: #424242;
+}
+
+.info-style2 {
+  background-color: #fff;
+  margin: 10px;
+  border-radius: 1px;
+}
+
+@media only screen and (max-width: 300px) {
+  .letter {
+    font-size: 25px;
+  }
+
+  .hamburgermenu {
+    width: 30px;
+    height: 30px;
+    margin-left: 1em;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .all-titles {
+    font-size: 30px;
+  }
+
+  .arrow-style {
+    border: none;
+  }
+
+  .artist-style {
+    width: 27vw;
+  }
+
+  .letter {
+    font-size: 30px;
+  }
+
+  .hamburgermenu {
+    width: 35px;
+    height: 35px;
+    margin-left: 0.3em;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .all-titles {
+    font-size: 45px;
+  }
+}
+
+@media only screen and (min-width: 1300px) {
+  .all-titles {
+    margin-top: 65px;
+  }
+
+  .showroom-box {
+    max-width: 1049px;
+    height: 560px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .a-enter-vr-button {
+    width: 80px;
+    height: 50px;
+  }
 }

@@ -10,33 +10,43 @@ import {
 function Footer() {
   return (
     <MDBFooter
+      id="footer-id"
       bgColor="none"
       className="text-center text-lg-start text-muted"
       style={{ backgroundColor: "#f8f8ff" }}
     >
       <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
         <div className="me-5 d-none d-lg-block">
-          <span>Get connected with us on social networks:</span>
+          <span>Sosiaalinen media:</span>
         </div>
 
         <div>
-          <a href="" className="me-4 text-reset">
-            <MDBIcon fab icon="facebook-f" />
+          <a href="https://fi-fi.facebook.com/" className="me-4 text-reset">
+            <MDBIcon
+              className="some-icon-style"
+              fab
+              icon="facebook"
+              title="facebook"
+            />
           </a>
-          <a href="" className="me-4 text-reset">
-            <MDBIcon fab icon="twitter" />
+          <a
+            href="https://www.google.com/search?q=kauko+lehtinen&oq=kauko+lehtinen&aqs=chrome.0.35i39i355j46i39j0i512l2j0i22i30j69i60l3.2739j0j7&sourceid=chrome&ie=UTF-8"
+            className="me-4 text-reset"
+          >
+            <MDBIcon
+              className="some-icon-style"
+              fab
+              icon="google"
+              title="google"
+            />
           </a>
-          <a href="" className="me-4 text-reset">
-            <MDBIcon fab icon="google" />
-          </a>
-          <a href="" className="me-4 text-reset">
-            <MDBIcon fab icon="instagram" />
-          </a>
-          <a href="" className="me-4 text-reset">
-            <MDBIcon fab icon="linkedin" />
-          </a>
-          <a href="" className="me-4 text-reset">
-            <MDBIcon fab icon="github" />
+          <a href="https://www.instagram.com/" className="me-4 text-reset">
+            <MDBIcon
+              className="some-icon-style"
+              fab
+              icon="instagram"
+              title="instagram"
+            />
           </a>
         </div>
       </section>
@@ -47,79 +57,42 @@ function Footer() {
             <MDBCol md="3" lg="4" xl="3" className="mx-auto mb-4">
               <h6 className="text-uppercase fw-bold mb-4">
                 <MDBIcon icon="gem" className="me-3" />
-                Company name
+                Sivuston toteutus
               </h6>
-              <p>
-                Here you can use rows and columns to organize your footer
-                content. Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit.
-              </p>
-            </MDBCol>
-
-            <MDBCol md="2" lg="2" xl="2" className="mx-auto mb-4">
-              <h6 className="text-uppercase fw-bold mb-4">Products</h6>
-              <p>
-                <a href="#!" className="text-reset">
-                  Angular
-                </a>
-              </p>
-              <p>
-                <a href="#!" className="text-reset">
-                  React
-                </a>
-              </p>
-              <p>
-                <a href="#!" className="text-reset">
-                  Vue
-                </a>
-              </p>
-              <p>
-                <a href="#!" className="text-reset">
-                  Laravel
-                </a>
-              </p>
+              <p>Tulossa myöhemmin</p>
             </MDBCol>
 
             <MDBCol md="3" lg="2" xl="2" className="mx-auto mb-4">
-              <h6 className="text-uppercase fw-bold mb-4">Useful links</h6>
-              <p>
-                <a href="#!" className="text-reset">
-                  Pricing
-                </a>
-              </p>
-              <p>
-                <a href="#!" className="text-reset">
-                  Settings
-                </a>
-              </p>
-              <p>
-                <a href="#!" className="text-reset">
-                  Orders
-                </a>
-              </p>
-              <p>
-                <a href="#!" className="text-reset">
-                  Help
+              <h6 className="text-uppercase fw-bold mb-4">
+                Hyödyllisiä linkkejä
+              </h6>
+              <p className="some-icon-style">
+                <a
+                  href="https://fi.wikipedia.org/wiki/Kauko_Lehtinen"
+                  className="text-reset"
+                >
+                  Wikipedia
                 </a>
               </p>
             </MDBCol>
 
             <MDBCol md="4" lg="3" xl="3" className="mx-auto mb-md-0 mb-4">
-              <h6 className="text-uppercase fw-bold mb-4">Contact</h6>
+              <h6 className="text-uppercase fw-bold mb-4">Yhteystiedot</h6>
               <p>
-                <MDBIcon icon="home" className="me-2" />
-                New York, NY 10012, US
+                <MDBIcon icon="home" className="me-2" title="osoite" />
+                Tulossa myöhemmin
               </p>
               <p>
-                <MDBIcon icon="envelope" className="me-3" />
-                info@example.com
+                <MDBIcon
+                  icon="envelope"
+                  className="me-3"
+                  title="sähköpostiosoite"
+                />
               </p>
               <p>
-                <MDBIcon icon="phone" className="me-3" /> + 01 234 567 88
+                <MDBIcon icon="phone" className="me-3" title="puhelin" />
               </p>
-              <p>
-                <MDBIcon icon="print" className="me-3" /> + 01 234 567 89
-              </p>
+              <br />
             </MDBCol>
           </MDBRow>
         </MDBContainer>
@@ -129,10 +102,7 @@ function Footer() {
         className="text-center p-4"
         style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
       >
-        © 2021 Copyright:
-        <a className="text-reset fw-bold" href="https://mdbootstrap.com/">
-          MDBootstrap.com
-        </a>
+        © 2021 Copyright: Saara Lehtinen
       </div>
     </MDBFooter>
   );

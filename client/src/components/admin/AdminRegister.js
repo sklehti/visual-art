@@ -1,19 +1,18 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import visualArtDatabase from "../../services/visualArtDatabase";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import BasicAlert from "../alerts/BasicAlert";
 
 const SignupSchema = Yup.object().shape({
-  // TODO: vaihda seuraava rivi kommenttiriviin!!!
-  password: Yup.string().required("Kirjoita salasanasi"),
-  // password: Yup.string()
-  //   .required("Kirjoita salasanasi")
-  //   .matches(
-  //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-  //     "Tulee sisältää vähintään 8 merkkiä, yksi isokirjain, yksi pieni kirjain, yksi numero ja yksi erikoismerkki"
-  //   ),
+  password: Yup.string()
+    .required("Kirjoita salasanasi")
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+      "Tulee sisältää vähintään 8 merkkiä, yksi isokirjain, yksi pieni kirjain, yksi numero ja yksi erikoismerkki"
+    ),
   email: Yup.string()
     .email("Epävalidi sähköpostiosoite")
     .required("Kirjoita sähköpostiosoiteesi"),
@@ -28,12 +27,15 @@ function AdminRegister() {
     };
 
     visualArtDatabase.createAdmin(user).then((result) => {
-      console.log(result, "result");
+      BasicAlert(
+        "",
+        "Kiitos rekisteröitymisestä. Tarvitset vielä käyttöoikeudet ylläpitäjältä."
+      );
     });
   };
 
   return (
-    <div className="form-style">
+    <div className="form-style shadow-lg" style={{ marginBottom: "200px" }}>
       <Formik
         initialValues={{ email: "", password: "" }}
         validationSchema={SignupSchema}
@@ -82,7 +84,7 @@ function AdminRegister() {
               <div className="error-message">{errors.password}</div>
             ) : null}
             <br />
-            <Button variant="primary" type="submit" disabled={isSubmitting}>
+            <Button id="formButton" type="submit" disabled={isSubmitting}>
               Rekisteröidy
             </Button>
           </Form>

@@ -7,16 +7,15 @@ import { loggingValidatedTrue } from "../../reducers/loggingValidateReducer";
 import { useDispatch } from "react-redux";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import BasicAlert from "../alerts/BasicAlert";
 
 const SignupSchema = Yup.object().shape({
-  // TODO: vaihda seuraava rivi kommenttiriviin!!!
-  password: Yup.string().required("Kirjoita salasanasi"),
-  // password: Yup.string()
-  //   .required("Kirjoita salasanasi")
-  //   .matches(
-  //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-  //     "Tulee sisältää vähintään 8 merkkiä, yksi isokirjain, yksi pieni kirjain, yksi numero ja yksi erikoismerkki"
-  //   ),
+  password: Yup.string()
+    .required("Kirjoita salasanasi")
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+      "Tulee sisältää vähintään 8 merkkiä, yksi isokirjain, yksi pieni kirjain, yksi numero ja yksi erikoismerkki"
+    ),
   email: Yup.string()
     .email("Epävalidi sähköpostiosoite")
     .required("Kirjoita sähköpostiosoiteesi"),
@@ -33,8 +32,9 @@ function AdminLogging() {
 
     visualArtDatabase.getAdmin(user).then((result) => {
       if (result.success === 0) {
-        console.log(
-          "Käyttäjätunnus/salasana on väärä tai sinulla ei ole admin oikeuksia"
+        BasicAlert(
+          "error",
+          "Käyttäjätunnus tai salasana on väärä tai sinulla ei ole vielä käyttöoikeuksia."
         );
       } else {
         dispatch(rightAdminUser(result));
@@ -45,7 +45,7 @@ function AdminLogging() {
   };
 
   return (
-    <div className="form-style">
+    <div className="form-style  shadow-lg">
       <Formik
         initialValues={{ email: "", password: "" }}
         validationSchema={SignupSchema}
@@ -94,7 +94,7 @@ function AdminLogging() {
               <div className="error-message">{errors.password}</div>
             ) : null}
             <br />
-            <Button variant="primary" type="submit" disabled={isSubmitting}>
+            <Button id="formButton" type="submit" disabled={isSubmitting}>
               Kirjaudu
             </Button>
           </Form>

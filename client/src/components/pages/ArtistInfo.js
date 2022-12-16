@@ -27,16 +27,15 @@ function ArtistInfo() {
         <Col></Col>
         <Col xs={7} md={7} className="shadow-lg p-3  artist-info-style">
           <div className="tables-info-style">
-            It is a long established fact that a reader will be distracted by
-            the readable content of a page when looking at its layout. The point
-            of using Lorem Ipsum is that it has a more-or-less normal
-            distribution of letters, as opposed to using 'Content here, content
-            here', making it look like readable English. Many desktop publishing
-            packages and web page editors now use Lorem Ipsum as their default
-            model text, and a search for 'lorem ipsum' will uncover many web
-            sites still in their infancy. Various versions have evolved over the
-            years, sometimes by accident, sometimes on purpose (injected humour
-            and the like).
+            Kauko Lehtinen (1. joulukuuta 1925 - 28. marraskuuta 2012) tuli
+            tunnetuksi suomalaisena kuvataiteilijana. Ennen kuvataiteilijan uraa
+            hän toimi hammasteknikkona vuosina 1948-1956. Kuvataiteen opinnot
+            hän suoritti vuosina 1945-1948 ABC-piirustuskoulun kirjekurssilla ja
+            kokopäiväiseksi taiteilijaksi hän ryhtyi vuonna 1956. Hän omistautui
+            kuvataiteelle lähes elämänsä loppuun asti luoden mittavan
+            kuvataidekokoelman. Hänen tauluja läytyy nykyään useasta
+            taudemuseosta mm. Valtion, Amos Andersonin, Sara Hildenin ja Wäinö
+            Aaltosen taidemuseoista.
           </div>
         </Col>
         <Col xs={1} md={1}></Col>

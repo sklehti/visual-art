@@ -264,6 +264,7 @@ function ImageUpload({ rightUser }) {
             id="formButton"
             type="submit"
             onClick={() => submit()}
+            style={{ fontWeight: "bold" }}
           >
             Lähetä
           </Button>

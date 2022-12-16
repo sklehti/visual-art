@@ -64,9 +64,6 @@ function EmailForm() {
             initialValues={{ email: "", title: "", text: "" }}
             validationSchema={SignupSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
-              //handleFormSubmit();
-              // resetForm({ values: "" });
-
               handleFormSubmit(resetForm);
               setSubmitting(false);
             }}
@@ -130,6 +127,8 @@ function EmailForm() {
                   id="formButton"
                   type="submit"
                   disabled={isSubmitting}
+                  alt="paina painiketta lähettääksesi lomake"
+                  style={{ fontWeight: "bold" }}
                 >
                   Lähetä
                 </Button>

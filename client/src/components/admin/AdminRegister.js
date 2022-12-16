@@ -84,7 +84,12 @@ function AdminRegister() {
               <div className="error-message">{errors.password}</div>
             ) : null}
             <br />
-            <Button id="formButton" type="submit" disabled={isSubmitting}>
+            <Button
+              id="formButton"
+              type="submit"
+              disabled={isSubmitting}
+              style={{ fontWeight: "bold" }}
+            >
               Rekisteröidy
             </Button>
           </Form>

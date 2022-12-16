@@ -83,9 +83,17 @@ function PageView() {
           <Navbar.Text href="#home">
             <div className="flex-container" title="Kauko Lehtinen">
               <div className="showroom-icon" alt="">
-                <a href="#top" title="Siirry sivun alkuun">
-                  <ShowroomIcon />
+                <a
+                  href="#top"
+                  className="arrow-style"
+                  title="Siirry sivun alkuun"
+                  alt="Painamalla painiketta siirryt sivun alkuun"
+                >
+                  <ArrowUp />
                 </a>
+                {/* <a href="#top" title="Siirry sivun alkuun">
+                  <ShowroomIcon />
+                </a> */}
               </div>
               {titleArraw.map((l, index) => (
                 <h1 key={index} className="letter">
@@ -111,7 +119,7 @@ function PageView() {
                 Tietoa taiteilijasta
               </Nav.Link>
               <Nav.Link className="titles-color" href="#send-email">
-                Yhteydenotto lomake
+                Yhteydenottolomake
               </Nav.Link>
               <Nav.Link className="titles-color" href="#footer-id">
                 Yhteystiedot
@@ -120,11 +128,7 @@ function PageView() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <div id="top">
-        <a href="#top" className="arrow-style" title="Siirry sivun alkuun">
-          <ArrowUp />
-        </a>
-      </div>
+
       <Container
         fluid
         style={{ textAlign: "center" }}

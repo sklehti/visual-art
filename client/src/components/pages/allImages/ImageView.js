@@ -11,7 +11,7 @@ function ImageView({ array1, array2, array3 }) {
         {array1.map((i, index) =>
           index % 2 === 0 || index === 0 ? (
             <div key={index}>
-              <div style={{ float: "right", minHeight: "30vw" }}>
+              <div style={{ minHeight: "30vw" }}>
                 <button
                   className="shadow-lg p-1  first-column-style2"
                   title={`Taulun nimi ${i.name}, vuosi ${i.year}`}
@@ -29,7 +29,7 @@ function ImageView({ array1, array2, array3 }) {
               </div>
             </div>
           ) : (
-            <div key={index} style={{ float: "left", minHeight: "30vw" }}>
+            <div key={index} style={{ minHeight: "30vw" }}>
               <button
                 className="shadow-lg p-1  first-column-style"
                 title={`Taulun nimi ${i.name}, vuosi ${i.year}`}
@@ -51,7 +51,7 @@ function ImageView({ array1, array2, array3 }) {
       <Col xs={3} md={3}>
         {array2.map((i, index) =>
           index % 2 === 0 || index === 0 ? (
-            <div key={index} style={{ float: "left", minHeight: "30vw" }}>
+            <div key={index} style={{ minHeight: "30vw" }}>
               <button
                 className="shadow-lg p-1  first-column-style"
                 title={`Taulun nimi ${i.name}, vuosi ${i.year}`}
@@ -67,7 +67,7 @@ function ImageView({ array1, array2, array3 }) {
               <div> {`${i.name}, ${i.year}`}</div>
             </div>
           ) : (
-            <div key={index} style={{ float: "right", minHeight: "30vw" }}>
+            <div key={index} style={{ minHeight: "30vw" }}>
               <button
                 className="shadow-lg p-1  first-column-style2"
                 title={`Taulun nimi ${i.name}, vuosi ${i.year}`}
@@ -88,7 +88,7 @@ function ImageView({ array1, array2, array3 }) {
       <Col xs={3} md={3}>
         {array3.map((i, index) =>
           index % 2 === 0 || index === 0 ? (
-            <div key={index} style={{ float: "right", minHeight: "30vw" }}>
+            <div key={index} style={{ minHeight: "30vw" }}>
               <button
                 className="shadow-lg p-1  first-column-style2"
                 title={`Taulun nimi ${i.name}, vuosi ${i.year}`}
@@ -104,7 +104,7 @@ function ImageView({ array1, array2, array3 }) {
               <div> {`${i.name}, ${i.year}`}</div>
             </div>
           ) : (
-            <div key={index} style={{ float: "left", minHeight: "30vw" }}>
+            <div key={index} style={{ minHeight: "30vw" }}>
               <button
                 className="shadow-lg p-1  first-column-style"
                 title={`Taulun nimi ${i.name}, vuosi ${i.year}`}

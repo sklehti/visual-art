@@ -305,11 +305,12 @@ const ImageForm = ({ imageData, rightUser }) => {
                 id="formButton"
                 type="submit"
                 disabled={isSubmitting}
+                style={{ fontWeight: "bold" }}
               >
                 Päivitä
               </Button>
               <Button
-                style={{ marginLeft: "10px" }}
+                style={{ marginLeft: "10px", fontWeight: "bold" }}
                 id="formButton2"
                 variant="secondary"
                 type="button"

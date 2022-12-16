@@ -167,6 +167,7 @@ function AllImages({ imageInfo }) {
               id="dropdown-item-button"
               title="Hakujärjestys"
               className="dropdown-list-style"
+              alt="valitse taulujen järjestys painamalla painiketta"
             >
               <Dropdown.Item as="button" onClick={handleAlphabetA}>
                 Aakkosjärjestys a-ö

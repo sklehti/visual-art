@@ -15,6 +15,7 @@ var fs = require("fs");
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static("build"));
 
 const storage = multer.diskStorage({
   destination: path.join(__dirname, "../public_html/", "uploads"),

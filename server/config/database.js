@@ -11,8 +11,8 @@ const pool = mysql.createPool({
   user: "root",
   password: process.env.PASSWORD,
   database: process.env.DATABASE,
-  key: fs.readFileSync(path.join(__dirname, "./certs/key.pem")),
-  cert: fs.readFileSync(path.join(__dirname, "./certs/cert.pem")),
+  // key: fs.readFileSync(path.join(__dirname, "./certs/key.pem")),
+  // cert: fs.readFileSync(path.join(__dirname, "./certs/cert.pem")),
 });
 
 pool.getConnection((err, connection) => {

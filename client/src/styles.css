@@ -64,6 +64,10 @@
   margin-bottom: 2px;
 }
 
+.a-enter-ar-button {
+  display: none;
+}
+
 .a-enter-vr-button:hover {
   background-color: #dd2c00;
 }
@@ -194,13 +198,20 @@ button.a-enter-vr-button {
   margin: 5px;
 }
 
+.first-column-style:hover {
+  background-color: #dd2c00;
+}
+
 .first-column-style2 {
   /* float: right; */
   border-radius: 2px;
   border: none;
-  background-color: #ff6d00;
   background-color: #fff;
   margin: 10px;
+}
+
+.first-column-style2:hover {
+  background-color: #dd2c00;
 }
 
 #formButton:hover {
@@ -247,6 +258,10 @@ button.a-enter-vr-button {
   border: none;
   background-color: #fff;
   margin: 5px;
+}
+
+.mobile-column-style:hover {
+  background-color: #dd2c00;
 }
 
 .mobile-image-style {
@@ -324,6 +339,10 @@ button.a-enter-vr-button {
   .all-titles {
     font-size: 45px;
   }
+
+  .a-enter-vr-button {
+    display: none;
+  }
 }
 
 @media only screen and (min-width: 1300px) {
@@ -343,4 +362,15 @@ button.a-enter-vr-button {
     margin-left: auto;
     margin-right: auto;
   }
+}
+
+/* TODO: Showroom will be finished later */
+.coming-later {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  left: 0px;
+  z-index: 1000;
+  font-size: 7vw;
+  top: 15vw;
 }

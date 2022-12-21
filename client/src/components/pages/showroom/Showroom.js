@@ -22,9 +22,11 @@ function Showroom() {
 
               <a-sky
                 src="#street-view"
+
                 // TODO: now this works without animation
                 // animation="property: rotation; to: 10 360 10; loop: true; dur: 100000"
               ></a-sky>
+              <div className="coming-later">Tulossa myöhemmin</div>
             </a-scene>
           </div>
         </Col>

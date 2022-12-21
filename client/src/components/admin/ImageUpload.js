@@ -40,15 +40,19 @@ function ImageUpload({ rightUser }) {
   };
 
   const handleImageHeight = (e) => {
-    const y = e.target.value.replace(/\D/g, "");
+    // TODO: correct so that no letters can be added and only one comma is possible
+    // const y = e.target.value.replace(/\D/g, "");
+    // setImageHeight(y);
 
-    setImageHeight(y);
+    setImageHeight(e.target.value);
   };
 
   const handleImageWidth = (e) => {
-    const y = e.target.value.replace(/\D/g, "");
+    // TODO: correct so that no letters can be added and only one comma is possible
+    // const y = e.target.value.replace(/\D/g, "");
+    // setImageWidth(y);
 
-    setImageWidth(y);
+    setImageWidth(e.target.value);
   };
 
   const handleImageText = (e) => {

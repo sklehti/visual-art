@@ -107,14 +107,14 @@ const SignupSchema = Yup.object().shape({
     .required("Kirjoita vuosiluku"),
   height: Yup.string()
     .matches(
-      /^(0*[1-9][0-9]*(\.[0-9]*)?|0*\.[0-9]*[1-9][0-9]*)$/,
-      "tulee sisältää vain lukuja!"
+      /^(0*[1-9][0-9]*(\.[0-9]*)?|0*\.[0-9]*[1-9][0-9]*[[:print:]]*)$/,
+      "tulee sisältää vain lukuja ja tarvittaessa pisteen!"
     )
     .required("Kirjoita taulun korkeus"),
   width: Yup.string()
     .matches(
-      /^(0*[1-9][0-9]*(\.[0-9]*)?|0*\.[0-9]*[1-9][0-9]*)$/,
-      "tulee sisältää vain lukuja!"
+      /^(0*[1-9][0-9]*(\.[0-9]*)?|0*\.[0-9]*[1-9][0-9]*[[:print:]]*)$/,
+      "tulee sisältää vain lukuja ja tarvittaessa pisteen!"
     )
     .required("Kirjoita taulun leveys"),
   text: Yup.string().required("Kirjoita kuvailutulkkaus"),

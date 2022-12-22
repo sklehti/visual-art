@@ -5,7 +5,7 @@ const app = express();
 const path = require("path");
 const cors = require("cors");
 const multer = require("multer");
-const port = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080;
 
 const connection = require("./config/database");
 var bcrypt = require("bcryptjs");
@@ -213,6 +213,8 @@ app.delete("/deleteImage/:image", (req, res) => {
   }
 });
 
-app.listen(port, () =>
-  console.log(`Visual Art app listening at http://localhost:${port}`)
-);
+// app.listen(PORT, () =>
+//   console.log(`Visual Art app listening at http://localhost:${PORT}`)
+// );
+
+app.listen(process.env.PORT || 8080);

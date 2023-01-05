@@ -38,8 +38,16 @@ const store = configureStore({
   },
 });
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+// root.render(
+//   <Provider store={store}>
+//     <App />
+//   </Provider>
+// );
+
+ReactDOM.createRoot(
+  document.getElementById("root") || document.createElement("div")
+).render(
   <Provider store={store}>
     <App />
   </Provider>

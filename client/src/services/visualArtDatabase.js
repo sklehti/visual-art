@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const baseUrl = "http://localhost:8080";
+// const baseUrl = "";
 
 const getImages = (id) => {
   const request = axios.get(`${baseUrl}/images/${id}`);

@@ -2,6 +2,7 @@ import React from "react";
 import PanoramaView from "../../../images/panorama-view-whiten.png";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/esm/Row";
+import MainImage from "../../../images/main-image-1.jpg";
 
 function Showroom() {
   return (
@@ -15,7 +16,13 @@ function Showroom() {
             className="showroom-box"
             title="Näyttelytila esittää Kauko Lehtisen taidetta"
           >
-            <a-scene embedded>
+            <img
+              alt="Kuvassa kaksi taiteilijan työtä."
+              id="street-view"
+              src={MainImage}
+              className="main-image-style"
+            />
+            {/* <a-scene embedded>
               <a-assets>
                 <img alt="street view" id="street-view" src={PanoramaView} />
               </a-assets>
@@ -27,7 +34,7 @@ function Showroom() {
                 // animation="property: rotation; to: 10 360 10; loop: true; dur: 100000"
               ></a-sky>
               <div className="coming-later">Tulossa myöhemmin</div>
-            </a-scene>
+            </a-scene> */}
           </div>
         </Col>
         <Col xs={1} md={1}></Col>

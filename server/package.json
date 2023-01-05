@@ -1,10 +1,10 @@
 {
-  "name": "visual-art-backend",
+  "name": "obscure-thicket-21743",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm start",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Saara Lehtinen",

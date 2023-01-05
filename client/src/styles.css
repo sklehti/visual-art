@@ -138,6 +138,12 @@
   opacity: 0.8;
 }
 
+/* TODO:*/
+.main-image-style {
+  height: auto;
+  width: 100%;
+}
+
 .showroom-box {
   margin-top: 40px;
   height: 42vw;
@@ -247,6 +253,10 @@ button.a-enter-vr-button {
   background-color: #fff;
   margin: 10px;
   border-radius: 1px;
+}
+
+.active {
+  font-weight: bold;
 }
 
 .main-icon-style:hover {

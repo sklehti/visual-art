@@ -1,18 +1,19 @@
 require("dotenv").config();
 
 const express = require("express");
-const app = express();
+
 const path = require("path");
 const cors = require("cors");
 const multer = require("multer");
-const PORT = process.env.PORT || 8080;
+const port = process.env.PORT || 8080;
 
-const connection = require("./config/database");
+const connection = require("./config/db");
 var bcrypt = require("bcryptjs");
 var jwt = require("jsonwebtoken");
 const JWT_SECRET = process.env.JWT_SECRET;
 var fs = require("fs");
 
+const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.static("build"));
@@ -213,8 +214,6 @@ app.delete("/deleteImage/:image", (req, res) => {
   }
 });
 
-// app.listen(PORT, () =>
-//   console.log(`Visual Art app listening at http://localhost:${PORT}`)
-// );
-
-app.listen(process.env.PORT || 8080);
+app.listen(port, () =>
+  console.log(`Visual Art app listening at http://localhost:${port}`)
+);

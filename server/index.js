@@ -17,9 +17,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.static("build"));
+app.use(express.static(__dirname + "./public_html/"));
 
 const storage = multer.diskStorage({
-  destination: path.join(__dirname, "../public_html/", "uploads"),
+  destination: path.join(__dirname, "./public_html/", "uploads"),
   filename: function (req, file, cb) {
     cb(null, Date.now() + "-" + file.originalname);
   },
@@ -28,7 +29,7 @@ const storage = multer.diskStorage({
 app.get("/images/:id", (req, res) => {
   const pathname = path.join(
     __dirname,
-    `../public_html/uploads/${req.params.id}`
+    `./public_html/uploads/${req.params.id}`
   );
 
   res.sendFile(pathname);
@@ -198,7 +199,7 @@ app.delete("/deleteImage/:image", (req, res) => {
     connection.query(sql, img, (err, results) => {
       const deletedImg = path.join(
         __dirname,
-        `../public_html/uploads/${req.params.image}`
+        `./public_html/uploads/${req.params.image}`
       );
       fs.unlink(deletedImg, function (err) {
         if (err) throw err;

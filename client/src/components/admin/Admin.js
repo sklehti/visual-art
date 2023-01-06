@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ImageUpload from "./ImageUpload";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";

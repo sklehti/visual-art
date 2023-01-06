@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import anime from "animejs/lib/anime.es.js";
 import Showroom from "./showroom/Showroom";
 import ShowroomIcon from "../icons/ShowroomButton";
@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { allImages } from "../../reducers/pageViewReducer";
 import AllImages from "./allImages/AllImages";
 import ArtistInfo from "./ArtistInfo";
+import Admin from "../admin/Admin";
 
 function PageView() {
   const dispatch = useDispatch();

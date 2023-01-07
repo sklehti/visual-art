@@ -85,7 +85,7 @@ function AdminRegister() {
             ) : null}
             <br />
             <Button
-              id="formButton"
+              id="formButton4"
               type="submit"
               disabled={isSubmitting}
               style={{ fontWeight: "bold" }}

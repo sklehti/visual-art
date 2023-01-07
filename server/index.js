@@ -17,8 +17,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.static("build"));
-app.use(express.static(__dirname + "./public_html/"));
 
+// TODO: tässä tapahtuu kuvan tallennus -> muokkaa!
 const storage = multer.diskStorage({
   destination: path.join(__dirname, "./public_html/", "uploads"),
   filename: function (req, file, cb) {

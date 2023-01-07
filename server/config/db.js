@@ -7,14 +7,14 @@ const util = require("util");
 const mysql = require("mysql2");
 const pool = mysql.createPool({
   connectionLimit: 50,
-  // host: "localhost",
-  // user: "root",
-  // password: process.env.PASSWORD,
-  // database: process.env.DATABASE,
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE,
+  host: "localhost",
+  user: "root",
+  password: process.env.PASSWORD,
+  database: process.env.DATABASE,
+  // host: process.env.DB_HOST,
+  // user: process.env.DB_USER,
+  // password: process.env.DB_PASSWORD,
+  // database: process.env.DB_DATABASE,
 
   // key: fs.readFileSync(path.join(__dirname, "./certs/key.pem")),
   // cert: fs.readFileSync(path.join(__dirname, "./certs/cert.pem")),

@@ -66,7 +66,8 @@ function ImageUpdate({ rightUser }) {
           <img
             className="img-height"
             alt="kuva, muuta tämä!"
-            src={"http://localhost:8080/images/" + i.image}
+            // src={"http://localhost:8080/images/" + i.image}
+            src={i.image}
           />
           <p> {i.name}</p>
         </button>

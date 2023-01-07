@@ -17,23 +17,23 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.static("build"));
-app.use(express.static(__dirname + "./public_html/"));
 
-const storage = multer.diskStorage({
-  destination: path.join(__dirname, "./public_html/", "uploads"),
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + "-" + file.originalname);
-  },
-});
+// const storage = multer.diskStorage({
+//   destination: path.join(__dirname, "./public_html/", "uploads"),
+//   filename: function (req, file, cb) {
+//     cb(null, Date.now() + "-" + file.originalname);
+//   },
+// });
 
-app.get("/images/:id", (req, res) => {
-  const pathname = path.join(
-    __dirname,
-    `./public_html/uploads/${req.params.id}`
-  );
+// TODO: tätä ei tarvita
+// app.get("/images/:id", (req, res) => {
+//   const pathname = path.join(
+//     __dirname,
+//     `./public_html/uploads/${req.params.id}`
+//   );
 
-  res.sendFile(pathname);
-});
+//   res.sendFile(pathname);
+// });
 
 app.get("/allInfo", (req, res) => {
   const sql = "SELECT * FROM painting ORDER BY name";
@@ -136,35 +136,37 @@ app.post("/createAdmin", async (req, res) => {
 });
 
 app.post("/imageupload", async (req, res) => {
+  console.log(req.body, "toimiiko tämä?");
   try {
-    let upload = multer({
-      storage: storage,
-      limits: { fileSize: 1000000 },
-    }).single("avatar");
-    upload(req, res, function (err) {
-      if (!req.file) {
-        return res.send("Please select an image to upload");
-      } else if (err instanceof multer.MulterError) {
-        return res.send(err);
-      } else if (err) {
-        return res.send(err);
-      }
+    // let upload = multer({
+    //   storage: storage,
+    //   limits: { fileSize: 1000000 },
+    // }).single("avatar");
+    // upload(req, res, function (err) {
+    //   if (!req.file) {
+    //     return res.send("Please select an image to upload");
+    //   } else if (err instanceof multer.MulterError) {
+    //     return res.send(err);
+    //   } else if (err) {
+    //     return res.send(err);
+    //   }
 
-      const imageResize = {
-        image: req.file.filename,
-        name: req.body.name,
-        text: req.body.text,
-        year: req.body.year,
-        height: req.body.height,
-        width: req.body.width,
-      };
+    const imageResize = {
+      image: req.body.image,
+      // image: req.file.filename,
+      name: req.body.name,
+      text: req.body.text,
+      year: req.body.year,
+      height: req.body.height,
+      width: req.body.width,
+    };
 
-      const sql = "INSERT INTO painting SET ?";
-      connection.query(sql, imageResize, (err, results) => {
-        if (err) throw err;
-        res.json({ success: 1 });
-      });
+    const sql = "INSERT INTO painting SET ?";
+    connection.query(sql, imageResize, (err, results) => {
+      if (err) throw err;
+      res.json({ success: 1 });
     });
+    // });
   } catch (err) {
     console.log(err);
   }

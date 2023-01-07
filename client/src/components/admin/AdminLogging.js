@@ -95,7 +95,7 @@ function AdminLogging() {
             ) : null}
             <br />
             <Button
-              id="formButton"
+              id="formButton1"
               type="submit"
               disabled={isSubmitting}
               style={{ fontWeight: "bold" }}

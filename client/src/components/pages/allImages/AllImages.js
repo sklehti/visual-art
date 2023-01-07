@@ -37,12 +37,13 @@ function AllImages({ imageInfo }) {
     let tmpArr = [];
 
     visualArtDatabase.getAllInfoByYear().then((results) => {
-      results.forEach((n) => {
-        tmpArr = [...tmpArr, n];
+      // results.forEach((n) => {
+      //   tmpArr = [...tmpArr, n];
 
-        visualArtDatabase.getImages(n.image);
-      });
-      dispatch(imgByYear(tmpArr));
+      //   visualArtDatabase.getImages(n.image);
+      // });
+      // dispatch(imgByYear(tmpArr));
+      dispatch(imgByYear(results));
     });
   }, [dispatch]);
 

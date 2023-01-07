@@ -18,8 +18,10 @@ function ImageView({ array1, array2, array3 }) {
                 >
                   <ModalImage
                     className="image-style1"
-                    small={"http://localhost:8080/images/" + i.image}
-                    medium={"http://localhost:8080/images/" + i.image}
+                    small={i.image}
+                    medium={i.image}
+                    // small={"http://localhost:8080/images/" + i.image}
+                    // medium={"http://localhost:8080/images/" + i.image}
                     alt={`Nimi: ${i.name} | vuosi: ${i.year} | korkeus: ${i.height} | leveys: ${i.width}`}
                     hideDownload="true"
                   />
@@ -36,8 +38,10 @@ function ImageView({ array1, array2, array3 }) {
               >
                 <ModalImage
                   className="image-style1"
-                  small={"http://localhost:8080/images/" + i.image}
-                  medium={"http://localhost:8080/images/" + i.image}
+                  small={i.image}
+                  medium={i.image}
+                  // small={"http://localhost:8080/images/" + i.image}
+                  // medium={"http://localhost:8080/images/" + i.image}
                   alt={`Nimi: ${i.name} | vuosi: ${i.year} | korkeus: ${i.height} | leveys: ${i.width}`}
                   hideDownload="true"
                 />
@@ -58,8 +62,10 @@ function ImageView({ array1, array2, array3 }) {
               >
                 <ModalImage
                   className="image-style2"
-                  small={"http://localhost:8080/images/" + i.image}
-                  medium={"http://localhost:8080/images/" + i.image}
+                  small={i.image}
+                  medium={i.image}
+                  // small={"http://localhost:8080/images/" + i.image}
+                  // medium={"http://localhost:8080/images/" + i.image}
                   alt={`Nimi: ${i.name} | vuosi: ${i.year} | korkeus: ${i.height} | leveys: ${i.width}`}
                   hideDownload="true"
                 />
@@ -74,8 +80,10 @@ function ImageView({ array1, array2, array3 }) {
               >
                 <ModalImage
                   className="image-style2"
-                  small={"http://localhost:8080/images/" + i.image}
-                  medium={"http://localhost:8080/images/" + i.image}
+                  small={i.image}
+                  medium={i.image}
+                  // small={"http://localhost:8080/images/" + i.image}
+                  // medium={"http://localhost:8080/images/" + i.image}
                   alt={`Nimi: ${i.name} | vuosi: ${i.year} | korkeus: ${i.height} | leveys: ${i.width}`}
                   hideDownload="true"
                 />
@@ -95,8 +103,10 @@ function ImageView({ array1, array2, array3 }) {
               >
                 <ModalImage
                   className="image-style3"
-                  small={"http://localhost:8080/images/" + i.image}
-                  medium={"http://localhost:8080/images/" + i.image}
+                  small={i.image}
+                  medium={i.image}
+                  // small={"http://localhost:8080/images/" + i.image}
+                  // medium={"http://localhost:8080/images/" + i.image}
                   alt={`Nimi: ${i.name} | vuosi: ${i.year} | korkeus: ${i.height} | leveys: ${i.width}`}
                   hideDownload="true"
                 />
@@ -111,8 +121,10 @@ function ImageView({ array1, array2, array3 }) {
               >
                 <ModalImage
                   className="image-style3"
-                  small={"http://localhost:8080/images/" + i.image}
-                  medium={"http://localhost:8080/images/" + i.image}
+                  small={i.image}
+                  medium={i.image}
+                  // small={"http://localhost:8080/images/" + i.image}
+                  // medium={"http://localhost:8080/images/" + i.image}
                   alt={`Nimi: ${i.name} | vuosi: ${i.year} | korkeus: ${i.height} | leveys: ${i.width}`}
                   hideDownload="true"
                 />

@@ -18,24 +18,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static("build"));
 
-// const storage = multer.diskStorage({
-//   destination: path.join(__dirname, "./public_html/", "uploads"),
-//   filename: function (req, file, cb) {
-//     cb(null, Date.now() + "-" + file.originalname);
-//   },
-// });
-
-// TODO: tätä ei tarvita
-// app.get("/images/:id", (req, res) => {
-//   const pathname = path.join(
-//     __dirname,
-//     `./public_html/uploads/${req.params.id}`
-//   );
-
-//   res.sendFile(pathname);
-// });
-
-app.get("/allInfo", (req, res) => {
+app.get("/api/allInfo", (req, res) => {
   const sql = "SELECT * FROM painting ORDER BY name";
   connection.query(sql, (err, results) => {
     if (err) throw err;
@@ -44,7 +27,7 @@ app.get("/allInfo", (req, res) => {
   });
 });
 
-app.get("/allInfoByYear", (req, res) => {
+app.get("/api/allInfoByYear", (req, res) => {
   const sql = "SELECT * FROM painting ORDER BY year";
   connection.query(sql, (err, results) => {
     if (err) throw err;
@@ -53,7 +36,7 @@ app.get("/allInfoByYear", (req, res) => {
   });
 });
 
-app.get("/getAdmin/:username/:password", (req, res) => {
+app.get("/api/getAdmin/:username/:password", (req, res) => {
   try {
     const sql = "SELECT username, password, admin FROM admin WHERE username=?";
     connection.query(sql, req.params.username, (err, results) => {
@@ -91,7 +74,7 @@ app.get("/getAdmin/:username/:password", (req, res) => {
   }
 });
 
-app.get("/validateToken/:token", (req, res) => {
+app.get("/api/validateToken/:token", (req, res) => {
   try {
     const decodedToken = jwt.verify(req.params.token, process.env.JWT_SECRET);
 
@@ -105,7 +88,7 @@ app.get("/validateToken/:token", (req, res) => {
   }
 });
 
-app.post("/createAdmin", async (req, res) => {
+app.post("/api/createAdmin", async (req, res) => {
   const user = req.body.newAdmin.username;
   const sql = "SELECT * FROM admin WHERE username=?";
   connection.query(sql, user, (err, results) => {
@@ -135,25 +118,10 @@ app.post("/createAdmin", async (req, res) => {
   });
 });
 
-app.post("/imageupload", async (req, res) => {
-  console.log(req.body, "toimiiko tämä?");
+app.post("/api/imageupload", async (req, res) => {
   try {
-    // let upload = multer({
-    //   storage: storage,
-    //   limits: { fileSize: 1000000 },
-    // }).single("avatar");
-    // upload(req, res, function (err) {
-    //   if (!req.file) {
-    //     return res.send("Please select an image to upload");
-    //   } else if (err instanceof multer.MulterError) {
-    //     return res.send(err);
-    //   } else if (err) {
-    //     return res.send(err);
-    //   }
-
     const imageResize = {
       image: req.body.image,
-      // image: req.file.filename,
       name: req.body.name,
       text: req.body.text,
       year: req.body.year,
@@ -166,13 +134,12 @@ app.post("/imageupload", async (req, res) => {
       if (err) throw err;
       res.json({ success: 1 });
     });
-    // });
   } catch (err) {
     console.log(err);
   }
 });
 
-app.put("/updateImageInfo", (req, res) => {
+app.put("/api/updateImageInfo", (req, res) => {
   const info = [
     req.body.name,
     req.body.year,
@@ -193,24 +160,13 @@ app.put("/updateImageInfo", (req, res) => {
   }
 });
 
-app.delete("/deleteImage/:image", (req, res) => {
+app.delete("/api/deleteImage/:image", (req, res) => {
   const img = req.params.image;
 
   try {
-    const sql = "DELETE FROM painting WHERE image=?";
-    connection.query(sql, img, (err, results) => {
-      const deletedImg = path.join(
-        __dirname,
-        `./public_html/uploads/${req.params.image}`
-      );
-      fs.unlink(deletedImg, function (err) {
-        if (err) throw err;
-        console.log("Tiedosto on poistettu onnistuneesti!");
-      });
-
-      res.send(
-        "Tiedoston tiedot on poistettu tietokannasta ja kuva on poistettu backendistä."
-      );
+    const sql = `DELETE FROM painting WHERE image LIKE '%${img}'`;
+    connection.query(sql, (err, results) => {
+      res.send("Tiedoston tiedot on poistettu tietokannasta.");
     });
   } catch (err) {
     console.log(err);

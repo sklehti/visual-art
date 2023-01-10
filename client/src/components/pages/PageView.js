@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import anime from "animejs/lib/anime.es.js";
 import Showroom from "./showroom/Showroom";
-import ShowroomIcon from "../icons/ShowroomButton";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -16,26 +15,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { allImages } from "../../reducers/pageViewReducer";
 import AllImages from "./allImages/AllImages";
 import ArtistInfo from "./ArtistInfo";
-import Admin from "../admin/Admin";
 
 function PageView() {
   const dispatch = useDispatch();
   const imageInfo = useSelector((state) => state.pageView);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
-    let tempArray = [];
-
     visualArtDatabase.getAllInfo().then((results) => {
-      results.forEach((n) => {
-        tempArray = [...tempArray, n];
-
-        visualArtDatabase.getImages(n.image);
-      });
-      dispatch(allImages(tempArray));
+      dispatch(allImages(results));
     });
   }, [dispatch]);
 
@@ -92,9 +79,6 @@ function PageView() {
                 >
                   <ArrowUp />
                 </a>
-                {/* <a href="#top" title="Siirry sivun alkuun">
-                  <ShowroomIcon />
-                </a> */}
               </div>
               {titleArraw.map((l, index) => (
                 <h1 key={index} className="letter">

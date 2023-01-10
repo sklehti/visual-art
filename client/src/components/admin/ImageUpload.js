@@ -3,20 +3,16 @@ import visualArtDatabase from "../../services/visualArtDatabase";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { invaledImageUpload } from "../../reducers/imageUploadReducer";
-import { addImageTrue, addImageFalse } from "../../reducers/imageUpdateReducer";
+
+import { addImageTrue } from "../../reducers/imageUpdateReducer";
 import BasicAlert from "../alerts/BasicAlert";
 import FormAlert from "../alerts/FormAlerts";
 
 import SimpleFileUpload from "react-simple-file-upload";
 
-// TODO: Formik does not support files uploading (at least a few years ago), so I did not use Formik in this file.
-// However, it is possible to do this with Formik.
+// TODO: Change all hooks to reducers and Formik like they are in the other files
 function ImageUpload({ rightUser }) {
-  const [userInfo, setuserInfo] = useState({
-    // file: [],
-    // filepreview: null,
-  });
+  const [userInfo, setuserInfo] = useState({});
 
   const [validated, setValidated] = useState(false);
   const [imageTitle, setImageTitle] = useState("");
@@ -34,17 +30,11 @@ function ImageUpload({ rightUser }) {
   const form = useRef();
 
   const handleUpload = (url) => {
-    // url of cdn backed file returned
-
-    setFileUpload(url);
+    setFileUpload(url.replaceAll(/%20/g, ""));
     setuserInfo({
       ...userInfo,
-      image: url,
+      image: url.replaceAll(/%20/g, ""),
     });
-  };
-
-  const handleOnDrop = (url) => {
-    console.log(url, "handleOnDrop");
   };
 
   const handleImageTitle = (e) => {
@@ -58,18 +48,10 @@ function ImageUpload({ rightUser }) {
   };
 
   const handleImageHeight = (e) => {
-    // TODO: correct so that no letters can be added and only one comma is possible
-    // const y = e.target.value.replace(/\D/g, "");
-    // setImageHeight(y);
-
     setImageHeight(e.target.value);
   };
 
   const handleImageWidth = (e) => {
-    // TODO: correct so that no letters can be added and only one comma is possible
-    // const y = e.target.value.replace(/\D/g, "");
-    // setImageWidth(y);
-
     setImageWidth(e.target.value);
   };
 
@@ -77,36 +59,8 @@ function ImageUpload({ rightUser }) {
     setImageText(e.target.value);
   };
 
-  // const handleInputChange = (event) => {
-  //   const imageFile = event.target.files[0];
-
-  //   if (!imageFile) {
-  //     return false;
-  //   }
-
-  //   if (!imageFile.name.match(/\.(jpg|jpeg|png|JPG|JPEG|PNG|gif)$/)) {
-  //     dispatch(invaledImageUpload("Valitse validi kuva muotoa: JPG,JPEG,PNG"));
-
-  //     return false;
-  //   }
-  //   if (imageFile.size >= 1000000) {
-  //     dispatch(invaledImageUpload("Valitse pienempi kuva (pienempi kuin 1MB)"));
-
-  //     return false;
-  //   }
-  //   dispatch(invaledImageUpload(""));
-  //   setuserInfo({
-  //     ...userInfo,
-  //     file: event.target.files[0],
-  //     filepreview: URL.createObjectURL(event.target.files[0]),
-  //   });
-
-  //   dispatch(addImageFalse());
-  // };
-
   const submit = async () => {
     if (
-      // userInfo.filepreview !== null &&
       fileUpload.length > 0 &&
       imageTitle.length > 0 &&
       imageText.length > 0 &&
@@ -119,14 +73,6 @@ function ImageUpload({ rightUser }) {
           FormAlert("Haluatko tallentaa taulun tiedot?", "Kyllä", "En").then(
             (result) => {
               if (result.isConfirmed) {
-                // const formdata = new FormData();
-                // formdata.append("avatar", userInfo.file);
-                // formdata.append("name", imageTitle);
-                // formdata.append("text", imageText);
-                // formdata.append("year", imageYear);
-                // formdata.append("height", imageHeight);
-                // formdata.append("width", imageWidth);
-
                 const fileInfo = {
                   image: fileUpload,
                   name: imageTitle,
@@ -136,31 +82,24 @@ function ImageUpload({ rightUser }) {
                   width: imageWidth,
                 };
 
-                visualArtDatabase
-                  .createTableInfo(
-                    fileInfo
-                    //   formdata, {
-                    //   headers: { "Content-Type": "multipart/form-data" },
-                    // }
-                  )
-                  .then((res) => {
-                    if (res.success === 1) {
-                      BasicAlert("success", "Taulun tiedot tallennettu!");
+                visualArtDatabase.createTableInfo(fileInfo).then((res) => {
+                  if (res.success === 1) {
+                    BasicAlert("success", "Taulun tiedot tallennettu!");
 
-                      setuserInfo({
-                        file: [],
-                        filepreview: null,
-                      });
-                      setImageTitle("");
-                      setImageText("");
-                      setImageYear("");
-                      setImageHeight("");
-                      setImageWidth("");
-                      setValidated(false);
+                    setuserInfo({
+                      file: [],
+                      filepreview: null,
+                    });
+                    setImageTitle("");
+                    setImageText("");
+                    setImageYear("");
+                    setImageHeight("");
+                    setImageWidth("");
+                    setValidated(false);
 
-                      dispatch(addImageTrue());
-                    }
-                  });
+                    dispatch(addImageTrue());
+                  }
+                });
               } else if (result.isDenied) {
                 BasicAlert("info", "Taulun tietoja ei tallennettu");
               }
@@ -198,9 +137,9 @@ function ImageUpload({ rightUser }) {
         <main>
           <div className="upload-wrapper">
             <SimpleFileUpload
-              apiKey={process.env.REACT_SIMPLE_FILE}
+              apiKey="5fd332aa9e55fea14fcbb4481b0d3c32"
               onSuccess={handleUpload}
-              onDrop={handleOnDrop}
+              preview="false"
             />
           </div>
         </main>
@@ -212,20 +151,6 @@ function ImageUpload({ rightUser }) {
         >
           {isSuccess !== null ? <h4> {isSuccess} </h4> : null}
 
-          {/* Use a local version only */}
-          {/* <Form.Group className="mb-3">
-            <Form.Label>Valitse kuva:</Form.Label>
-            <Form.Control
-              required
-              type="file"
-              className="form-control"
-              name="upload_file"
-              onChange={handleInputChange}
-            />
-            <Form.Control.Feedback type="invalid">
-              Valitse kuva.
-            </Form.Control.Feedback>
-          </Form.Group> */}
           {invalidImage !== null ? (
             <div className="error-message"> {invalidImage} </div>
           ) : null}
@@ -316,16 +241,6 @@ function ImageUpload({ rightUser }) {
         </Form>
       </div>
       <br />
-      {/* {userInfo.filepreview !== null ? (
-        <img
-          id="test_kuva"
-          className="previewimg"
-          // src={userInfo.filepreview}
-          src={userInfo.address}
-          alt="UploadImage"
-          style={{ width: "20vw" }}
-        />
-      ) : null} */}
     </div>
   );
 }

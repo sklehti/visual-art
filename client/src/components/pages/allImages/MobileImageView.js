@@ -76,8 +76,6 @@ function MobileImageView({ imageInfo, imagesByYear }) {
               className="mobile-image-style"
               small={i.image}
               medium={i.image}
-              // small={"http://localhost:8080/images/" + i.image}
-              // medium={"http://localhost:8080/images/" + i.image}
               alt={`Nimi: ${i.name} | vuosi: ${i.year} | korkeus: ${i.height} | leveys: ${i.width}`}
               hideDownload="true"
             />

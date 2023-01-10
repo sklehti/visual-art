@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useEffect, useState } from "react";
+import React, { useLayoutEffect, useRef, useEffect } from "react";
 import Row from "react-bootstrap/Row";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
@@ -34,15 +34,7 @@ function AllImages({ imageInfo }) {
   let array3 = [];
 
   useEffect(() => {
-    let tmpArr = [];
-
     visualArtDatabase.getAllInfoByYear().then((results) => {
-      // results.forEach((n) => {
-      //   tmpArr = [...tmpArr, n];
-
-      //   visualArtDatabase.getImages(n.image);
-      // });
-      // dispatch(imgByYear(tmpArr));
       dispatch(imgByYear(results));
     });
   }, [dispatch]);

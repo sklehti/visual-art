@@ -12,10 +12,6 @@ function App() {
     <Router>
       {/* TODO: doesn't work immediable after page refreshing */}
       {window.location.href.includes("admin") ? <Admin /> : <PageView />}
-      {/* <Routes>
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/" element={<PageView />} />
-      </Routes> */}
     </Router>
   );
 }

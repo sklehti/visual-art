@@ -20,8 +20,6 @@ function ImageView({ array1, array2, array3 }) {
                     className="image-style1"
                     small={i.image}
                     medium={i.image}
-                    // small={"http://localhost:8080/images/" + i.image}
-                    // medium={"http://localhost:8080/images/" + i.image}
                     alt={`Nimi: ${i.name} | vuosi: ${i.year} | korkeus: ${i.height} | leveys: ${i.width}`}
                     hideDownload="true"
                   />
@@ -40,8 +38,6 @@ function ImageView({ array1, array2, array3 }) {
                   className="image-style1"
                   small={i.image}
                   medium={i.image}
-                  // small={"http://localhost:8080/images/" + i.image}
-                  // medium={"http://localhost:8080/images/" + i.image}
                   alt={`Nimi: ${i.name} | vuosi: ${i.year} | korkeus: ${i.height} | leveys: ${i.width}`}
                   hideDownload="true"
                 />
@@ -64,8 +60,6 @@ function ImageView({ array1, array2, array3 }) {
                   className="image-style2"
                   small={i.image}
                   medium={i.image}
-                  // small={"http://localhost:8080/images/" + i.image}
-                  // medium={"http://localhost:8080/images/" + i.image}
                   alt={`Nimi: ${i.name} | vuosi: ${i.year} | korkeus: ${i.height} | leveys: ${i.width}`}
                   hideDownload="true"
                 />
@@ -82,8 +76,6 @@ function ImageView({ array1, array2, array3 }) {
                   className="image-style2"
                   small={i.image}
                   medium={i.image}
-                  // small={"http://localhost:8080/images/" + i.image}
-                  // medium={"http://localhost:8080/images/" + i.image}
                   alt={`Nimi: ${i.name} | vuosi: ${i.year} | korkeus: ${i.height} | leveys: ${i.width}`}
                   hideDownload="true"
                 />
@@ -105,8 +97,6 @@ function ImageView({ array1, array2, array3 }) {
                   className="image-style3"
                   small={i.image}
                   medium={i.image}
-                  // small={"http://localhost:8080/images/" + i.image}
-                  // medium={"http://localhost:8080/images/" + i.image}
                   alt={`Nimi: ${i.name} | vuosi: ${i.year} | korkeus: ${i.height} | leveys: ${i.width}`}
                   hideDownload="true"
                 />
@@ -123,8 +113,6 @@ function ImageView({ array1, array2, array3 }) {
                   className="image-style3"
                   small={i.image}
                   medium={i.image}
-                  // small={"http://localhost:8080/images/" + i.image}
-                  // medium={"http://localhost:8080/images/" + i.image}
                   alt={`Nimi: ${i.name} | vuosi: ${i.year} | korkeus: ${i.height} | leveys: ${i.width}`}
                   hideDownload="true"
                 />

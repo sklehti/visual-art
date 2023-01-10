@@ -23,15 +23,8 @@ function ImageUpdate({ rightUser }) {
   const imageData = useSelector((state) => state.imageUpdate2);
 
   useEffect(() => {
-    let tempArray = [];
-
     visualArtDatabase.getAllInfo().then((results) => {
-      results.forEach((n) => {
-        tempArray = [...tempArray, n];
-
-        visualArtDatabase.getImages(n.image);
-      });
-      dispatch(allImages(tempArray));
+      dispatch(allImages(results));
     });
   }, [dispatch, imgAdded.imgAdded]);
 
@@ -63,12 +56,7 @@ function ImageUpdate({ rightUser }) {
           onClick={() => handleShow(i)}
           className="button-style shadow-lg"
         >
-          <img
-            className="img-height"
-            alt="kuva, muuta tämä!"
-            // src={"http://localhost:8080/images/" + i.image}
-            src={i.image}
-          />
+          <img className="img-height" alt={i.text} src={i.image} />
           <p> {i.name}</p>
         </button>
       ))}
@@ -84,9 +72,8 @@ function ImageUpdate({ rightUser }) {
             style={{ paddingRight: "10px" }}
             alt={imageData.name}
             height="80"
-            src={"http://localhost:8080/images/" + imageData.image}
+            src={imageData.image}
           />
-          <Modal.Title> {imageData.image}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <ImageForm imageData={imageData} rightUser={rightUser} />
@@ -141,14 +128,9 @@ const ImageForm = ({ imageData, rightUser }) => {
             if (result.isConfirmed) {
               visualArtDatabase.updateImageInfo(updatedImage).then((result) => {
                 dispatch(showModalFalse());
-                let tempArray = [];
-                visualArtDatabase.getAllInfo().then((results) => {
-                  results.forEach((n) => {
-                    tempArray = [...tempArray, n];
 
-                    visualArtDatabase.getImages(n.image);
-                  });
-                  dispatch(allImages(tempArray));
+                visualArtDatabase.getAllInfo().then((results) => {
+                  dispatch(allImages(results));
                 });
               });
             } else if (result.isDenied) {
@@ -178,16 +160,12 @@ const ImageForm = ({ imageData, rightUser }) => {
           if (result.isConfirmed) {
             BasicAlert("success", "Taulun tiedot poistettu!");
             dispatch(showModalFalse());
-            visualArtDatabase.deleteImage(values.image).then((result) => {
-              let tempArray = [];
 
+            const fileName = values.image.split("/").pop();
+
+            visualArtDatabase.deleteImage(fileName).then((result) => {
               visualArtDatabase.getAllInfo().then((results) => {
-                results.forEach((n) => {
-                  tempArray = [...tempArray, n];
-
-                  visualArtDatabase.getImages(n.image);
-                });
-                dispatch(allImages(tempArray));
+                dispatch(allImages(results));
               });
             });
           } else if (result.isDenied) {

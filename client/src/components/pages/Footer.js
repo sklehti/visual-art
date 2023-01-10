@@ -12,7 +12,7 @@ function Footer() {
     <MDBFooter
       id="footer-id"
       bgColor="none"
-      className="text-center text-lg-start text-muted"
+      className="text-center text-lg-start text-muted scroll-top"
       style={{ backgroundColor: "#f8f8ff" }}
     >
       <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">

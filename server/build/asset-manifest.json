@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.966bc0a6.css",
+    "main.js": "/static/js/main.755f3c16.js",
+    "static/media/plaster-wall.jpg": "/static/media/plaster-wall.6cd28532de8b4f69c905.jpg",
+    "static/media/main-image-1.jpg": "/static/media/main-image-1.e63278bfad98986f115c.jpg",
+    "static/media/kauko-image.jpeg": "/static/media/kauko-image.42b53f584a4c65ee4310.jpeg",
+    "index.html": "/index.html",
+    "main.966bc0a6.css.map": "/static/css/main.966bc0a6.css.map",
+    "main.755f3c16.js.map": "/static/js/main.755f3c16.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.966bc0a6.css",
+    "static/js/main.755f3c16.js"
+  ]
+}

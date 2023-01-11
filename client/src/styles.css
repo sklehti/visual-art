@@ -1,0 +1,386 @@
+.all-titles {
+  margin-bottom: 50px;
+  margin-top: 45px;
+  color: #2d2d2d;
+  font-size: 48px;
+}
+
+.anchor-button {
+  font-size: 1.5rem;
+  padding: 10px 20px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.arrow-style {
+  position: fixed;
+  right: 2%;
+  bottom: 10px;
+  border-radius: 30px;
+  background-color: #fff;
+  border: #d3d3d3;
+  border-width: 2px;
+  border-style: groove;
+  z-index: 1500;
+}
+
+.arrow-style:hover {
+  border-color: #dd2c00;
+  border-style: solid;
+}
+
+.arrowup-style:hover {
+  fill: #dd2c00;
+}
+
+.artist-img-style {
+  float: right;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border: none;
+  background-color: #ff6d00;
+}
+
+.artist-style {
+  width: 20vw;
+}
+
+.artist-info-style {
+  margin-right: 10px;
+  margin-bottom: 4vw;
+  height: 100%;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: #fff;
+}
+
+.a-enter-vr-button {
+  background-color: #2d2d2d;
+  width: 6vw;
+  height: 3.8vw;
+  margin-right: 2px;
+  margin-bottom: 2px;
+}
+
+.a-enter-ar-button {
+  display: none;
+}
+
+.a-enter-vr-button:hover {
+  background-color: #dd2c00;
+}
+
+.background-image-style {
+  background-image: url("./images/plaster-wall.jpg");
+}
+
+.button-style {
+  padding: 5px;
+  margin: 15px;
+  border-radius: 10px;
+  border: none;
+}
+
+.color-nav {
+  background-color: #ffff;
+}
+
+.emailform-style {
+  background-color: #fff;
+  border-radius: 20px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.form-style {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 20px;
+}
+
+.hamburgermenu {
+  margin-left: 0.5em;
+}
+
+.hamburgermenu:hover {
+  background-color: #ff6d00;
+  cursor: pointer;
+}
+
+.hamburgermenu:active {
+  background-color: #2d2d2d;
+}
+
+.href-style {
+  color: #2d2d2d;
+  font-size: 2vw;
+  text-decoration: none;
+}
+
+.href-style:hover {
+  color: #ff6d00;
+}
+
+.img-height {
+  height: 25vw;
+}
+
+.image-style:hover {
+  opacity: 0.8;
+}
+
+.main-image-style {
+  height: auto;
+  width: 100%;
+}
+
+.showroom-box {
+  margin-top: 40px;
+  height: 42vw;
+  width: auto;
+  border-style: solid;
+  border-color: #2d2d2d;
+  border-width: 4px;
+  border-radius: 20px;
+  border-color: #ff6d00;
+  overflow: hidden;
+}
+
+.letter {
+  display: inline-block;
+  opacity: 0;
+  color: #ffff;
+  background-color: #2d2d2d;
+  border-radius: 3px;
+  font-size: 4vw;
+  font-family: "Times New Roman", Times, serif;
+  margin: 0.1vw;
+}
+
+.showroom-icon {
+  background: transparent;
+  border: none !important;
+  padding-right: 30px;
+}
+
+#navbar {
+  transition: top 0.5s;
+  border-bottom: 4px solid #f8f8ff;
+}
+
+button.a-enter-vr-button {
+  z-index: 1000;
+}
+
+.dropdown-list-style {
+  text-align: right;
+  padding-right: 5vw;
+  padding-bottom: 5vw;
+}
+
+#dropdown-item-button:hover {
+  background-color: #303f9f;
+}
+
+.error-message {
+  color: red;
+  font-size: 15px;
+}
+
+.first-column-style {
+  /* float: left; */
+  border-radius: 2px;
+  border: none;
+  background-color: #fff;
+  margin: 5px;
+}
+
+.first-column-style:hover {
+  background-color: #dd2c00;
+}
+
+.first-column-style2 {
+  /* float: right; */
+  border-radius: 2px;
+  border: none;
+  background-color: #fff;
+  margin: 10px;
+}
+
+.first-column-style2:hover {
+  background-color: #dd2c00;
+}
+
+#formButton:hover {
+  background-color: #303f9f;
+}
+
+#formButton2:hover {
+  background-color: #424242;
+}
+
+.image-style1 {
+  border-radius: 2px;
+  filter: brightness(106%);
+  width: 20vw;
+  height: auto;
+}
+
+.image-style2 {
+  border-radius: 2px;
+  filter: brightness(109%);
+  width: 20vw;
+  height: auto;
+}
+
+.image-style3 {
+  border-radius: 2px;
+  filter: brightness(106%);
+  width: 20vw;
+  height: auto;
+}
+
+.info-style2 {
+  background-color: #fff;
+  margin: 10px;
+  border-radius: 1px;
+}
+
+.active {
+  font-weight: bold;
+}
+
+.main-icon-style:hover {
+  background-color: #dd2c00;
+}
+
+.mobile-column-style {
+  border-radius: 2px;
+  border: none;
+  background-color: #fff;
+  margin: 5px;
+}
+
+.mobile-column-style:hover {
+  background-color: #dd2c00;
+}
+
+.mobile-image-style {
+  border-radius: 2px;
+  filter: brightness(106%);
+  height: 40vw;
+  width: auto;
+}
+
+.nav-title-style {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
+  margin-left: 30px;
+}
+
+.previewimg {
+  width: 30vw;
+  height: auto;
+}
+
+.some-icon-style:hover {
+  color: #dd2c00;
+}
+
+.tables-info-style {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 18px;
+}
+
+.titles-color {
+  color: #525252;
+}
+
+.titles-color:hover {
+  color: #dd2c00;
+}
+
+@media only screen and (max-width: 300px) {
+  .hamburgermenu {
+    width: 30px;
+    height: 30px;
+    margin-left: 1em;
+  }
+
+  .letter {
+    font-size: 25px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .all-titles {
+    font-size: 30px;
+  }
+
+  .arrow-style {
+    border: none;
+  }
+
+  .artist-style {
+    width: 27vw;
+  }
+
+  .hamburgermenu {
+    width: 35px;
+    height: 35px;
+    margin-left: 0.3em;
+  }
+
+  .letter {
+    font-size: 30px;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .all-titles {
+    font-size: 45px;
+  }
+
+  .a-enter-vr-button {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 1300px) {
+  .all-titles {
+    margin-top: 65px;
+  }
+
+  .a-enter-vr-button {
+    width: 80px;
+    height: 50px;
+  }
+
+  .showroom-box {
+    max-width: 1049px;
+    height: 560px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* TODO: Showroom will be finished later */
+.coming-later {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  left: 0px;
+  z-index: 1000;
+  font-size: 7vw;
+  top: 15vw;
+}
